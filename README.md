@@ -5,4 +5,4 @@
 
 김민영 Minyoung Kim([@kkminyoung](https://github.com/kkminyoung)) - 1829008
 
-박지윤 / Jiyoon Park / @jyPark / https://github.com/jiyoonpark0207 / 1876166
+박지윤 Jiyoon Park ([@jypark] (https://github.com/jiyoonpark0207)) - 1876166
