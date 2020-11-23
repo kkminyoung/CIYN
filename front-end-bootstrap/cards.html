@@ -616,7 +616,7 @@
     const list_div = document.getElementById("list_div");
   database.collection("course").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
-        list_div.innerHTML +=" <div class='card shadow mb-4'><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+"</h6></div><div class='card-body'>"+ doc.data().credit +" "+ doc.data().name +" "+ doc.data().num+"</div></div>";
+        list_div.innerHTML +=" <div class='card shadow mb-4'><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+"</h6></div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +"<br><b>설명</b>   "+ doc.data().script +"</div></div>";
     })
   })
 	</script>
