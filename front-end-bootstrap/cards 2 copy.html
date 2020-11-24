@@ -357,13 +357,9 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="row" id = "a">
-
-                    <!-- Content Column
-                    <div class="col-lg-6 mb-4">
-
-                       
-                    </div> -->
+                <div class="row" >
+                    <div class="col-lg-6" id = "a">
+                    </div>
                 </div>
             <!-- End of Main Content -->
 
@@ -436,45 +432,101 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const database = firebase.firestore();
-  const usersCollection = database.collection('course');
-  usersCollection.get().then(snapshot => {
-    snapshot.forEach(course => {
-    });
-  })
-  .catch(error => {
-    console.error(error);
-  });
     const list_div = document.getElementById("a");
-    const col = database.collection('course');
+    const col = database.collection('course').where('name', '==', 'JAVA프로그래밍및실습');
     const rev = database.collection('review');
+    var basic, related, prof, fin_prof="", docse={}, a1, a2, reviews2="";
+    console.log("1");
+    col.get().then(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+            console.log("2");
+            var sc = doc.data().script;
+            if(sc == ""){
+                sc = "등록되지 않았습니다.";
+            }
+            basic = " <div class='card shadow mb-4'><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+"</h6></div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
+            related = "<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
+            prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-2"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-2"];
+            a1 = doc.data().prof["2018-2"];
+            a2 = doc.data().prof["2019-2"]
+            lists =a1.concat(a2); 
+            lists = lists.filter((item, index) => lists.indexOf(item) === index);
+            docse = doc.data();
+            list_div.innerHTML += (basic + related + prof + "</div></div>");
+            var num=1;
+            console.log(list_div.innerHTML);
+            lists.forEach(element =>{
+                console.log("3");
+                const reviews = rev.where('name','==', docse['name']);
+                reviews.get().then(snapshot =>{
+                    snapshot.docs.forEach(docs =>{
+                        reviews2 = "<div class='card shadow mb-4'><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>";
+            
+                        console.log("4");
+                        reviews2 +=element+"</b><br></h6></div><div class='card-body'>";
+                        var dat = docs.data()[element];
+                        if(dat==[]){
+                            reviews2 += "No data <br>"
+                        }else{
+                            for(x in dat){ 
+                                reviews2 += "<b>term "+dat[x]['term']+"  "+dat[x]['eg'] +" expected </b><br> "+ dat[x]['script']+"<br><b>추천 | </b> "+dat[x]['good']+"<br><br>";  
+                            } 
+                            list_div.innerHTML += reviews2;
+                        }
+                        
+                        
+                    })
+                });
+                
+                console.log("5");
+            });
+            console.log("6");
+        });
+    });
+    console.log("7");
+    
+    
+
+    
+    /*
     col.get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
         var sc = doc.data().script;
         if(sc == ""){
             sc = "등록되지 않았습니다.";
         }
-        var basic = " <div class='card shadow mb-4'><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+"</h6></div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
-        var related = "<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
-        var prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-2"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-2"]+"</div></div>";
+        basic = " <div class='card shadow mb-4'><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+"</h6></div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
+        related = "<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
+        prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-2"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-2"];
 
         var a1 = doc.data().prof["2018-2"];
         var a2 = doc.data().prof["2019-2"]
         var lists =a1.concat(a2); 
-        console.log(lists);
-        /*
+        lists = lists.filter((item, index) => lists.indexOf(item) === index);
+        fin_prof="";
         lists.forEach(element =>{
-            
-            var prof2 = "<br><br><b>"+element+"</b><br><b>";
-            const reviews = rev.where('name','array-contains', 'SW');
+            const reviews = rev.where('name','==', doc.data().name);
+            var pro = doc.data().name;
             reviews.get().then(snapshot =>{
-                snapshot.docs.forEach(doc =>{
-                    console.log(typeof(doc.data()));
+                snapshot.docs.forEach(docs =>{
+                    fin_prof+="<br>"+element+"<br>";
+                    var dat = docs.data()[element];
+                    for(x in dat){ 
+                        fin_prof += "term "+dat[x]['term']+"  "+dat[x]['eg'] +" expected <br> "+ dat[x]['script']+"<br>";
+                    }
+                    console.log("hey"+fin_prof);
+                    list_div.innerHTML += (basic + related + prof+fin_prof+"</div></div>");
                 })
             })
-        });*/
-        list_div.innerHTML += (basic + related + prof);
+    
+        });
+        
+        console.log("this is final prof2"+fin_prof); 
+        
+        
     })
-  })
+    console.log("final"+fin_prof);
+  })*/
 
 	</script>
 
