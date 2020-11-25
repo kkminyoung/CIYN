@@ -360,19 +360,20 @@
                 <div class="container-fluid">
                     <h1 class="h3 mb-4 text-gray-800">Search Results</h1>
                 <div class="row" >
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class='card shadow mb-4'>
                             <div class='card-header py-3'> 
                                 <h6 class='m-0 font-weight-bold text-primary' id = "aa">
                                 </h6>
                             </div>
                             <div class='card-body' id = "bb">
+                                
                             </div>
                         </div>
                     </div>
                 
                 
-                    <div class="col-lg-6" >
+                    <div class="col-lg-7" >
                         <div class='card shadow mb-4'>
                             <div class='card-header py-3'> 
                                 <h6 class='m-0 font-weight-bold text-primary' id = "cc">
@@ -459,6 +460,7 @@
   const database = firebase.firestore();
     const list_div = document.getElementById("aa");
     const list_div2 = document.getElementById("bb");
+    const list_div2_1 = document.getElementById("bb_1");
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
     const col = database.collection('course').where('name', '==', 'JAVA프로그래밍및실습');
@@ -473,7 +475,14 @@
             }
         
             basic = doc.data().name+ " (" + doc.data().num+")";
-            related = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>"+"<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
+
+            related = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
+
+            related_subject = "<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
+
+
+
+
             prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-2"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-2"];
             a1 = doc.data().prof["2018-2"];
             a2 = doc.data().prof["2019-2"];
@@ -484,7 +493,7 @@
             });
             list_div3.innerHTML += str;
             list_div.innerHTML = (basic);
-            list_div2.innerHTML = related + prof;
+            list_div2.innerHTML = related + related_subject+prof;
            
             });
         });
