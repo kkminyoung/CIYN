@@ -361,61 +361,12 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Cards</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Subjects</h1>
                     </div>
 
                     <div class="row">
 
                         <div class="col-lg-6" id ="list_div">
-
-                        </div>
-
-                        <div class="col-lg-6">
-
-                            <!-- Dropdown Card Example -->
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Dropdown Card Example</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <a class="dropdown-item" href="#">강의 소개 </a>
-                                            <a class="dropdown-item" href="#">강의 평가 </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">성적 분포 </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    Dropdown menus can be placed in the card header in order to extend the functionality
-                                    of a basic card. In this dropdown card example, the Font Awesome vertical ellipsis
-                                    icon in the card header can be clicked on in order to toggle a dropdown menu.
-                                </div>
-                            </div>
-
-                            <!-- Collapsable Card Example -->
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Accordion -->
-                                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
-                                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                                    <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
-                                </a>
-                                <!-- Card Content - Collapse -->
-                                <div class="collapse show" id="collapseCardExample">
-                                    <div class="card-body">
-                                        This is a collapsable card example using Bootstrap's built in collapse
-                                        functionality. <strong>Click on the card header</strong> to see the card body
-                                        collapse and expand!
-                                    </div>
-                                </div>
-                            </div>
 
                         </div>
 
@@ -506,7 +457,9 @@
     const list_div = document.getElementById("list_div");
   database.collection("course").get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
-        list_div.innerHTML +="<div class='card shadow mb-4' onclick = \"subbb();\" id = '"+doc.data().name+"'><form id = 'acc' name = 'acc'><input type = 'hidden' id ="+doc.data().name+ "name=  "+doc.data().name+ " ></form><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+    '</h6><div class="dropdown no-arrow"><a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a><div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink"> <a class="dropdown-item" href="#">강의 소개 </a> <a class="dropdown-item" href="#">강의 평가 </a> <div class="dropdown-divider"></div> <a class="dropdown-item" href="#">성적 분포 </a> </div></div>'   +"</div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +"<br><b>설명</b>   "+ doc.data().script +"</div></div></form>";
+        //list_div.innerHTML +="<div class='card shadow mb-4' onclick = \"subbb();\" id = '"+doc.data().name+"'><form id = 'acc' name = 'acc'><input type = 'hidden' id ="+doc.data().name+ "name=  "+doc.data().name+ " ></form><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+    '</h6><div class="dropdown no-arrow"><a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a><div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink"> <a class="dropdown-item" href="#">강의 소개 </a> <a class="dropdown-item" href="#">강의 평가 </a> <div class="dropdown-divider"></div> <a class="dropdown-item" href="#">성적 분포 </a> </div></div>'   +"</div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +"<br><b>설명</b>   "+ doc.data().script +"</div></div></form>";
+        list_div.innerHTML +="<div class='card shadow mb-4' onclick = \"subbb();\" id = '"+doc.data().name+"'><form id = 'acc' name = 'acc'><input type = 'hidden' id ="+doc.data().name+ "name=  "+doc.data().name+ " ></form><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+ "</h6></div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +"<br><b>설명</b>   "+ doc.data().script +"</div></div></form>";
+    
     })
   })
 
