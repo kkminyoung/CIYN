@@ -395,7 +395,7 @@
                             </div>
                             <div style="height:250px; overflow-y: scroll; position: relative">
                                 <div id="canvasContainer">
-                                    <canvas id="myChart" height = "200" ></canvas>
+                                    <canvas id="myChart"  width = "100"height = "100"></canvas>
                                 </div>
                             </div>
                             <div class='card-body' id = "dd">
@@ -495,7 +495,7 @@
             lists = a1.concat(a2); 
             lists = lists.filter((item, index) => lists.indexOf(item) === index);
             lists.forEach(element=>{
-                str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> "+element+" </label>";
+                str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp"+element+" </label>&nbsp&nbsp&nbsp";
             });
             list_div3.innerHTML += str;
             list_div.innerHTML = (basic);
@@ -526,7 +526,7 @@
 
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
-                                        prof_radio += "<b>term "+docss.data()[x][m]['term']+"  "+docss.data()[x][m]['eg'] +" expected </b><br> "+ docss.data()[x][m]['script']+"<br><b>추천 | </b> "+docss.data()[x][m]['good']+"<br><br>";  
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><b>추천 | </b> "+docss.data()[x][m]['good']+"<br></div></div>";  
                                         eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
                                         eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
                                         eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
@@ -546,6 +546,7 @@
                                     data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num]}]},
                                 options:{
                                     scale: {
+                                        responsive: false,maintainAspectRatio: false,
                                         ticks: {
                                             suggestedMin: 0,
                                             suggestedMax: 5
