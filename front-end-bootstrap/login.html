@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <meta name="google-signin-scope" content="profile email">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
+    <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id"
         content="251105086649-7dp43c1tupf0tsmqdoahj1jcbud3spmq.apps.googleusercontent.com">
+    <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+
     <title>SB Admin 2 - Login</title>
 
     <!-- Custom fonts for this template-->
@@ -26,16 +27,6 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
-<script>
-    function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    }
-</script>
 
 <body class="bg-gradient-primary">
 
@@ -58,12 +49,13 @@
                                     </div>
                                     <form class="user">
                                         <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                                        <hr>
+                                        <a onclick="signOut();"> Sign out </a>
+                                        <div id="result"></div>
+                                        <div id="resultout"></div>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                            <i class="fab fa-google fa-fw"></i> 로그인완료 홈으로!
                                         </a>
                                     </form>
-                                    <hr>
                                 </div>
                             </div>
                         </div>
@@ -86,9 +78,70 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <script>
 
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            var id_token = googleUser.getAuthResponse().id_token;
 
+            ///////////////////////////////
 
-</body>
+            $.ajax({
+                type: 'POST',
+                url: 'http://example.com/storeauthcode',
+                processData: false,
+                data: id_token,
+                contentType: 'application/octet-stream; charset=utf-8',
+                success: function (result) {
+                    // Handle or verify the server response if necessary.
+                    if (result) {
+                        $('#result').html('Login Successful!</br>' + result + '</br>Redirecting...')
+                        setTimeout(function () {
+                            window.location.href = "/";
+                        }, 3000);
+
+                    } else if (authResult['error']) {
+                        console.log('There was an error: ' + authResult['error']);
+                    } else {
+                        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+                    }
+                }
+
+            })
+
+            ///////////////////////////////
+
+        }
+
+        function signOut() {
+
+            var auth2 = gapi.auth2.getAuthInstance();
+
+            auth2.signOut().then(function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/googledisconnect',
+                    processData: false,
+                    contentType: 'application/octet-stream; charset=utf-8',
+                    success: function (result) {
+                        // Handle or verify the server response if necessary.
+
+                        if (result) {
+                            $('#resultout').html('Logout Successful!</br>' + result + '</br>Redirecting...')
+                            setTimeout(function () {
+                                window.location.href = "/";
+                            }, 3000);
+
+                        } else {
+                            $('#resultout').html('Failed to make a server-side call. Check your configuration and console.');
+                        }
+                    }
+                })
+            });
+        }
+
+    </script>
+
 
 </html>
