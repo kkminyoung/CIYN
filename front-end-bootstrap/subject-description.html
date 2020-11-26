@@ -20,6 +20,19 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
 </head>
 <body id="page-top">
 
@@ -360,26 +373,33 @@
                 <div class="container-fluid">
                     <h1 class="h3 mb-4 text-gray-800">Search Results</h1>
                 <div class="row" >
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class='card shadow mb-4'>
                             <div class='card-header py-3'> 
                                 <h6 class='m-0 font-weight-bold text-primary' id = "aa">
                                 </h6>
                             </div>
                             <div class='card-body' id = "bb">
+                                
                             </div>
                         </div>
                     </div>
                 
                 
-                    <div class="col-lg-6" >
+                    <div class="col-lg-7" >
                         <div class='card shadow mb-4'>
                             <div class='card-header py-3'> 
                                 <h6 class='m-0 font-weight-bold text-primary' id = "cc">
 
                                 </h6>
                             </div>
+                            <div style="height:250px; overflow-y: scroll; position: relative">
+                                <div id="canvasContainer">
+                                    <canvas id="myChart"  width = "100"height = "100"></canvas>
+                                </div>
+                            </div>
                             <div class='card-body' id = "dd">
+                               
                             </div>
 
                         </div>
@@ -429,19 +449,6 @@
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-
-	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
     <script>
 		// Your web app's Firebase configuration
     var firebaseConfig = {
@@ -459,6 +466,7 @@
   const database = firebase.firestore();
     const list_div = document.getElementById("aa");
     const list_div2 = document.getElementById("bb");
+    const list_div2_1 = document.getElementById("bb_1");
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
     const col = database.collection('course').where('name', '==', 'JAVA프로그래밍및실습');
@@ -473,23 +481,33 @@
             }
         
             basic = doc.data().name+ " (" + doc.data().num+")";
-            related = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>"+"<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
+
+            related = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
+
+            related_subject = "<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
+
+
+
+
             prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-2"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-2"];
             a1 = doc.data().prof["2018-2"];
             a2 = doc.data().prof["2019-2"];
             lists = a1.concat(a2); 
             lists = lists.filter((item, index) => lists.indexOf(item) === index);
             lists.forEach(element=>{
-                str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> "+element+" </label>";
+                str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp"+element+" </label>&nbsp&nbsp&nbsp";
             });
             list_div3.innerHTML += str;
             list_div.innerHTML = (basic);
-            list_div2.innerHTML = related + prof;
+            list_div2.innerHTML = related + related_subject+prof;
            
             });
         });
-
+    var eval_grade =0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myRadarChart;
     function profradio(thisid){
+        eval_grade = 0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
         console.log(thisid);
         list_div4.innerHTML="";
         prof_radio="";
@@ -508,12 +526,34 @@
 
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
-                                        prof_radio += "<b>term "+docss.data()[x][m]['term']+"  "+docss.data()[x][m]['eg'] +" expected </b><br> "+ docss.data()[x][m]['script']+"<br><b>추천 | </b> "+docss.data()[x][m]['good']+"<br><br>";  
-                                
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><b>추천 | </b> "+docss.data()[x][m]['good']+"<br></div></div>";  
+                                        eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
+                                        eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
+                                        eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
+                                        eval_teach+=parseInt(docss.data()[x][m]['eval_teach']);
+                                        eval_num++;
                                     }
                                 } 
                             }
                             list_div4.innerHTML += prof_radio;
+                           console.log([eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num]);
+                            
+                            myRadarChart = new Chart(ctx, {
+                                type: 'radar',
+                                data: {
+                                    labels: ['grade', 'hard', 'talk', 'teach'],
+                                    datasets: [{
+                                    data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num]}]},
+                                options:{
+                                    scale: {
+                                        responsive: false,maintainAspectRatio: false,
+                                        ticks: {
+                                            suggestedMin: 0,
+                                            suggestedMax: 5
+                                        }
+                                    }
+                                }
+                            }); 
                             
                         }
                         
@@ -522,7 +562,13 @@
                 });
                 document.cookie="";
     }
-    
+    function calcHeight (numOfBars) {
+            var maxHeightOfChart = 100;
+            var minHeight = 40; //setting the min height of the bar + margin between
+            var chartHeight = minHeight * numOfBars > maxHeightOfChart ? minHeight * numOfBars : maxHeightOfChart;
+            document.getElementById("canvasContainer").style.height = chartHeight.toString()+"px";
+    }
+
     /*
     col.get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
