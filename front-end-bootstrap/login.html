@@ -48,13 +48,22 @@
                                         <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
                                     </div>
                                     <form class="user">
-                                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
-                                        <a onclick="signOut();"> Sign out </a>
-                                        <div id="result"></div>
-                                        <div id="resultout"></div>
+                                        <div class="text-center">
+                                            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                                        </div>
+
+                                        
+                                        <div class="text-center" id="user_name"></div>
+                                        <div class="text-center" id="user_email"></div>
+                                        <div class="text-center" id="is_ewhain"></div>
+
+                                        <div class="text-center" id="result"></div>
+                                        <div class="text-center" id="resultout"></div>
+                                        
                                         <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> 로그인완료 홈으로!
+                                            <i class="fab fa-google fa-fw"></i> 홈
                                         </a>
+
                                     </form>
                                 </div>
                             </div>
@@ -80,9 +89,48 @@
 
     <script>
 
+        var profile;
+        var user_id = "none";
+        var user_name = "none";
+        var user_image="none";
+        var user_email="none";
+        var is_ewhain;
+
+
         function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            var id_token = googleUser.getAuthResponse().id_token;
+            profile = googleUser.getBasicProfile();
+            id_token = googleUser.getAuthResponse().id_token;
+
+            user_id = profile.getId();
+            user_name = profile.getName();
+            user_image = profile.getImageUrl();
+            user_email = profile.getEmail();
+
+            // 이화인 메일인지 확인
+            var findString="ewhain.net";
+            user_email=String(user_email);
+
+            
+
+            if(user_email.indexOf(findString)!=-1){
+                is_ewhain = "이화인 계정입니다.";
+            }
+            else{
+                is_ewhain = "이화인 계정이 아닙니다. 이화인 계정으로 로그인하세요.";
+            }
+            
+
+            console.log('ID: ' + user_id); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + user_name);
+            console.log('Image URL: ' + user_image);
+            console.log('Email: ' + user_email); // This is null if the 'email' scope is not present.
+
+            //document.getElementById("user_id").innerHTML = user_id;
+            document.getElementById("user_name").innerHTML = user_name;
+            document.getElementById("user_email").innerHTML = user_email;
+            document.getElementById("is_ewhain").innerHTML = is_ewhain;
+
+            //document.write('id:' + id + '<br>');
 
             ///////////////////////////////
 
