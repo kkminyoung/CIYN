@@ -382,7 +382,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-xl-4 col-lg-5" id = "ll">
 
 
@@ -473,16 +473,16 @@
             for (var x in dat){
                 str += "<div class='card shadow mb-4'> <div class='card-header py-3'><h6 class='m-0 font-weight-bold text-primary'>"+x+" ("+dat[x]['prof']+" 교수님)"+"</h6></div><div class = 'card-body'>";
                 if(dat[x]['mid']== ""){
-                    str += "<label>중간고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='중간고사 성적 입력' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'><button class='btn btn-light' type='button' onclick = 'profradio(\"mid\")'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 성적 확정</span></button></div><br>"
+                    str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='중간고사 성적입력' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-primary btn-icon-split' onclick = 'profradio(\"fin\")' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
                 }else{
-                    str += "<label>중간고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='"+dat[x]['mid']+"' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'><button class='btn btn-light' onclick = 'profradio(\"mid\")' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 변경 불가</span></button></div><br>"
+                    str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='"+dat[x]['mid']+"' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'profradio(\"mid\")' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                 }
                 if(dat[x]['fin']== ""){
-                    str += "<label>기말고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='중간고사 성적 입력' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'><button class='btn btn-light' onclick = 'profradio(\"fin\")' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 성적 확정</span></button></div><br>"
+                    str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='기말고사 성적입력' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-primary btn-icon-split' onclick = 'profradio(\"fin\")' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
                 }else{
-                    str += "<label>기말고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='"+dat[x]['fin']+"' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'><button class='btn btn-light' onclick = 'profradio(\"fin\")' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 변경 불가</span></button></div><br>"
+                    str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='"+dat[x]['fin']+"' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'profradio(\"mid\")' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                 }
-                str += "</form><a href='#' class='btn btn-danger btn-icon-split'><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>전체 성적 위치 확인하기</span></a></div></div>";
+                str += "<br></form><a href='#' class='btn btn-success btn-icon-split'><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>전체 성적 위치 확인하기</span></a></div></div>";
             }
             list_subject.innerHTML += str;
         })
