@@ -4344,8 +4344,6 @@ input[type="button"].btn-block {
   padding-left: 0.5rem;
 }
 
-.
- > .container,
 .navbar-expand > .container-fluid, .navbar-expand > .container-sm, .navbar-expand > .container-md, .navbar-expand > .container-lg, .navbar-expand > .container-xl {
   flex-wrap: nowrap;
 }
@@ -7723,8 +7721,7 @@ button.bg-dark:focus {
   margin-right: 1.5rem !important;
 }
 
-.
-,
+
 .my-4 {
   margin-bottom: 1.5rem !important;
 }

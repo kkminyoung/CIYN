@@ -17,12 +17,20 @@
     "fetchSpec": "5.15.1"
   },
   "_requiredBy": [
+<<<<<<< HEAD
+    "#USER",
+=======
+>>>>>>> main
     "/"
   ],
   "_resolved": "https://registry.npmjs.org/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.1.tgz",
   "_shasum": "ccfef6ddbe59f8fe8f694783e1d3eb88902dc5eb",
   "_spec": "@fortawesome/fontawesome-free@5.15.1",
+<<<<<<< HEAD
+  "_where": "C:\\Users\\KimMinyoung\\Desktop\\깃헙관련\\CIYN\\CIYN\\front-end-bootstrap",
+=======
   "_where": "/Users/DANGER_DAVID/Sites/startbootstrap-themes/startbootstrap-sb-admin-2",
+>>>>>>> main
   "author": {
     "name": "Dave Gandy",
     "email": "dave@fontawesome.com",

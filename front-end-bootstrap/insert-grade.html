@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
 </head>
 <body id="page-top">
 
@@ -361,12 +363,21 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Subjects</h1>
+                        <h1 class="h3 mb-0 text-gray-800">2020-2학기 수강 과목 학점 예측</h1>
                     </div>
 
                     <div class="row">
+                        <div class="col-lg-6">
+                            <div class='card shadow mb-4'>
+                                <div class='card-body' >
+                        <div style="height:400px; overflow-y: scroll; position: relative">
+                            <div id="canvasContainer">
+                                <canvas id="GradeChart" height= "200px" ></canvas>
+                            </div></div>
+                        </div></div>
+                    </div>
+                        <div class="col-lg-6" id = "ll">
 
-                        <div class="col-lg-6" id ="list_div">
 
                         </div>
 
@@ -432,42 +443,95 @@
 	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
     <script>
-		// Your web app's Firebase configuration
     var firebaseConfig = {
-    apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
-    authDomain: "ciyn-7bfbc.firebaseapp.com",
-    databaseURL: "https://ciyn-7bfbc.firebaseio.com",
-    projectId: "ciyn-7bfbc",
-    storageBucket: "ciyn-7bfbc.appspot.com",
-    messagingSenderId: "251105086649",
-    appId: "1:251105086649:web:ada3d55a17def3c0b7df68",
-    measurementId: "G-4N9321T8ST"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const database = firebase.firestore();
-  const usersCollection = database.collection('course');
-  usersCollection.get().then(snapshot => {
-    snapshot.forEach(course => {
-    });
-  })
-  .catch(error => {
-    console.error(error);
-  });
-    const list_div = document.getElementById("list_div");
-  database.collection("course").get().then(function(querySnapshot){
-    querySnapshot.forEach(function(doc){
-        //list_div.innerHTML +="<div class='card shadow mb-4' onclick = \"subbb();\" id = '"+doc.data().name+"'><form id = 'acc' name = 'acc'><input type = 'hidden' id ="+doc.data().name+ "name=  "+doc.data().name+ " ></form><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+    '</h6><div class="dropdown no-arrow"><a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i></a><div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink"> <a class="dropdown-item" href="#">강의 소개 </a> <a class="dropdown-item" href="#">강의 평가 </a> <div class="dropdown-divider"></div> <a class="dropdown-item" href="#">성적 분포 </a> </div></div>'   +"</div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +"<br><b>설명</b>   "+ doc.data().script +"</div></div></form>";
-        list_div.innerHTML +="<div class='card shadow mb-4' onclick = \"subbb();\" id = '"+doc.data().name+"'><form id = 'acc' name = 'acc'><input type = 'hidden' id ="+doc.data().name+ "name=  "+doc.data().name+ " ></form><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+ "</h6></div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +"<br><b>설명</b>   "+ doc.data().script +"</div></div></form>";
-    
-    })
-  })
+        apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
+        authDomain: "ciyn-7bfbc.firebaseapp.com",
+        databaseURL: "https://ciyn-7bfbc.firebaseio.com",
+        projectId: "ciyn-7bfbc",
+        storageBucket: "ciyn-7bfbc.appspot.com",
+        messagingSenderId: "251105086649",
+        appId: "1:251105086649:web:ada3d55a17def3c0b7df68",
+        measurementId: "G-4N9321T8ST"
+    };
+      // Initialize Firebase
+      var str="";
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.firestore();
+      const usersCollection = database.collection('user').where('userid', '==','user1');
+      const list_subject = document.getElementById("ll");
+      usersCollection.get().then(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+            str = "";
+            var dat = doc.data()['term']['2020-2'];
+            for (var x in dat){
+                str += "<div class='card shadow mb-4'> <div class='card-header py-3'><h6 class='m-0 font-weight-bold text-primary'>"+x+" ("+dat[x]['prof']+" 교수님)"+"</h6></div><div class = 'card-body'>";
+                if(dat[x]['mid']== ""){
+                    str += "<label>중간고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='중간고사 성적 입력' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'><button class='btn btn-light' type='button' onclick = 'profradio()'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 성적 확정</span></button></div><br>"
+                }else{
+                    str += "<label>중간고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='"+dat[x]['mid']+"' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'><button class='btn btn-light' onclick = 'profradio()' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 변경 불가</span></button></div><br>"
+                }
+                if(dat[x]['fin']== ""){
+                    str += "<label>기말고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='중간고사 성적 입력' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'><button class='btn btn-light' onclick = 'profradio()' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 성적 확정</span></button></div><br>"
+                }else{
+                    str += "<label>기말고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='"+dat[x]['fin']+"' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'><button class='btn btn-light' onclick = 'profradio()' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 변경 불가</span></button></div><br>"
+                }
+                str += "</form><a href='#' class='btn btn-danger btn-icon-split'><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>현재 성적 위치 확인하기</span></a></div></div>";
+            }
+            list_subject.innerHTML += str;
+        })
+      });
+      
+    var ctx = document.getElementById('GradeChart');
+    var myRadarChart;
+    function profradio(){
+        eval_grade = 0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
+        //console.log(thisid);
+        const revs = database.collection('grade').where('name', '==', '컴퓨터구조');//나중에 thisid로 바뀌어야
+        revs.get().then(snapshot =>{
+                    snapshot.docs.forEach(docss =>{
+                        console.log(docss.data());
+                        var dat_fin = docss.data()['2018-2']['score']['fin'];
+                        var dat_mid = docss.data()['2018-2']['score']['mid'];
+                        var hist = [0,0,0,0,0,0,0,0,0,0];
+                        for (var i in dat_fin){
+                            hist[parseInt(dat_fin[i]/10)]+=1;
+                        }
+var data = {
+        labels: ["0~","10~","20~",  "30~", "40~","50~", "60~","70~","80~", "90~",  "100"],
+        datasets: [{
+            data: hist,
+            backgroundColor: [
+                'rgba(255, 0, 0, 0.6)',
+                'rgba(255, 0, 0, 0.6)',
+                'rgba(255, 48, 0, 0.6)',
+                'rgba(255, 48, 0, 0.6)',
+                'rgba(255, 102, 0, 0.6)',
+                'rgba(255, 102, 0, 0.6)',
+                'rgba(255, 154, 0, 0.6)',
+                'rgba(255, 205, 0, 0.6)',                
+                'rgba(255, 255, 0, 0.6)'
+            ]
+        }]
+    };
+var option = {
+tooltips: {
+         enabled: false
+    },
+	 legend: {
+        			display: false
+				    }
+};
 
-  function subbb(){
-    document.id.action="link_page.html";
-document.acc.submit();
-  }
-	</script>
+var myBarChart = Chart.Bar(ctx,{
+	data:data,
+  options:option
+});
+
+                    })
+                });
+                document.cookie="";
+    }
+    </script>
 </body>
 
 </html>
