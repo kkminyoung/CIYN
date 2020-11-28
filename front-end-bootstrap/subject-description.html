@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Cards</title>
+    <title>강의 평가</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -398,6 +398,41 @@
                             <div class='card-body' id = "bb">
                                 
                             </div>
+                            <div class='card-body' id = "description-course">
+
+                            </div>
+                            <div class = "row">
+                                <div class="col-xl-6-1 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >선수과목
+                                                        </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-pre" ></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6-1 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >선후과목
+                                                        </div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-post" ></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class='card-body' id = "faculty">
+
+                            </div>
                         </div>
                     </div>
                 
@@ -577,7 +612,10 @@
   const database = firebase.firestore();
     const list_div = document.getElementById("aa");
     const list_div2 = document.getElementById("bb");
-    const list_div2_1 = document.getElementById("bb_1");
+    const list_div2_1 = document.getElementById("description-course");
+    const list_div2_2 = document.getElementById("related-courses-pre");
+    const list_div2_3 = document.getElementById("related-courses-post");
+    const list_div2_4 = document.getElementById("faculty");
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
     const col = database.collection('course').where('name', '==', '데이터베이스');
@@ -593,8 +631,13 @@
                 sc = "등록되지 않았습니다.";
             }
             basic = doc.data().name+ " (" + doc.data().num+")";
-            related = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
-            related_subject = "<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
+
+            course_desc = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
+
+            realted = "<b>연관과목</b>";
+            related_subject_pre = doc.data().prepro.pre;
+            related_subject_post = doc.data().prepro.pro;
+
             prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-1"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-1"];
             a1 = doc.data().prof["2018-1"];
             a2 = doc.data().prof["2019-1"];
@@ -605,9 +648,11 @@
                 str2 += "<input type = 'radio' id = ' "+element+" ' name = 'rev'><label> &nbsp"+element+" </label>&nbsp&nbsp&nbsp";
             });
             list_div3.innerHTML += str;
-            lll.innerHTML = (str2+"<br>");
             list_div.innerHTML = (basic);
-            list_div2.innerHTML = related + related_subject+prof;
+            list_div2_1.innerHTML = course_desc+"<hr>"+realted;
+            list_div2_2.innerHTML = related_subject_pre;
+            list_div2_3.innerHTML = related_subject_post;
+            list_div2_4.innerHTML = prof;
            
             });
         });
