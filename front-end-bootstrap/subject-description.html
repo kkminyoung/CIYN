@@ -19,10 +19,13 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/heart-button.css" rel="stylesheet">
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/heart-button.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -32,7 +35,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
 </head>
 <body id="page-top">
 
@@ -153,7 +165,6 @@
             <div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
                 <p class="text-center mb-2"><strong>현재 접속자 :</strong> 1886 명</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
             </div>
 
         </ul>
@@ -371,13 +382,64 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">Search Results</h1>
+                    <div class="row">
+                        <h1 class="h3 mb-4 text-gray-800">Search Results</h1>
+                        <div>
+                            <input type="checkbox" id="checkbox" />
+                            <label for="checkbox">
+                              <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                  <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
+                                  <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
+                        
+                                  <g id="grp7" opacity="0" transform="translate(7 6)">
+                                    <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>
+                                    <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp6" opacity="0" transform="translate(0 28)">
+                                    <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>
+                                    <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp3" opacity="0" transform="translate(52 28)">
+                                    <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>
+                                    <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp2" opacity="0" transform="translate(44 6)">
+                                    <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>
+                                    <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp5" opacity="0" transform="translate(14 50)">
+                                    <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>
+                                    <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp4" opacity="0" transform="translate(35 50)">
+                                    <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>
+                                    <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp1" opacity="0" transform="translate(24)">
+                                    <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>
+                                    <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>
+                                  </g>
+                                </g>
+                              </svg>
+                            </label>
+                        
+                          </div>
+                        
+                      </div>
                 <div class="row" >
                     <div class="col-lg-5">
                         <div class='card shadow mb-4'>
                             <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'> 
                                 <h6 class='m-0 font-weight-bold text-primary' id = "aa">
                                 </h6>
+                                
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -407,6 +469,7 @@
                                         <div class="card-body">
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
+                                                    
                                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >선수과목
                                                         </div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-pre" ></div>
@@ -434,7 +497,10 @@
 
                             </div>
                         </div>
+
+
                     </div>
+                    
                 
                 
                     <div class="col-lg-7" >
@@ -455,9 +521,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="height:250px; overflow-y: scroll; position: relative">
+                            <div style="height:500px; overflow-y: scroll; position: relative">
                                 <div id="canvasContainer">
-                                    <canvas id="myChart"  width = "100"height = "100"></canvas>
+                                    <canvas id="myChart"  width = "100" height = "100"></canvas>
                                 </div>
                             </div>
                             <div class='card-body' id = "dd">
@@ -530,7 +596,7 @@
              <div class="modal-body" id = "llll2">
                 <label>Expected Grade:</label>
                 
-                <select name= "eg" id = "eg">
+                <select class ="custom-select" name= "eg" id = "eg">
                     <option value = "A+">A+</option>
                     <option value = "A0">A0</option>
                     <option value = "A-">A-</option>
@@ -540,7 +606,7 @@
                 </select>
                 <br>
                 <label>Term</label>
-                <select name= "term" id = "term">
+                <select class ="custom-select" name= "term" id = "term">
                     <option value = "2018-2">2018-2</option>
                     <option value = "2019-1">2019-1</option>
                     <option value = "2019-2">2019-2</option>
@@ -548,7 +614,7 @@
                 </select>
                 <br>
                 <label>Check Grade</label>
-                <select name= "g" id = "g">
+                <select class ="custom-select" name= "g" id = "g">
                     <option value = "g5">5</option>
                     <option value = "g4">4</option>
                     <option value = "g3">3</option>
@@ -557,7 +623,7 @@
                 </select>
                 
                 <label>Hard</label>
-                <select name= "h" id = "h">
+                <select class ="custom-select" name= "h" id = "h">
                     <option value = "h5">5</option>
                     <option value = "h4">4</option>
                     <option value = "h3">3</option>
@@ -565,7 +631,7 @@
                     <option value = "h1">1</option>
                 </select>
                 <label>Talk</label>
-                <select name= "ta" id = "ta">
+                <select class ="custom-select" name= "ta" id = "ta">
                     <option value = "ta5">5</option>
                     <option value = "ta4">4</option>
                     <option value = "ta3">3</option>
@@ -573,7 +639,7 @@
                     <option value = "ta1">1</option>
                 </select>
                 <label>Teach</label>
-                <select name= "te" id = "te">
+                <select class ="custom-select" name= "te" id = "te">
                     <option value = "te5">5</option>
                     <option value = "te4">4</option>
                     <option value = "te3">3</option>
@@ -581,8 +647,8 @@
                     <option value = "te1">1</option>
                 </select>
                 <br>
-                <label>Script</label><br>
-                <textarea id = "scr" name = "scr"placeholder = "강의평을 입력해주세요!" ></textarea>
+                <label >Script</label><br>
+                <textarea rows="10" colsid = "scr" name = "scr"placeholder = "강의평을 입력해주세요!" ></textarea>
              </div>
             </form>
              <div class="modal-footer">
@@ -630,7 +696,7 @@
             if(sc == ""){
                 sc = "등록되지 않았습니다.";
             }
-            basic = doc.data().name+ " (" + doc.data().num+")";
+            basic = doc.data().name+ " (" + doc.data().num+")" ;
 
             course_desc = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
 
@@ -638,7 +704,7 @@
             related_subject_pre = doc.data().prepro.pre;
             related_subject_post = doc.data().prepro.pro;
 
-            prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-1"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-1"];
+            prof = "<br><br><b>교수진</b><br><hr><b>2019-2</b> | "+doc.data().prof["2019-1"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-1"];
             a1 = doc.data().prof["2018-1"];
             a2 = doc.data().prof["2019-1"];
             lists = a1.concat(a2); 
@@ -653,6 +719,7 @@
             list_div2_2.innerHTML = related_subject_pre;
             list_div2_3.innerHTML = related_subject_post;
             list_div2_4.innerHTML = prof;
+            
            
             });
         });
@@ -730,6 +797,7 @@
         var te = document.getElementById("te");
         var rev = document.getElementsByName('rev'); 
         var scr = document.getElementById('scr'); 
+        
         var lll = "";
         
         for(i = 0; i < rev.length; i++) { 
