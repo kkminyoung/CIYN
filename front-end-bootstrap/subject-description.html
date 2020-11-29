@@ -470,7 +470,7 @@
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col mr-2">
                                                     
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >선수과목</div>
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">선수과목</div>
                                                     <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-pre" ></div>
                                                 </div>
                                             </div>
@@ -769,7 +769,7 @@
 
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
-                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a  class='nav-link' onclick='recom(\""+m+"\")'><i class='fas fa-fw fa-tachometer-alt'></i><span><b>추천 | </b> "+docss.data()[x][m]['good']+"<br></span></a></div></div>";  
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a  class='nav-link' onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'><i class='fas fa-fw fa-tachometer-alt'></i><span id = 'spannn'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"<br></span></a></div></div>";  
                                         eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
                                         eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
                                         eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
@@ -848,15 +848,21 @@
            alert("success!!")
         })
     }
-    function recom(id){
+    function recom(prof,id, good){
         var rev = document.getElementsByName('rev'); 
         id = id.replace(/\s+/g, '');
-        console.log(id);
-
-        const increment  = firebase.firestore.FieldValue.increment(1);
-        database.collection('review').doc('DataBase').update({good:increment}).then(function(){
-            console.log("okay");
-           alert("success!!")
+        prof = prof.replace(/\s+/g, '');
+        var spann = document.getElementById('spannn');
+        var dataaa = {
+            [prof]:{
+                [id]:{
+                    'good': good+1
+                }
+            }
+        }
+        console.log(dataaa);
+        database.collection('review').doc('DataBase').set(dataaa, {merge:true}).then(function(){
+            spann.innerHTML = "<b>&nbsp추천 | </b> "+(good+1)+"<br>";
         })
     }
 /*
