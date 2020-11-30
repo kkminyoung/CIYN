@@ -665,7 +665,7 @@
                 </select>
                 <br>
                 <label >Script</label><br>
-                <textarea rows="10" colsid = "scr" id ="scr" name = "scr"placeholder = "강의평을 입력해주세요!" ></textarea>
+                <textarea rows="10" cols = "55" colsid = "scr" id ="scr" name = "scr"placeholder = "강의평을 입력해주세요!" ></textarea>
              </div>
             </form>
              <div class="modal-footer">
@@ -758,7 +758,7 @@
         const revs = database.collection('review').where('name', '==', '데이터베이스');
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
-                        var dat = docss.data()[thisid];
+                        var dat = docss.data()[thisid];s
                         if(dat==[]){
                             prof_radio += "No data <br>"
                         }else{
@@ -769,7 +769,7 @@
 
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
-                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a  class='nav-link' onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'><i class='fas fa-fw fa-tachometer-alt'></i><span id = 'spannn'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"<br></span></a></div></div>";  
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a class ='btn btn-primary btn-icon-split'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i><span class ='text' id = 'spannn'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
                                         eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
                                         eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
                                         eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
