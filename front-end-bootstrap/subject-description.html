@@ -665,7 +665,7 @@
                 </select>
                 <br>
                 <label >Script</label><br>
-                <textarea rows="10" cols = "55" colsid = "scr" id ="scr" name = "scr"placeholder = "강의평을 입력해주세요!" ></textarea>
+                <textarea rows="10" cols = "55" id = "scr" id ="scr" name = "scr"placeholder = "강의평을 입력해주세요!" ></textarea>
              </div>
             </form>
              <div class="modal-footer">
@@ -758,7 +758,7 @@
         const revs = database.collection('review').where('name', '==', '데이터베이스');
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
-                        var dat = docss.data()[thisid];s
+                        var dat = docss.data()[thisid];
                         if(dat==[]){
                             prof_radio += "No data <br>"
                         }else{
