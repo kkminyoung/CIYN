@@ -8857,6 +8857,33 @@ button.bg-dark:hover {
 .text-primary {
   color: #4e73df !important;
 }
+
+.text-ap {
+  color: #df4721c7 !important;
+}
+
+.text-a {
+  color: #b13a1cc7 !important;
+}
+
+.text-am {
+  color: #8b2f18c7 !important;
+}
+
+.text-bp {
+  color: #ebca36 !important;
+}
+
+.text-b {
+  color: #c2a62d !important;
+}
+.text-bm {
+  color: #998425 !important;
+}
+
+.text-cp {
+  color: #4e73df !important;
+}
 a.text-primary:focus,
 a.text-primary:hover {
   color: #224abe !important;
