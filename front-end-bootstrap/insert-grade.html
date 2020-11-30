@@ -497,13 +497,13 @@
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
                         console.log(docss.data());
-                        var dat_fin = docss.data()['2020-2']['score'][sem];
+                        var dat_fin = docss.data()['2019-2']['조동섭']['score'][sem];
                         var box_val = getBoxValues(dat_fin);
                         console.log(box_val);
                         var labels = [box_val.t1+"~",box_val.t2+"~",box_val.t3+"~", box_val.t4+"~",box_val.t5+"~",box_val.t6+"~",box_val.t7+"~",box_val.t8+"~",box_val.t9+"~",box_val.t10+"~"];
                         console.log(labels);
-                        var labels = [box_val.t1,box_val.t2,box_val.t3, box_val.t4,box_val.t5,box_val.t6,box_val.t7,box_val.t8,box_val.t9,box_val.t10];
-                        var last_dat = hiss(labels, dat_fin);
+                        var labelss = [box_val.t1,box_val.t2,box_val.t3, box_val.t4,box_val.t5,box_val.t6,box_val.t7,box_val.t8,box_val.t9,box_val.t10];
+                        var last_dat = hiss(labelss, dat_fin);
 
 var data = {
         labels:labels,
@@ -555,18 +555,18 @@ function getPercentile(data, percentile) {
 }
     function getBoxValues(data) {
     var boxValues = {};
-    boxValues.low = Math.min.apply(Math,data);
-    boxValues.t1 = Math.min.apply(Math,data);
-    boxValues.t2 = (getPercentile(data, 25)+Math.min.apply(Math,data))/2;
-    boxValues.t3 = getPercentile(data, 25);
-    boxValues.t4 = (getPercentile(data, 25)*5+getPercentile(data, 75)*1)/6;
-    boxValues.t5 = (getPercentile(data, 25)*4+getPercentile(data, 75)*2)/6;
-    boxValues.t6 = (getPercentile(data, 25)*3+getPercentile(data, 75)*3)/6;
-    boxValues.t7 =  (getPercentile(data, 25)*2+getPercentile(data, 75)*4)/6;
-    boxValues.t8 =  (getPercentile(data, 25)*1+getPercentile(data, 75)*5)/6;
-    boxValues.t9     = getPercentile(data, 75);
-    boxValues.t10     = (getPercentile(data, 75)+Math.max.apply(Math,data))/2;
-    boxValues.high   = Math.max.apply(Math,data);
+    boxValues.low = Math.round(Math.min.apply(Math,data));
+    boxValues.t1 = Math.round(Math.min.apply(Math,data));
+    boxValues.t2 = Math.round((getPercentile(data, 25)+Math.min.apply(Math,data))/2);
+    boxValues.t3 = Math.round(getPercentile(data, 25));
+    boxValues.t4 = Math.round((getPercentile(data, 25)*5+getPercentile(data, 75)*1)/6);
+    boxValues.t5 = Math.round((getPercentile(data, 25)*4+getPercentile(data, 75)*2)/6);
+    boxValues.t6 = Math.round((getPercentile(data, 25)*3+getPercentile(data, 75)*3)/6);
+    boxValues.t7 =  Math.round((getPercentile(data, 25)*2+getPercentile(data, 75)*4)/6);
+    boxValues.t8 =  Math.round((getPercentile(data, 25)*1+getPercentile(data, 75)*5)/6);
+    boxValues.t9     = Math.round(getPercentile(data, 75));
+    boxValues.t10     = Math.round((getPercentile(data, 75)+Math.max.apply(Math,data))/2);
+    boxValues.high   = Math.round(Math.max.apply(Math,data));
     return boxValues;
 }
 
@@ -607,8 +607,8 @@ function hiss(lab, dat){
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
                         console.log(docss.data());
-                        var dat_mid = docss.data()['2020-2']['score']['mid'];
-                        var dat_fin = docss.data()['2020-2']['score']['fin'];
+                        var dat_mid = docss.data()['2019-2']['조동섭']['score']['mid'];
+                        var dat_fin = docss.data()['2019-2']['조동섭']['score']['fin'];
                         var hist = [];
                         for (var i in dat_fin){
                             hist[i]= dat_mid[i]+dat_fin[i];
@@ -617,8 +617,8 @@ function hiss(lab, dat){
                         console.log(box_val);
                         var labels = [box_val.t1+"~",box_val.t2+"~",box_val.t3+"~", box_val.t4+"~",box_val.t5+"~",box_val.t6+"~",box_val.t7+"~",box_val.t8+"~",box_val.t9+"~",box_val.t10+"~"];
                         console.log(labels);
-                        var labels = [box_val.t1,box_val.t2,box_val.t3, box_val.t4,box_val.t5,box_val.t6,box_val.t7,box_val.t8,box_val.t9,box_val.t10];
-                        var last_dat = hiss(labels, hist);
+                        var labelss = [box_val.t1,box_val.t2,box_val.t3, box_val.t4,box_val.t5,box_val.t6,box_val.t7,box_val.t8,box_val.t9,box_val.t10];
+                        var last_dat = hiss(labelss, hist);
 
 var data = {
         labels: labels,
