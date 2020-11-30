@@ -2281,34 +2281,34 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 .btn-primary {
-  color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  color: rgb(182, 177, 177);
+  background-color: #0f4925;
+  border-color:#12471c;
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #2e59d9;
-  border-color: #2653d4;
+  background-color: #523a8a;
+  border-color: #442d6e;
 }
 .btn-primary.focus,
 .btn-primary:focus {
   color: #fff;
-  background-color: #2e59d9;
-  border-color: #2653d4;
+  background-color: #523a8a;
+  border-color: #442d6e;
   box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
 }
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #0f4925;
+  border-color: #0f4925;
 }
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #2653d4;
-  border-color: #244ec9;
+  background-color: #0f4925;
+  border-color: #0f4925;
 }
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .btn-primary:not(:disabled):not(.disabled):active:focus,
@@ -4276,7 +4276,7 @@ input[type="submit"].btn-block {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: #f8f9fc;
+  background-color: #40116dbd;
   border-bottom: 1px solid #e3e6f0;
 }
 .card-header:first-child {
@@ -8855,7 +8855,13 @@ button.bg-dark:hover {
   color: #fff !important;
 }
 .text-primary {
-  color: #4e73df !important;
+  color: #ffffff !important;
+}
+.text-purple {
+  color: #47187c !important;
+}
+.text-green {
+  color: #0a4d13 !important;
 }
 
 .text-ap {
@@ -8931,7 +8937,7 @@ a.text-light:hover {
   color: #c2cbe5 !important;
 }
 .text-dark {
-  color: #5a5c69 !important;
+  color: #000000 !important;
 }
 a.text-dark:focus,
 a.text-dark:hover {
@@ -9272,7 +9278,7 @@ a:focus {
   border-left: 0.25rem solid #4e73df !important;
 }
 .border-bottom-primary {
-  border-bottom: 0.25rem solid #4e73df !important;
+  border-bottom: 0.25rem solid #3c1b88 !important;
 }
 .border-left-secondary {
   border-left: 0.25rem solid #858796 !important;
@@ -9287,10 +9293,16 @@ a:focus {
   border-bottom: 0.25rem solid #1cc88a !important;
 }
 .border-left-info {
-  border-left: 0.25rem solid #36b9cc !important;
+  border-left: 0.25rem solid #5736cc !important;
 }
 .border-bottom-info {
-  border-bottom: 0.25rem solid #36b9cc !important;
+  border-bottom: 0.25rem solid #5736cc !important;
+}
+.border-left-info-1 {
+  border-left: 0.25rem solid #0e692c !important;
+}
+.border-bottom-info-1 {
+  border-bottom: 0.25rem solid #0e692c !important;
 }
 .border-left-warning {
   border-left: 0.25rem solid #f6c23e !important;
