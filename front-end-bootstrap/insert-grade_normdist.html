@@ -497,7 +497,9 @@
                     // 표준화 전 데이터에 대한 막대그래프 셋팅
                     console.log(docss.data());
                     var dat_fin = docss.data()['2019-2']['조동섭']['score'][sem];
+                    var dat_fin2 = docss.data()['2018-2']['조동섭']['score'][sem];
                     var box_val = getBoxValues(dat_fin);
+                    var box_val2 = getBoxValues(dat_fin2);
                     console.log(box_val);
                     var labels = [box_val.t1 + "~", box_val.t2 + "~", box_val.t3 + "~", box_val.t4 + "~", box_val.t5 + "~", box_val.t6 + "~", box_val.t7 + "~", box_val.t8 + "~", box_val.t9 + "~", box_val.t10 + "~"];
                     console.log(labels);
@@ -506,7 +508,9 @@
 
                     // 표준화 후, 곡선 그래프 셋팅 
                     var norm_dat_fin = get_norm(dat_fin, box_val.mean, box_val.sigma);
+                    var norm_dat_fin2 = get_norm(dat_fin2, box_val2.mean, box_val2.sigma);
                     console.log("norm_data_Fin : ", norm_dat_fin);
+                    console.log("norm_data_Fin : ", norm_dat_fin2);
 
 
                     /* 
@@ -564,6 +568,21 @@
                                 pointHoverBorderColor: "rgba(78, 115, 223, 1)",
                                 pointHitRadius: 10,
                                 pointBorderWidth: 2
+                            },
+                            {
+                                //이거 2018입니당 회색으로 바꿈
+                                data: norm_dat_fin2,
+                                ineTension: 0.3,
+                                backgroundColor: "rgba(80, 80, 80, 0.05)",
+                                borderColor: "rgba(80, 80, 80, 1)",
+                                pointRadius: 3,
+                                pointBackgroundColor: "rgba(80, 80, 80, 1)",
+                                pointBorderColor: "rgba(80, 80, 80, 1)",
+                                pointHoverRadius: 3,
+                                pointHoverBackgroundColor: "rgba(80, 80, 80, 1)",
+                                pointHoverBorderColor: "rgba(80, 80, 80, 1)",
+                                pointHitRadius: 10,
+                                pointBorderWidth: 2
                             }],
                         },
                         options: {
@@ -583,17 +602,19 @@
                             },
                             cutoutPercentage: 80,
                         },
-                    });
+                    }
+                    );
 
                 })
             });
+
             document.cookie = "";
         }
 
         // 표준화한 값을 가져오는 함수
         function get_norm(data, mean, std) {
-            console.log("mean",mean);
-            console.log("std",std);
+            console.log("mean", mean);
+            console.log("std", std);
             var left = 1 / (mean * Math.sqrt(2 * 3.141592));
             var right = new Array();
             var result = new Array();
@@ -631,7 +652,7 @@
 
             return result;
         }
-        
+
 
         function getPercentile(data, percentile) {
             data.sort(function (a, b) { return a - b; });
@@ -748,7 +769,7 @@
                         data: data,
                         options: option
                     });
-                    
+
 
                 })
             });
