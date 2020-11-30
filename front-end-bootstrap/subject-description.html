@@ -434,7 +434,7 @@
                         
                       </div>
                 <div class="row" >
-                    <div class="col-lg-5">
+                    <div class="col-lg-7">
                         <div class='card shadow mb-4'>
                             <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'> 
                                 <h6 class='m-0 font-weight-bold text-primary' id = "aa">
@@ -498,10 +498,8 @@
 
 
                     </div>
-                    
                 
-                
-                    <div class="col-lg-7" >
+                    <div class="col-lg-5" >
                         <div class='card shadow mb-4'>
                             <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'> 
                                 <h6 class='m-0 font-weight-bold text-primary' id = "cc"></h6>
@@ -519,7 +517,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="height:500px; overflow-y: scroll; position: relative">
+                            <div style="height:100%; position: relative">
                                 <div id="canvasContainer">
                                     <canvas id="myChart"  width = "100" height = "100"></canvas>
                                 </div>
@@ -769,7 +767,7 @@
 
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
-                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a class ='btn btn-primary btn-icon-split'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i><span class ='text' id = 'spannn'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a class ='btn btn-primary btn-icon-split btn-sm'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
                                         eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
                                         eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
                                         eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);

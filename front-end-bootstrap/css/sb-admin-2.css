@@ -1380,7 +1380,7 @@ pre code {
     flex: 0 0 49%;
     max-width: 49%;
   }
-  
+
   .col-xl-7 {
     flex: 0 0 58.33333%;
     max-width: 58.33333%;
@@ -2461,6 +2461,7 @@ fieldset:disabled a.btn {
 .show > .btn-success.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(62, 208, 156, 0.5);
 }
+
 
 .btn-info {
   color: #fff;
@@ -9559,6 +9560,34 @@ button.bg-dark:focus {
 }
 
 .text-primary {
+  color: #4e73df !important;
+}
+
+
+.text-ap {
+  color: #df4721c7 !important;
+}
+
+.text-a {
+  color: #b13a1cc7 !important;
+}
+
+.text-am {
+  color: #8b2f18c7 !important;
+}
+
+.text-bp {
+  color: #ebca36 !important;
+}
+
+.text-b {
+  color: #c2a62d !important;
+}
+.text-bm {
+  color: #998425 !important;
+}
+
+.text-cp {
   color: #4e73df !important;
 }
 
