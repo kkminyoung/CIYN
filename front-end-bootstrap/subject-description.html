@@ -300,10 +300,10 @@
                 <div class="row" >
                     <div class="col-lg-7">
                         <div class='card shadow mb-4'>
-                            <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'> 
-                                <h6 class='m-0 font-weight-bolder text-primary' id = "aa">
+                            <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'>
+                                <h6 class='m-0 font-weight-bold text-primary' id = "aa">
                                 </h6>
-                                
+
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -312,16 +312,61 @@
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                         aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">지난 과목 내 계정에 등록</div>
-                                       
+
+
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item">추가하기</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reviewModal2">추가하기</a>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class='card-body' id = "description-course">
+                            <div class='card-body' id = "bb">
 
                             </div>
+                            <div class='card-body' id = "description-course">
+                            </div>
+
+                            <div class="modal fade" id="reviewModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">지난 과목 등록하기</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <form id = 'add_review'>
+                                    <div class="modal-body" id = "llll"></div>
+                                    <div class="modal-body" id = "llll2">
+
+                                       <label>Term</label>
+                                       <select class ="custom-select" name= "term" id = "term">
+                                           <option value = "2018-2">2018-2</option>
+                                           <option value = "2019-1">2019-1</option>
+                                           <option value = "2019-2">2019-2</option>
+                                           <option value = "2020-1">2020-1</option>
+                                           <option value = "2020-2">2020-2</option>
+                                       </select>
+                                       <label>Prof</label>
+                                       <select class ="custom-select" name= "prof" id = "prof">
+                                         <option value = "이인기">이인기</option>
+                                         <option value = "이민수">이민수</option>
+                                         <option value = "용환승">용환승</option>
+                                     </select>
+                                     <br>
+
+
+                                    </div>
+                                   </form>
+                                    <div class="modal-footer">
+                                       <button class="btn btn-primary" type="button" onclick = "add_rev()" data-dismiss="modal" >추가하기</button>
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                             <div class = "row card-body">
                                 <div class="card-3-3-3 col-md-6 mb-4">
                                     <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선수과목</div><hr><br>
