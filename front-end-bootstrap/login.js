@@ -28,6 +28,8 @@ function onSignIn(googleUser) {
         is_ewhain = "이화인 계정이 아닙니다. 이화인 계정으로 로그인하세요.";
     }
 
+    sessionStorage.setItem('user_email', user_email);
+
 
     console.log('ID: ' + user_id); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + user_name);
@@ -37,6 +39,7 @@ function onSignIn(googleUser) {
     //document.getElementById("user_id").innerHTML = user_id;
     document.getElementById("user_name").innerHTML = user_name;
     document.getElementById("user_email").innerHTML = user_email;
+    //document.getElementById("user_email") = user_email;
     document.getElementById("is_ewhain").innerHTML = is_ewhain;
     //document.getElementById("user_image").innerHTML = String(user_image);
 
