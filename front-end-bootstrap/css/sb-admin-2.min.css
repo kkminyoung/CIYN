@@ -10386,3 +10386,81 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+
+
+.card-3-7-3{
+  padding: 5px;
+  height: 100%;
+  width: 30%;
+  color: black;
+  text-align: center;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #77817e41;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: .35rem;
+  flex: 0 0 30%;
+  max-width: 30%;
+  float: left;
+}
+.card-3-7-7{
+  padding: 5px;
+  width: 70%;
+  color: black;
+  text-align: center;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #7c778141;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: .35rem;
+  flex: 0 0 70%;
+  max-width: 70%;
+  float: left;
+}
+
+.card-2-8-2{
+  padding: 5px;
+  height: 100%;
+  width: 20%;
+  color: black;
+  text-align: center;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #77817e41;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: .35rem;
+  flex: 0 0 20%;
+  max-width: 20%;
+  float: left;
+}
+.card-2-8-8{
+  padding: 5px;
+  width: 80%;
+  color: black;
+  text-align: center;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #7c778141;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: .35rem;
+  flex: 0 0 80%;
+  max-width: 80%;
+  float: left;
+}
