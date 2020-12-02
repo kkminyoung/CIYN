@@ -318,41 +318,36 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class='card-body' id = "bb">
-                                
-                            </div>
+
                             <div class='card-body' id = "description-course">
 
                             </div>
-                            <div class = "row">
-                                <div class="col-xl-6-1 col-md-6 mb-4">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">선수과목</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-pre" ></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class = "row card-body">
+                                <div class="card-3-3-3 col-md-6 mb-4">
+                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선수과목</div><hr><br>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre" ></div>
+
                                 </div>
-                                <div class="col-xl-6-1 col-md-6 mb-4">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >선후과목</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-post" ></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="card-3-3-3 col-md-6 mb-4">
+                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">현재 과목</div><hr><br>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre" ></div>
+<br>
                                 </div>
+                                <div class="card-3-3-3 col-md-6 mb-4">
+                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선후과목</div><hr><br>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-post" ></div>
+<br>
+                                </div>
+                                
                             </div>
                            
                             <div class='card-body' id = "faculty">
+                                <div id = "faculty-title">
+
+                                </div>
+                                <div id = "faculty-table">
+
+                                </div>
 
                             </div>
                         </div>
@@ -557,7 +552,8 @@
     const list_div2_1 = document.getElementById("description-course");
     const list_div2_2 = document.getElementById("related-courses-pre");
     const list_div2_3 = document.getElementById("related-courses-post");
-    const list_div2_4 = document.getElementById("faculty");
+    const list_div2_4 = document.getElementById("faculty-title");
+    const list_div2_5 = document.getElementById("faculty-table");
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
     const col = database.collection('course').where('name', '==', '데이터베이스');
@@ -574,7 +570,7 @@
             }
             basic = doc.data().name+ " (" + doc.data().num+")" ;
 
-            course_desc = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
+            course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>"+sc +"</div><br><br>";
 
             realted = "<b>연관과목</b>";
             related_subject_pre = doc.data().prepro.pre;
@@ -585,7 +581,7 @@
             if(related_subject_post==null){
                 related_subject_post="없음";
             }
-            prof = "<br><br><b>교수진</b><br><hr><b>2019-2</b> | "+doc.data().prof["2019-1"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-1"];
+            prof = "<hr><b>교수진</b><br><table class='semester'><tr><th class = 'semester-title'><b>2019-2</b></th><th>"+doc.data().prof["2019-1"]+"</th><tr><th><b>2018-2</b></th><th> "+doc.data().prof["2018-1"]+"</th></tr>";
             a1 = doc.data().prof["2018-1"];
             a2 = doc.data().prof["2019-1"];
             lists = a1.concat(a2); 
@@ -597,7 +593,7 @@
             list_div3.innerHTML += str;
             llll.innerHTML += str2;
             list_div.innerHTML = (basic);
-            list_div2_1.innerHTML = course_desc+"<hr>"+realted;
+            list_div2_1.innerHTML = course_desc+"<br><br><hr>"+realted;
             list_div2_2.innerHTML = related_subject_pre;
             list_div2_3.innerHTML = related_subject_post;
             list_div2_4.innerHTML = prof;
@@ -613,6 +609,7 @@
         console.log(thisid);
         list_div4.innerHTML="";
         prof_radio="";
+        
         console.log(prof_radio);
         const revs = database.collection('review').where('name', '==', '데이터베이스');
         revs.get().then(snapshot =>{
@@ -669,6 +666,7 @@
             var maxHeightOfChart = 100;
             var minHeight = 40; //setting the min height of the bar + margin between
             var chartHeight = minHeight * numOfBars > maxHeightOfChart ? minHeight * numOfBars : maxHeightOfChart;
+            
             document.getElementById("canvasContainer").style.height = chartHeight.toString()+"px";
     }
     var eg = document.getElementById("eg");

@@ -10448,7 +10448,8 @@ body.sidebar-toggled footer.sticky-footer {
 }
 .card-2-8-8{
   padding: 5px;
-  width: 80%;
+  margin-left: 0.7%;
+  width: 77%;
   color: black;
   text-align: center;
   position: relative;
@@ -10463,4 +10464,37 @@ body.sidebar-toggled footer.sticky-footer {
   flex: 0 0 80%;
   max-width: 80%;
   float: left;
+}
+
+.card-3-3-3{
+  padding: 5px;
+  margin-left: 0.7%;
+  width: 30%;
+  color: black;
+  text-align: center;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #7c778141;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: .35rem;
+  flex: 0 0 32%;
+  max-width: 33%;
+  float: left;
+}
+
+table ,th ,tr {
+  border: 1px solid black;
+}
+
+.semester{
+  height: 300px;
+  width: 300px;
+
+}
+.semester-title{
+  padding: 10%;
 }
