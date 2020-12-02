@@ -591,8 +591,8 @@
                 maj_up.innerHTML="0/4.3";
                 sum_up.innerHTML=sum/sum_cre+"/4.3";
             }else{
-                maj_up.innerHTML=parseFloat(maj/maj_cre).toFixed(2)+"/4.3";
-                sum_up.innerHTML=parseFloat(sum/sum_cre).toFixed(2)+"/4.3";
+                maj_up.innerHTML=(parseFloat(maj/maj_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(maj/maj_cre).toFixed(2)+"/4.3"+" "+(parseFloat(maj/maj_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+                sum_up.innerHTML=(parseFloat(sum/sum_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(sum/sum_cre).toFixed(2)+"/4.3"+" "+(parseFloat(sum/sum_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
             }
             done_up.innerHTML = parseFloat(sum_cre/139).toFixed(2)*100+" %";
             /*
