@@ -56,8 +56,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon ">
+                    <img class = "fas" src="img/logo-right.png" width="50px" height="50px">
                 </div>
                 <div class="sidebar-brand-text mx-3">CIYN<sup></sup></div>
             </a>
@@ -68,52 +68,39 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-paperclip"></i>
                     <span>전체 보고서</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                메뉴
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-award"></i>
                     <span>강의 소개 및 평가</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"></h6>
-                        <a class="collapse-item" href="buttons.html">강의 소개 보기</a>
-                        <a class="collapse-item" href="buttons.html">강의 소개 쓰기</a>
-                        <a class="collapse-item" href="buttons.html">강의 평가 보기</a>
-                        <a class="collapse-item" href="cards.html">강의 평가 쓰기</a>
+                        <a class="collapse-item" href="search-result.html">강의 소개만 보기</a>
+                        <a class="collapse-item" href="course-evaluations.html">강의 평가 보기</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>학점 예측</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">학점예측기:</h6>
-                        <a class="collapse-item" href="utilities-color.html">학점예측</a>
-                        <h6 class="collapse-header">학점입력기:</h6>
-                        <a class="collapse-item" href="utilities-border.html">학점입력</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="insert-grade.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>학점예측 및 입력</span></a>
             </li>
 
             <!-- Divider -->
@@ -121,7 +108,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+               회원관련
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -129,7 +116,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>전체메뉴</span>
+                    <span>회원정보메뉴</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -139,17 +126,10 @@
                         <a class="collapse-item" href="forgot-password.html">회원정보수정</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">강의 관련</h6>
-                        <a class="collapse-item" href="404.html">강의 소개</a>
+                        <a class="collapse-item" href="utilities-border.html">강의 소개</a>
                         <a class="collapse-item" href="blank.html">강의 평가</a>
                     </div>
                 </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>학점보고서</span></a>
             </li>
 
 
@@ -164,7 +144,10 @@
             <!-- Sidebar Message -->
             <div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
-                <p class="text-center mb-2"><strong>현재 접속자 :</strong> 1886 명</p>
+                <a class="btn btn-primary btn-sm" href="https://cyber.ewha.ac.kr/local/ubion/user/grade.php">사이버캠퍼스 성적확인</a>
+                <a class="btn btn-primary btn-sm" href="https://cyber.ewha.ac.kr/">   사이버캠퍼스   </a>
+                
+
             </div>
 
         </ul>
@@ -225,124 +208,6 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -379,11 +244,10 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="row">
-                        <h1 class="h3 mb-4 text-gray-800">Search Results</h1>
+                        <h1 class="h3 mb-4 text-gray-800" style="padding-left: 1%;">  Search Results</h1>
                         <div>
                             <input type="checkbox" id="checkbox" />
                             <label for="checkbox">
@@ -437,7 +301,7 @@
                     <div class="col-lg-7">
                         <div class='card shadow mb-4'>
                             <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'> 
-                                <h6 class='m-0 font-weight-bold text-primary' id = "aa">
+                                <h6 class='m-0 font-weight-bolder text-primary' id = "aa">
                                 </h6>
                                 
                                 <div class="dropdown no-arrow">
@@ -454,41 +318,36 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class='card-body' id = "bb">
-                                
-                            </div>
+
                             <div class='card-body' id = "description-course">
 
                             </div>
-                            <div class = "row">
-                                <div class="col-xl-6-1 col-md-6 mb-4">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">선수과목</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-pre" ></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class = "row card-body">
+                                <div class="card-3-3-3 col-md-6 mb-4">
+                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선수과목</div><hr><br>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre" ></div>
+
                                 </div>
-                                <div class="col-xl-6-1 col-md-6 mb-4">
-                                    <div class="card border-left-primary shadow h-100 py-2">
-                                        <div class="card-body">
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col mr-2">
-                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >선후과목</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-post" ></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="card-3-3-3 col-md-6 mb-4">
+                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">현재 과목</div><hr><br>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre" ></div>
+<br>
                                 </div>
+                                <div class="card-3-3-3 col-md-6 mb-4">
+                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선후과목</div><hr><br>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-post" ></div>
+<br>
+                                </div>
+                                
                             </div>
                            
                             <div class='card-body' id = "faculty">
+                                <div id = "faculty-title">
+
+                                </div>
+                                <div id = "faculty-table">
+
+                                </div>
 
                             </div>
                         </div>
@@ -693,7 +552,8 @@
     const list_div2_1 = document.getElementById("description-course");
     const list_div2_2 = document.getElementById("related-courses-pre");
     const list_div2_3 = document.getElementById("related-courses-post");
-    const list_div2_4 = document.getElementById("faculty");
+    const list_div2_4 = document.getElementById("faculty-title");
+    const list_div2_5 = document.getElementById("faculty-table");
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
     const col = database.collection('course').where('name', '==', '데이터베이스');
@@ -710,7 +570,7 @@
             }
             basic = doc.data().name+ " (" + doc.data().num+")" ;
 
-            course_desc = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
+            course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>"+sc +"</div><br><br>";
 
             realted = "<b>연관과목</b>";
             related_subject_pre = doc.data().prepro.pre;
@@ -721,7 +581,7 @@
             if(related_subject_post==null){
                 related_subject_post="없음";
             }
-            prof = "<br><br><b>교수진</b><br><hr><b>2019-2</b> | "+doc.data().prof["2019-1"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-1"];
+            prof = "<hr><b>교수진</b><br><table class='semester'><tr><th class = 'semester-title'><b>2019-2</b></th><th>"+doc.data().prof["2019-1"]+"</th><tr><th><b>2018-2</b></th><th> "+doc.data().prof["2018-1"]+"</th></tr>";
             a1 = doc.data().prof["2018-1"];
             a2 = doc.data().prof["2019-1"];
             lists = a1.concat(a2); 
@@ -733,7 +593,7 @@
             list_div3.innerHTML += str;
             llll.innerHTML += str2;
             list_div.innerHTML = (basic);
-            list_div2_1.innerHTML = course_desc+"<hr>"+realted;
+            list_div2_1.innerHTML = course_desc+"<br><br><hr>"+realted;
             list_div2_2.innerHTML = related_subject_pre;
             list_div2_3.innerHTML = related_subject_post;
             list_div2_4.innerHTML = prof;
@@ -749,6 +609,7 @@
         console.log(thisid);
         list_div4.innerHTML="";
         prof_radio="";
+        
         console.log(prof_radio);
         const revs = database.collection('review').where('name', '==', '데이터베이스');
         revs.get().then(snapshot =>{
@@ -805,6 +666,7 @@
             var maxHeightOfChart = 100;
             var minHeight = 40; //setting the min height of the bar + margin between
             var chartHeight = minHeight * numOfBars > maxHeightOfChart ? minHeight * numOfBars : maxHeightOfChart;
+            
             document.getElementById("canvasContainer").style.height = chartHeight.toString()+"px";
     }
     var eg = document.getElementById("eg");

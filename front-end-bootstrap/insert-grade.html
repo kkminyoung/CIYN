@@ -32,8 +32,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon ">
+                    <img class = "fas" src="img/logo-right.png" width="50px" height="50px">
                 </div>
                 <div class="sidebar-brand-text mx-3">CIYN<sup></sup></div>
             </a>
@@ -121,6 +121,7 @@
             <div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
                 <a class="btn btn-primary btn-sm" href="https://cyber.ewha.ac.kr/local/ubion/user/grade.php">사이버캠퍼스 성적확인</a>
+                <a class="btn btn-primary btn-sm" href="https://cyber.ewha.ac.kr/">   사이버캠퍼스   </a>
                 
 
             </div>
@@ -238,11 +239,12 @@
                                 <div class='card-header py-3'> 
                                     <h6 class='m-0 font-weight-bold text-primary'>성적 위치 확인하기</h6>
                                 </div>
-                                <div class='card-body' >
-                                </div >
-                                <div id="canvasContainer" height="300px">
-                                    <canvas id="GradeChart" height= "300px" ></canvas>
+                                <div class='card-body' style="height: auto">
+                                <div id="canvasContainer" >
+                                    <canvas style="height: 500px" ></canvas>
                                 </div>
+                            </div >
+                                
                             </div>
                         </div>
 
@@ -338,20 +340,20 @@
                 var summ = true;
                 str += "<div class='card shadow mb-4'> <div class='card-header py-3'><h6 class='m-0 font-weight-bold text-primary'>"+x+" ("+dat[x]['prof']+" 교수님)"+"</h6></div><div class = 'card-body'>";
                 if(dat[x]['mid']== ""){
-                    str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' id = \""+x+"\" class='form-control-score bg-light-2 border-0 small' placeholder='중간고사 성적입력' onkeypress='onlyNumber();'aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-primary ' onclick = 'insert_grade(\"mid\", \""+x+"\", \""+dat[x]['prof']+"\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
+                    str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' id = \""+x+"\" class='form-control-score bg-light-2 border-0 small' placeholder='중간고사 성적입력' onkeypress='onlyNumber();'aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary ' onclick = 'insert_grade(\"mid\", \""+x+"\", \""+dat[x]['prof']+"\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
                     summ=false;console.log(x, 1);
                 }else{
                     str += "<label>중간고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='"+dat[x]['mid']+"' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'profradio(\"mid\")' type='button'></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                 }
                 if(dat[x]['fin']== ""){
-                    str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='기말고사 성적입력' onkeypress='onlyNumber();' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-primary' onclick = 'insert_grade(\"fin\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
+                    str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='기말고사 성적입력' onkeypress='onlyNumber();' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary' onclick = 'insert_grade(\"fin\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
                     summ=false;
                     console.log(x, 2);
                 }else{
                     str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='"+dat[x]['fin']+"' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'profradio(\"fin\")' type='button'></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                 }
                 if(summ==false){
-                    str += "<br></form><a href='#' class='btn btn-primary btn-icon-split'onclick = 'sum_grade()' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>시험 성적을 입력해주세요.</span></a></div></div>";
+                    str += "<br></form><a href='#' class='btn btn-secondary btn-icon-split'onclick = 'sum_grade()' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>시험 성적을 입력해주세요.</span></a></div></div>";
                 }else{
                     str += "<br></form><a href='#' class='btn btn-success btn-icon-split'onclick = 'sum_grade()' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>전체 성적 위치 확인하기</span></a></div></div>";
                 }
@@ -397,6 +399,7 @@
 
                         var data = {
                                 labels:labels,
+                                backgroundColor:  ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38','#C4E538' ],
                                 datasets: [{
                                     data: last_dat,
                                 }]
@@ -413,6 +416,7 @@
                         var myBarChart = new Chart(ctx,{
                             type: 'bar',
                             data:data,
+                            backgroundColor:  ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38','#C4E538' ],
                         options:option
                         });
 
@@ -503,13 +507,15 @@ function hiss(lab, dat){
                         console.log(labels);
                         var labelss = [box_val.t1,box_val.t2,box_val.t3, box_val.t4,box_val.t5,box_val.t6,box_val.t7,box_val.t8,box_val.t9,box_val.t10];
                         var last_dat = hiss(labelss, hist);
-
+                        
+var randomColorGenerator = function () { 
+    return '#' + (Math.random().toString(16) + '0000000').slice(2, 8); 
+};
 var data = {
         labels: labels,
         datasets: [{
             data: last_dat,
-            backgroundColor: [
-            ]
+            backgroundColor:  ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38','#C4E538' ]
         }]
     };
 var option = {
@@ -523,6 +529,7 @@ tooltips: {
 
 var myBarChart = new Chart.Bar(ctx,{
 	data:data,
+    backgroundColor:  ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38','#C4E538' ],
   options:option
 });
 

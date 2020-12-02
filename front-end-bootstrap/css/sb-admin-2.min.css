@@ -2354,38 +2354,38 @@ fieldset:disabled a.btn {
 }
 .btn-success {
   color: #fff;
-  background-color: #1cc88a;
-  border-color: #1cc88a;
+  background-color: #1d46b8;
+  border-color: #1d46b8;
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #17a673;
-  border-color: #169b6b;
+  background-color: #1d46b8;
+  border-color: #1d46b8;
 }
 .btn-success.focus,
 .btn-success:focus {
   color: #fff;
-  background-color: #17a673;
-  border-color: #169b6b;
+  background-color: #1d46b8;
+  border-color: #1d46b8;
   box-shadow: 0 0 0 0.2rem rgba(62, 208, 156, 0.5);
 }
 .btn-success.disabled,
 .btn-success:disabled {
   color: #fff;
-  background-color: #1cc88a;
-  border-color: #1cc88a;
+  background-color: #1d46b8;
+  border-color: #1d46b8;
 }
 .btn-success:not(:disabled):not(.disabled).active,
 .btn-success:not(:disabled):not(.disabled):active,
 .show > .btn-success.dropdown-toggle {
   color: #fff;
-  background-color: #169b6b;
-  border-color: #149063;
+  background-color: #1d46b8;
+  border-color: #1d46b8;
 }
 .btn-success:not(:disabled):not(.disabled).active:focus,
 .btn-success:not(:disabled):not(.disabled):active:focus,
 .show > .btn-success.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(62, 208, 156, 0.5);
+  box-shadow: 0 0 0 0.2rem 1d46b8;
 }
 .btn-info {
   color: #fff;
@@ -10448,7 +10448,8 @@ body.sidebar-toggled footer.sticky-footer {
 }
 .card-2-8-8{
   padding: 5px;
-  width: 80%;
+  margin-left: 0.7%;
+  width: 77%;
   color: black;
   text-align: center;
   position: relative;
@@ -10463,4 +10464,37 @@ body.sidebar-toggled footer.sticky-footer {
   flex: 0 0 80%;
   max-width: 80%;
   float: left;
+}
+
+.card-3-3-3{
+  padding: 5px;
+  margin-left: 0.7%;
+  width: 30%;
+  color: black;
+  text-align: center;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #7c778141;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: .35rem;
+  flex: 0 0 32%;
+  max-width: 33%;
+  float: left;
+}
+
+table ,th ,tr {
+  border: 1px solid black;
+}
+
+.semester{
+  height: 300px;
+  width: 300px;
+
+}
+.semester-title{
+  padding: 10%;
 }
