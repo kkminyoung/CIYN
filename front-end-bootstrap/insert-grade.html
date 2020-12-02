@@ -9,18 +9,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Cards</title>
+    <title>CIYN</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -43,52 +44,39 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-paperclip"></i>
                     <span>전체 보고서</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
+
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                메뉴
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-award"></i>
                     <span>강의 소개 및 평가</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"></h6>
-                        <a class="collapse-item" href="buttons.html">강의 소개 보기</a>
-                        <a class="collapse-item" href="buttons.html">강의 소개 쓰기</a>
-                        <a class="collapse-item" href="buttons.html">강의 평가 보기</a>
-                        <a class="collapse-item" href="cards.html">강의 평가 쓰기</a>
+                        <a class="collapse-item" href="search-result.html">강의 소개만 보기</a>
+                        <a class="collapse-item" href="course-evaluations.html">강의 평가 보기</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>학점 예측</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">학점예측기:</h6>
-                        <a class="collapse-item" href="utilities-color.html">학점예측</a>
-                        <h6 class="collapse-header">학점입력기:</h6>
-                        <a class="collapse-item" href="utilities-border.html">학점입력</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="insert-grade.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>학점예측 및 입력</span></a>
             </li>
 
             <!-- Divider -->
@@ -96,7 +84,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+               회원관련
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -104,7 +92,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>전체메뉴</span>
+                    <span>회원정보메뉴</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -114,17 +102,10 @@
                         <a class="collapse-item" href="forgot-password.html">회원정보수정</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">강의 관련</h6>
-                        <a class="collapse-item" href="404.html">강의 소개</a>
+                        <a class="collapse-item" href="utilities-border.html">강의 소개</a>
                         <a class="collapse-item" href="blank.html">강의 평가</a>
                     </div>
                 </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>학점보고서</span></a>
             </li>
 
 
@@ -139,8 +120,9 @@
             <!-- Sidebar Message -->
             <div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
-                <p class="text-center mb-2"><strong>현재 접속자 :</strong> 1886 명</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
+                <a class="btn btn-primary btn-sm" href="https://cyber.ewha.ac.kr/local/ubion/user/grade.php">사이버캠퍼스 성적확인</a>
+                
+
             </div>
 
         </ul>
@@ -201,124 +183,6 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-
-                        <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
-                                <h6 class="dropdown-header">
-                                    Message Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                            problem I've been having.</div>
-                                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="">
-                                        <div class="status-indicator"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">I have the photos that you ordered last month, how
-                                            would you like them sent to you?</div>
-                                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="">
-                                        <div class="status-indicator bg-warning"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                                            the progress so far, keep up the good work!</div>
-                                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="">
-                                        <div class="status-indicator bg-success"></div>
-                                    </div>
-                                    <div>
-                                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                            told me that people say this to all dogs, even if they aren't good...</div>
-                                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                            </div>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -356,6 +220,7 @@
                 </nav>
                 <!-- End of Topbar -->
 
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -366,7 +231,22 @@
 
                     <div class="row">
 
-                        <div class="col-lg-6" id = "ll">
+                        <div class="col-xl-8 col-lg-7">
+
+
+                            <div class='card shadow mb-4'>
+                                <div class='card-header py-3'> 
+                                    <h6 class='m-0 font-weight-bold text-primary'>성적 위치 확인하기</h6>
+                                </div>
+                                <div class='card-body' >
+                                </div >
+                                <div id="canvasContainer" height="300px">
+                                    <canvas id="GradeChart" height= "300px" ></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-lg-5" id = "ll">
 
 
                         </div>
@@ -447,6 +327,7 @@
       var str="";
       firebase.initializeApp(firebaseConfig);
       const database = firebase.firestore();
+      
       const usersCollection = database.collection('user').where('userid', '==','user1');
       const list_subject = document.getElementById("ll");
       usersCollection.get().then(function(querySnapshot){
@@ -454,22 +335,201 @@
             str = "";
             var dat = doc.data()['term']['2020-2'];
             for (var x in dat){
+                var summ = true;
                 str += "<div class='card shadow mb-4'> <div class='card-header py-3'><h6 class='m-0 font-weight-bold text-primary'>"+x+" ("+dat[x]['prof']+" 교수님)"+"</h6></div><div class = 'card-body'>";
                 if(dat[x]['mid']== ""){
-                    str += "<label>중간고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='중간고사 성적 입력' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'><button class='btn btn-light' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 성적 확정</span></button></div><br>"
+                    str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' id = \""+x+"\" class='form-control-score bg-light-2 border-0 small' placeholder='중간고사 성적입력' onkeypress='onlyNumber();'aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-primary ' onclick = 'insert_grade(\"mid\", \""+x+"\", \""+dat[x]['prof']+"\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
+                    summ=false;console.log(x, 1);
                 }else{
-                    str += "<label>중간고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='"+dat[x]['mid']+"' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'><button class='btn btn-light' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 변경 불가</span></button></div><br>"
+                    str += "<label>중간고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='"+dat[x]['mid']+"' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'profradio(\"mid\")' type='button'></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                 }
                 if(dat[x]['fin']== ""){
-                    str += "<label>기말고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='중간고사 성적 입력' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'><button class='btn btn-light' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 성적 확정</span></button></div><br>"
+                    str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='기말고사 성적입력' onkeypress='onlyNumber();' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-primary' onclick = 'insert_grade(\"fin\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
+                    summ=false;
+                    console.log(x, 2);
                 }else{
-                    str += "<label>기말고사</label><input type = 'text' class='form-control bg-light border-0 small' placeholder='"+dat[x]['fin']+"' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'><button class='btn btn-light' type='button'><span class='icon text-gray-600'><i class='fas fa-arrow-right'></i></span><span class='text'> 변경 불가</span></button></div><br>"
+                    str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='"+dat[x]['fin']+"' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'profradio(\"fin\")' type='button'></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                 }
-                str += "</form><a href='#' class='btn btn-danger btn-icon-split'><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>현재 성적 위치 확인하기</span></a></div></div>";
+                if(summ==false){
+                    str += "<br></form><a href='#' class='btn btn-primary btn-icon-split'onclick = 'sum_grade()' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>시험 성적을 입력해주세요.</span></a></div></div>";
+                }else{
+                    str += "<br></form><a href='#' class='btn btn-success btn-icon-split'onclick = 'sum_grade()' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>전체 성적 위치 확인하기</span></a></div></div>";
+                }
             }
             list_subject.innerHTML += str;
         })
       });
+
+      function insert_grade(sem, subject, prof){ //userid 넣는 란도 넣어야 함!!!
+          /*
+          1. 0~100 값 아니면 return << 안 넣어도 될듯
+          2. database 정리 - user(맞는 userid), grade(맞는 과목, 맞는 교수) 에 삽입
+          3. chart내용 넣기
+          */
+            console.log(sem, subject, prof);
+
+      }
+      
+      function onlyNumber(){
+        if((event.keyCode<48)||(event.keyCode>57))
+        event.returnValue=false;
+        }
+    var myRadarChart;
+    function profradio(sem){
+        document.getElementById("canvasContainer").innerHTML = '&nbsp;';
+        document.getElementById("canvasContainer").innerHTML = '<canvas id="GradeChart"></canvas>';
+        var ctx = document.getElementById("GradeChart").getContext("2d");
+
+
+        eval_grade = 0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
+        //console.log(thisid);
+        const revs = database.collection('grade').where('name', '==', '컴퓨터구조');//나중에 thisid로 바뀌어야
+        revs.get().then(snapshot =>{
+                    snapshot.docs.forEach(docss =>{
+                        console.log(docss.data());
+                        var dat_fin = docss.data()['2019-2']['조동섭']['score'][sem];
+                        var box_val = getBoxValues(dat_fin);
+                        console.log(box_val);
+                        var labels = [box_val.t1+"~",box_val.t2+"~",box_val.t3+"~", box_val.t4+"~",box_val.t5+"~",box_val.t6+"~",box_val.t7+"~",box_val.t8+"~",box_val.t9+"~",box_val.t10+"~"];
+                        console.log(labels);
+                        var labelss = [box_val.t1,box_val.t2,box_val.t3, box_val.t4,box_val.t5,box_val.t6,box_val.t7,box_val.t8,box_val.t9,box_val.t10];
+                        var last_dat = hiss(labelss, dat_fin);
+
+                        var data = {
+                                labels:labels,
+                                datasets: [{
+                                    data: last_dat,
+                                }]
+                            };
+                        var option = {
+                        tooltips: {
+                                enabled: false
+                            },
+                            legend: {
+                                            display: false
+                                            }
+                        };
+
+                        var myBarChart = new Chart(ctx,{
+                            type: 'bar',
+                            data:data,
+                        options:option
+                        });
+
+                    })
+                });
+                document.cookie="";
+    }
+
+function getPercentile(data, percentile) {
+    data.sort(function(a,b){return a-b;});
+    var index = (percentile/100) * data.length;
+    var result;
+    if (Math.floor(index) == index) {
+         result = (data[(index-1)] + data[index])/2;
+    }
+    else {
+        result = data[Math.floor(index)];
+    }
+    return result;
+}
+    function getBoxValues(data) {
+    var boxValues = {};
+    boxValues.low = Math.round(Math.min.apply(Math,data));
+    boxValues.t1 = Math.round(Math.min.apply(Math,data));
+    boxValues.t2 = Math.round((getPercentile(data, 25)+Math.min.apply(Math,data))/2);
+    boxValues.t3 = Math.round(getPercentile(data, 25));
+    boxValues.t4 = Math.round((getPercentile(data, 25)*5+getPercentile(data, 75)*1)/6);
+    boxValues.t5 = Math.round((getPercentile(data, 25)*4+getPercentile(data, 75)*2)/6);
+    boxValues.t6 = Math.round((getPercentile(data, 25)*3+getPercentile(data, 75)*3)/6);
+    boxValues.t7 =  Math.round((getPercentile(data, 25)*2+getPercentile(data, 75)*4)/6);
+    boxValues.t8 =  Math.round((getPercentile(data, 25)*1+getPercentile(data, 75)*5)/6);
+    boxValues.t9     = Math.round(getPercentile(data, 75));
+    boxValues.t10     = Math.round((getPercentile(data, 75)+Math.max.apply(Math,data))/2);
+    boxValues.high   = Math.round(Math.max.apply(Math,data));
+    return boxValues;
+}
+
+function hiss(lab, dat){
+    var hist = [0,0,0,0,0,0,0,0,0,0];
+    console.log(lab);console.log(dat);
+    for(var i in dat){
+        if(lab[0]<=dat[i] && dat[i]< lab[1]){
+            hist[0]++;
+        }else if(lab[1]<=dat[i] && dat[i]< lab[2]){
+            hist[1]++;
+        }else if(lab[2]<=dat[i] && dat[i]< lab[3]){
+            hist[2]++;
+        }else if(lab[3]<=dat[i] && dat[i]< lab[4]){
+            hist[3]++;
+        }else if(lab[4]<=dat[i] && dat[i]< lab[5]){
+            hist[4]++;
+        }else if(lab[5]<=dat[i] && dat[i]< lab[6]){
+            hist[5]++;
+        }else if(lab[6]<=dat[i] && dat[i]< lab[7]){
+            hist[6]++;
+        }else if(lab[7]<=dat[i] && dat[i]< lab[8]){
+            hist[7]++;
+        }else if(lab[8]<=dat[i] && dat[i]< lab[9]){
+            hist[8]++;
+        }else{
+            hist[9]++;
+        }
+    }
+    console.log(hist);
+    return hist;
+}
+
+    function sum_grade(){//중간, 기말 둘 중 하나 없으면 안 받는거 처리해야 함.
+
+        document.getElementById("canvasContainer").innerHTML = '&nbsp;';
+        document.getElementById("canvasContainer").innerHTML = '<canvas id="GradeChart"></canvas>';
+        var ctx = document.getElementById("GradeChart").getContext("2d");
+        eval_grade = 0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
+        //console.log(thisid);
+        const revs = database.collection('grade').where('name', '==', '컴퓨터구조');//나중에 thisid로 바뀌어야
+        revs.get().then(snapshot =>{
+                    snapshot.docs.forEach(docss =>{
+                        console.log(docss.data());
+                        var dat_mid = docss.data()['2019-2']['조동섭']['score']['mid'];
+                        var dat_fin = docss.data()['2019-2']['조동섭']['score']['fin'];
+                        var hist = [];
+                        for (var i in dat_fin){
+                            hist[i]= dat_mid[i]+dat_fin[i];
+                        }
+                        var box_val = getBoxValues(hist);
+                        console.log(box_val);
+                        var labels = [box_val.t1+"~",box_val.t2+"~",box_val.t3+"~", box_val.t4+"~",box_val.t5+"~",box_val.t6+"~",box_val.t7+"~",box_val.t8+"~",box_val.t9+"~",box_val.t10+"~"];
+                        console.log(labels);
+                        var labelss = [box_val.t1,box_val.t2,box_val.t3, box_val.t4,box_val.t5,box_val.t6,box_val.t7,box_val.t8,box_val.t9,box_val.t10];
+                        var last_dat = hiss(labelss, hist);
+
+var data = {
+        labels: labels,
+        datasets: [{
+            data: last_dat,
+            backgroundColor: [
+            ]
+        }]
+    };
+var option = {
+tooltips: {
+         enabled: false
+    },
+	 legend: {
+        			display: false
+				    }
+};
+
+var myBarChart = new Chart.Bar(ctx,{
+	data:data,
+  options:option
+});
+
+                    })
+                });
+                document.cookie="";
+    }
     </script>
 </body>
 

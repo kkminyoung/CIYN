@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Cards</title>
+    <title>강의 평가</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,10 +19,13 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css/heart-button.css" rel="stylesheet">
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/heart-button.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -32,7 +35,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    
+<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
 </head>
 <body id="page-top">
 
@@ -153,7 +165,6 @@
             <div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
                 <p class="text-center mb-2"><strong>현재 접속자 :</strong> 1886 명</p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
             </div>
 
         </ul>
@@ -371,37 +382,150 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">Search Results</h1>
+                    <div class="row">
+                        <h1 class="h3 mb-4 text-gray-800">Search Results</h1>
+                        <div>
+                            <input type="checkbox" id="checkbox" />
+                            <label for="checkbox">
+                              <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                                <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                                  <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
+                                  <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
+                        
+                                  <g id="grp7" opacity="0" transform="translate(7 6)">
+                                    <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>
+                                    <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp6" opacity="0" transform="translate(0 28)">
+                                    <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>
+                                    <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp3" opacity="0" transform="translate(52 28)">
+                                    <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>
+                                    <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp2" opacity="0" transform="translate(44 6)">
+                                    <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>
+                                    <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp5" opacity="0" transform="translate(14 50)">
+                                    <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>
+                                    <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp4" opacity="0" transform="translate(35 50)">
+                                    <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>
+                                    <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>
+                                  </g>
+                        
+                                  <g id="grp1" opacity="0" transform="translate(24)">
+                                    <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>
+                                    <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>
+                                  </g>
+                                </g>
+                              </svg>
+                            </label>
+                        
+                          </div>
+                        
+                      </div>
                 <div class="row" >
-                    <div class="col-lg-5">
+                    <div class="col-lg-7">
                         <div class='card shadow mb-4'>
-                            <div class='card-header py-3'> 
+                            <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'> 
                                 <h6 class='m-0 font-weight-bold text-primary' id = "aa">
                                 </h6>
+                                
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                        aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">지난 과목 내 계정에 등록</div>
+                                       
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item">추가하기</a>
+                                    </div>
+                                </div>
                             </div>
                             <div class='card-body' id = "bb">
                                 
                             </div>
+                            <div class='card-body' id = "description-course">
+
+                            </div>
+                            <div class = "row">
+                                <div class="col-xl-6-1 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">선수과목</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-pre" ></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6-1 col-md-6 mb-4">
+                                    <div class="card border-left-primary shadow h-100 py-2">
+                                        <div class="card-body">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >선후과목</div>
+                                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id ="related-courses-post" ></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                            <div class='card-body' id = "faculty">
+
+                            </div>
                         </div>
+
+
                     </div>
                 
-                
-                    <div class="col-lg-7" >
+                    <div class="col-lg-5" >
                         <div class='card shadow mb-4'>
-                            <div class='card-header py-3'> 
-                                <h6 class='m-0 font-weight-bold text-primary' id = "cc">
-
-                                </h6>
+                            <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'> 
+                                <h6 class='m-0 font-weight-bold text-primary' id = "cc"></h6>
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                        aria-labelledby="dropdownMenuLink">
+                                        <div class="dropdown-header">강의평 확인</div>
+                                       
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reviewModal">추가하기</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div style="height:250px; overflow-y: scroll; position: relative">
+                            <div style="height:100%; position: relative">
                                 <div id="canvasContainer">
-                                    <canvas id="myChart"  width = "100"height = "100"></canvas>
+                                    <canvas id="myChart"  width = "100" height = "100"></canvas>
                                 </div>
                             </div>
                             <div class='card-body' id = "dd">
                                
                             </div>
-
+                            <!-- input 값 받을 때
+                            <input type="hidden" id ="hiddenfieldid" >
+                            <input type="hidden" id ="hiddenfieldid" >
+                            -->
                         </div>
                     </div>
                 </div>
@@ -449,6 +573,106 @@
         </div>
     </div>
 
+    <!-- Done Modal-->
+    <div class="modal fade" id="DoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Successfully Added!</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">정상적으로 처리되었습니다.이용해주셔서 감사합니다.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Okay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- add review Modal-->
+     <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+     <div class="modal-dialog" role="document">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">강의평 추가하기</h5>
+                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">×</span>
+                 </button>
+             </div>
+             <form id = 'add_review'>
+             <div class="modal-body" id = "llll"></div>
+             <div class="modal-body" id = "llll2">
+                <label>Expected Grade:</label>
+                
+                <select class ="custom-select" name= "eg" id = "eg">
+                    <option value = "A+">A+</option>
+                    <option value = "A0">A0</option>
+                    <option value = "A-">A-</option>
+                    <option value = "B+">B+</option>
+                    <option value = "B0">B0</option>
+                    <option value = "B-">B-</option>
+                </select>
+                <br>
+                <label>Term</label>
+                <select class ="custom-select" name= "term" id = "term">
+                    <option value = "2018-2">2018-2</option>
+                    <option value = "2019-1">2019-1</option>
+                    <option value = "2019-2">2019-2</option>
+                    <option value = "2020-1">2020-1</option>
+                </select>
+                <br>
+                <label>Check Grade</label>
+                <select class ="custom-select" name= "g" id = "g">
+                    <option value = 5>5</option>
+                    <option value = 4>4</option>
+                    <option value = 3>3</option>
+                    <option value = 2>2</option>
+                    <option value = 1>1</option>
+                </select>
+                
+                <label>Hard</label>
+                <select class ="custom-select" name= "h" id = "h">
+                    <option value = 5>5</option>
+                    <option value = 4>4</option>
+                    <option value = 3>3</option>
+                    <option value = 2>2</option>
+                    <option value = 1>1</option>
+                </select>
+                <label>Talk</label>
+                <select class ="custom-select" name= "ta" id = "ta">
+                    <option value = 5>5</option>
+                    <option value = 4>4</option>
+                    <option value = 3>3</option>
+                    <option value = 2>2</option>
+                    <option value = 1>1</option>
+                </select>
+                <label>Teach</label>
+                <select class ="custom-select" name= "te" id = "te">
+                    <option value = 5>5</option>
+                    <option value = 4>4</option>
+                    <option value = 3>3</option>
+                    <option value = 2>2</option>
+                    <option value = 1>1</option>
+                </select>
+                <br>
+                <label >Script</label><br>
+                <textarea rows="10" cols = "55" id = "scr" id ="scr" name = "scr"placeholder = "강의평을 입력해주세요!" ></textarea>
+             </div>
+            </form>
+             <div class="modal-footer">
+                <button class="btn btn-primary" type="button" onclick = "add_rev()" data-dismiss="modal" >추가하기</button>
+                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+             </div>
+            
+         </div>
+     </div>
+ </div>
+    
+
     <script>
 		// Your web app's Firebase configuration
     var firebaseConfig = {
@@ -466,12 +690,17 @@
   const database = firebase.firestore();
     const list_div = document.getElementById("aa");
     const list_div2 = document.getElementById("bb");
-    const list_div2_1 = document.getElementById("bb_1");
+    const list_div2_1 = document.getElementById("description-course");
+    const list_div2_2 = document.getElementById("related-courses-pre");
+    const list_div2_3 = document.getElementById("related-courses-post");
+    const list_div2_4 = document.getElementById("faculty");
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
-    const col = database.collection('course').where('name', '==', 'JAVA프로그래밍및실습');
+    const col = database.collection('course').where('name', '==', '데이터베이스');
     const rev = database.collection('review');
+    const lll = document.getElementById('llll');
     var str = "<form id = 'prof_radio'>";
+    var str2 = "";
     var prof_radio="";
     col.get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
@@ -479,27 +708,36 @@
             if(sc == ""){
                 sc = "등록되지 않았습니다.";
             }
-        
-            basic = doc.data().name+ " (" + doc.data().num+")";
+            basic = doc.data().name+ " (" + doc.data().num+")" ;
 
-            related = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
+            course_desc = "<b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
 
-            related_subject = "<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
-
-
-
-
-            prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-2"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-2"];
-            a1 = doc.data().prof["2018-2"];
-            a2 = doc.data().prof["2019-2"];
+            realted = "<b>연관과목</b>";
+            related_subject_pre = doc.data().prepro.pre;
+            if(related_subject_pre==null){
+                related_subject_pre="없음";
+            }
+            related_subject_post = doc.data().prepro.pro;
+            if(related_subject_post==null){
+                related_subject_post="없음";
+            }
+            prof = "<br><br><b>교수진</b><br><hr><b>2019-2</b> | "+doc.data().prof["2019-1"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-1"];
+            a1 = doc.data().prof["2018-1"];
+            a2 = doc.data().prof["2019-1"];
             lists = a1.concat(a2); 
             lists = lists.filter((item, index) => lists.indexOf(item) === index);
             lists.forEach(element=>{
                 str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp"+element+" </label>&nbsp&nbsp&nbsp";
+                str2 += "<input type = 'radio' id = ' "+element+" ' name = 'rev'><label> &nbsp"+element+" </label>&nbsp&nbsp&nbsp";
             });
             list_div3.innerHTML += str;
+            llll.innerHTML += str2;
             list_div.innerHTML = (basic);
-            list_div2.innerHTML = related + related_subject+prof;
+            list_div2_1.innerHTML = course_desc+"<hr>"+realted;
+            list_div2_2.innerHTML = related_subject_pre;
+            list_div2_3.innerHTML = related_subject_post;
+            list_div2_4.innerHTML = prof;
+            
            
             });
         });
@@ -512,7 +750,7 @@
         list_div4.innerHTML="";
         prof_radio="";
         console.log(prof_radio);
-        const revs = database.collection('review').where('name', '==', 'JAVA프로그래밍및실습');
+        const revs = database.collection('review').where('name', '==', '데이터베이스');
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
                         var dat = docss.data()[thisid];
@@ -526,7 +764,8 @@
 
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
-                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><b>추천 | </b> "+docss.data()[x][m]['good']+"<br></div></div>";  
+                                        
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a class ='btn btn-primary'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn"+m+"'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
                                         eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
                                         eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
                                         eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
@@ -568,7 +807,73 @@
             var chartHeight = minHeight * numOfBars > maxHeightOfChart ? minHeight * numOfBars : maxHeightOfChart;
             document.getElementById("canvasContainer").style.height = chartHeight.toString()+"px";
     }
-
+    var eg = document.getElementById("eg");
+        var term = document.getElementById("term");
+        var g = document.getElementById("g");
+        var h = document.getElementById("h");
+        var ta = document.getElementById("ta");
+        var te = document.getElementById("te");
+        
+        var scr = document.getElementById('scr'); 
+        
+        var llld = "";
+    function add_rev(){
+        var rev = document.getElementsByName('rev'); 
+        for(i = 0; i < rev.length; i++) { 
+                if(rev[i].checked){
+                    llld= rev[i].id;
+                }
+                
+        } 
+        llld = llld.replace(/\s+/g, '');
+        var hi = {[llld] :{
+            'user-session-change-pillyou': {
+                'eg': eg.value, 
+                'eval_grade': g.value, 
+                'eval_hard': h.value, 
+                'eval_talk': ta.value, 
+                'eval_teach': te.value, 
+                'good':0, 
+                'script':scr.value,
+                'term':term.value
+            }}};
+            console.log(hi);
+            
+        database.collection('review').doc('DataBase').set(hi,{merge:true}).then(function(){
+            console.log("okay");
+           alert("success!!")
+        })
+    }
+    function recom(prof,id, good){
+        var rev = document.getElementsByName('rev'); 
+        id = id.replace(/\s+/g, '');
+        prof = prof.replace(/\s+/g, '');
+        var spann = document.getElementById('spannn'+id);
+        console.log('spannn'+id);
+        var dataaa = {
+            [prof]:{
+                [id]:{
+                    'good': good+1
+                }
+            }
+        }
+        console.log(dataaa);
+        database.collection('review').doc('DataBase').set(dataaa, {merge:true}).then(function(){
+            spann.innerHTML = "<b>&nbsp추천 | </b> "+(good+1)+"<br>";
+            console.log("done");
+        })
+    }
+/*
+    function additem(id){
+        var addd = database.collection("user").doc("user1");
+        var docData = {
+            '':
+        }
+        var setwithmerge = addd.set(docData).then(function(){
+            console.log("a");
+        });
+    }
+*/
     /*
     col.get().then(function(querySnapshot){
     querySnapshot.forEach(function(doc){
