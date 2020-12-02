@@ -764,7 +764,8 @@
 
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
-                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a class ='btn btn-primary btn-icon-split btn-sm'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
+                                        
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a class ='btn btn-primary'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn"+m+"'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
                                         eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
                                         eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
                                         eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
@@ -847,7 +848,8 @@
         var rev = document.getElementsByName('rev'); 
         id = id.replace(/\s+/g, '');
         prof = prof.replace(/\s+/g, '');
-        var spann = document.getElementById('spannn');
+        var spann = document.getElementById('spannn'+id);
+        console.log('spannn'+id);
         var dataaa = {
             [prof]:{
                 [id]:{
@@ -858,6 +860,7 @@
         console.log(dataaa);
         database.collection('review').doc('DataBase').set(dataaa, {merge:true}).then(function(){
             spann.innerHTML = "<b>&nbsp추천 | </b> "+(good+1)+"<br>";
+            console.log("done");
         })
     }
 /*
