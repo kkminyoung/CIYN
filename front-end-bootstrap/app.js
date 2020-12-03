@@ -14,7 +14,7 @@ app.use(express.static('vendor'));
 
 
 app.get('/', function (req, res) {
-  fs.readFile('index.html', 'utf8', function (error, data) {
+  fs.readFile('daily-log.html', 'utf8', function (error, data) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.end(data);
   });

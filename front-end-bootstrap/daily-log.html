@@ -14,10 +14,19 @@
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="251105086649-7dp43c1tupf0tsmqdoahj1jcbud3spmq.apps.googleusercontent.com">
+    <script type="text/javascript" src="login.js"></script>
+
+    <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
 
 </head>
 
@@ -188,14 +197,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">이화연</span>
+                                <span id ="user_name" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="profile.html">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     프로필보기
                                 </a>
@@ -225,7 +234,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">[이화연] 성적 보고서</h1>
+                        <h1 class="h3 mb-0 text-gray-800"> 성적 보고서</h1>
 
                     </div>
 
@@ -281,8 +290,8 @@
                                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="done_grade">60%</div>
                                                 </div>
                                                 <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
+                                                    <div class="progress progress-sm mr-2" id = "progress-credit">
+                                                        <div class="progress-bar bg-info progress-bar-striped progress-bar-animated" id = "progress-credit" role="progressbar"
                                                             style="width: 50%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
@@ -498,6 +507,10 @@
         </div>
     </div>
 
+    <div class="text-center">
+        <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
+    </div>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -507,7 +520,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
+    <script src="../lib/jquery-3.4.1.min.js"></script>
     <!-- Page level plugins -->
     <script src="vendor/chart.js/Chart.min.js"></script>
 
@@ -540,7 +553,7 @@
       var maj=0, maj_cre = 0, sum=0, sum_cre =0;
       var distri = {'A+':0,'A0':0,'A-':0,'B+':0,'B0':0,'B-':0,'C+':0,'C0':0};
       var distri_pie=[];
-      var sem_distri = {'2018-2':{'sums':0, 'sum_cre':0},'2019-1':{'sums':0, 'sum_cre':0},'2019-2':{'sums':0, 'sum_cre':0},'2020-1':{'sums':0, 'sum_cre':0},'2020-2':{'sums':0, 'sum_cre':0}};
+      var sem_distri = {'2018-2':{'sums':0, 'sum_cre':0},'2019-1':{'sums':0, 'sum_cre':0},'2019-2':{'sums':0, 'sum_cre':0},'2020-1':{'sums':0, 'sum_cre':0}};
       var sem_pie = [];
       usersCollection.get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
@@ -578,10 +591,13 @@
                 maj_up.innerHTML="0/4.3";
                 sum_up.innerHTML=sum/sum_cre+"/4.3";
             }else{
-                maj_up.innerHTML=parseFloat(maj/maj_cre).toFixed(2)+"/4.3";
-                sum_up.innerHTML=parseFloat(sum/sum_cre).toFixed(2)+"/4.3";
+                maj_up.innerHTML=(parseFloat(maj/maj_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(maj/maj_cre).toFixed(2)+"/4.3"+" "+(parseFloat(maj/maj_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+                sum_up.innerHTML=(parseFloat(sum/sum_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(sum/sum_cre).toFixed(2)+"/4.3"+" "+(parseFloat(sum/sum_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
             }
-            done_up.innerHTML = parseFloat(sum_cre/139).toFixed(4)*100+" %";
+            done_up.innerHTML = parseFloat(sum_cre/139).toFixed(2)*100+" %";
+            /*
+            document.getElementById("progress-credit").setAttribute = ("aria-valuenow", parseInt(sum_cre/139*100));
+            set('#progress-credit',  parseInt(sum_cre/139*100));*/
             spare_up.innerHTML = 139-sum_cre;
             list_subject.innerHTML += str;
             for(var i in distri){
@@ -594,6 +610,74 @@
                     sem_pie.push(sem_distri[ll]['sums']/sem_distri[ll]['sum_cre']);
             }
             }
+            var ctx = document.getElementById("myGradeChart");
+      var ctx2 = document.getElementById("myAreaChart");
+var myGradeChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["A+", "A0", "A-","B+", "B0", "B-", "C+"],
+    datasets: [{
+      data: distri_pie,
+      backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
+      hoverBackgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+var myAreaChart = new Chart(ctx2, {
+  type: 'line',
+  data: {
+    labels: ["2018-2","2019-1","2019-2", "2020-1"],
+    datasets: [{
+      data: sem_pie,
+      ineTension: 0.3,
+      backgroundColor: "rgba(78, 115, 223, 0.05)",
+      borderColor: "rgba(78, 115, 223, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
             
         })
       });
@@ -643,7 +727,7 @@ var myGradeChart = new Chart(ctx, {
 var myAreaChart = new Chart(ctx2, {
   type: 'line',
   data: {
-    labels: ["2018-2","2019-1","2019-2", "2020-1","2020-2"],
+    labels: ["2018-2","2019-1","2019-2", "2020-1"],
     datasets: [{
       data: sem_pie,
       ineTension: 0.3,
