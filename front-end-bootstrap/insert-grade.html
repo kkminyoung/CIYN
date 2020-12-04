@@ -255,6 +255,11 @@
                                         <canvas style="height: 500px"></canvas>
                                     </div>
                                 </div>
+                                <div class='card-body' style="height: auto">
+                                    <div id="canvasContainer2">
+                                        <canvas style="height: 500px"></canvas>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -345,10 +350,10 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.firestore();
 
-        var ee = sessionStorage.getItem('user_email');
-        console.log(ee);
+        // 로그인후 user_email에 해당하는 database 가져옴!
+        var user_email = sessionStorage.getItem('user_email');
 
-        const usersCollection = database.collection('user').where('email', '==', ee);
+        const usersCollection = database.collection('user').where('email', '==', user_email);
         const list_subject = document.getElementById("ll");
         usersCollection.get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
@@ -400,7 +405,6 @@
             document.getElementById("canvasContainer").innerHTML = '<canvas id="GradeChart"></canvas>';
             var ctx = document.getElementById("GradeChart").getContext("2d");
 
-
             eval_grade = 0, eval_hard = 0, eval_talk = 0, eval_teach = 0, eval_num = 0;
             //console.log(thisid);
             const revs = database.collection('grade').where('name', '==', '컴퓨터구조');//나중에 thisid로 바뀌어야
@@ -408,12 +412,20 @@
                 snapshot.docs.forEach(docss => {
                     console.log(docss.data());
                     var dat_fin = docss.data()['2019-2']['조동섭']['score'][sem];
+                    var dat_fin2 = docss.data()['2018-2']['조동섭']['score'][sem];
                     var box_val = getBoxValues(dat_fin);
+                    var box_val2 = getBoxValues(dat_fin2);
                     console.log(box_val);
                     var labels = [box_val.t1 + "~", box_val.t2 + "~", box_val.t3 + "~", box_val.t4 + "~", box_val.t5 + "~", box_val.t6 + "~", box_val.t7 + "~", box_val.t8 + "~", box_val.t9 + "~", box_val.t10 + "~"];
                     console.log(labels);
                     var labelss = [box_val.t1, box_val.t2, box_val.t3, box_val.t4, box_val.t5, box_val.t6, box_val.t7, box_val.t8, box_val.t9, box_val.t10];
                     var last_dat = hiss(labelss, dat_fin);
+
+                    // 표준화 후, 곡선 그래프 셋팅 
+                    var norm_dat_fin = get_norm(dat_fin, box_val.mean, box_val.sigma);
+                    var norm_dat_fin2 = get_norm(dat_fin2, box_val2.mean, box_val2.sigma);
+                    console.log("norm_data_Fin : ", norm_dat_fin);
+                    console.log("norm_data_Fin : ", norm_dat_fin2);
 
                     var data = {
                         labels: labels,
@@ -438,10 +450,155 @@
                         options: option
                     });
 
+                    
+
+                })
+            });
+            document.cookie = "";
+            profradio2(sem);
+        }
+
+        function profradio2(sem) { //정규분포그래프
+            document.getElementById("canvasContainer2").innerHTML = '&nbsp;';
+            document.getElementById("canvasContainer2").innerHTML = '<canvas id="GradeChart2"></canvas>';
+            var ctx = document.getElementById("GradeChart2").getContext("2d");
+
+            eval_grade = 0, eval_hard = 0, eval_talk = 0, eval_teach = 0, eval_num = 0;
+            //console.log(thisid);
+            const revs = database.collection('grade').where('name', '==', '컴퓨터구조');//나중에 thisid로 바뀌어야
+            revs.get().then(snapshot => {
+                snapshot.docs.forEach(docss => {
+                    console.log(docss.data());
+                    var dat_fin = docss.data()['2019-2']['조동섭']['score'][sem];
+                    var dat_fin2 = docss.data()['2018-2']['조동섭']['score'][sem];
+                    var box_val = getBoxValues(dat_fin);
+                    var box_val2 = getBoxValues(dat_fin2);
+                    console.log(box_val);
+                    var labels = [box_val.t1 + "~", box_val.t2 + "~", box_val.t3 + "~", box_val.t4 + "~", box_val.t5 + "~", box_val.t6 + "~", box_val.t7 + "~", box_val.t8 + "~", box_val.t9 + "~", box_val.t10 + "~"];
+                    console.log(labels);
+                    var labelss = [box_val.t1, box_val.t2, box_val.t3, box_val.t4, box_val.t5, box_val.t6, box_val.t7, box_val.t8, box_val.t9, box_val.t10];
+                    var last_dat = hiss(labelss, dat_fin);
+
+                    // 표준화 후, 곡선 그래프 셋팅 
+                    var norm_dat_fin = get_norm(dat_fin, box_val.mean, box_val.sigma);
+                    var norm_dat_fin2 = get_norm(dat_fin2, box_val2.mean, box_val2.sigma);
+                    console.log("norm_data_Fin : ", norm_dat_fin);
+                    console.log("norm_data_Fin : ", norm_dat_fin2);
+
+                    var data = {
+                        labels: labels,
+                        backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538'],
+                        datasets: [{
+                            data: last_dat,
+                        }]
+                    };
+                    var option = {
+                        tooltips: {
+                            enabled: false
+                        },
+                        legend: {
+                            display: false
+                        }
+                    };
+
+                    var myAreaChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: dat_fin,
+                            datasets: [{
+                                data: norm_dat_fin,
+                                ineTension: 0.3,
+                                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                                borderColor: "rgba(78, 115, 223, 1)",
+                                pointRadius: 3,
+                                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                                pointBorderColor: "rgba(78, 115, 223, 1)",
+                                pointHoverRadius: 3,
+                                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                                pointHitRadius: 10,
+                                pointBorderWidth: 2
+                            },
+                            {
+                                //이거 2018입니당 회색으로 바꿈
+                                data: norm_dat_fin2,
+                                ineTension: 0.3,
+                                backgroundColor: "rgba(80, 80, 80, 0.05)",
+                                borderColor: "rgba(80, 80, 80, 1)",
+                                pointRadius: 3,
+                                pointBackgroundColor: "rgba(80, 80, 80, 1)",
+                                pointBorderColor: "rgba(80, 80, 80, 1)",
+                                pointHoverRadius: 3,
+                                pointHoverBackgroundColor: "rgba(80, 80, 80, 1)",
+                                pointHoverBorderColor: "rgba(80, 80, 80, 1)",
+                                pointHitRadius: 10,
+                                pointBorderWidth: 2
+                            }],
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            tooltips: {
+                                backgroundColor: "rgb(255,255,255)",
+                                bodyFontColor: "#858796",
+                                borderColor: '#dddfeb',
+                                borderWidth: 1,
+                                xPadding: 15,
+                                yPadding: 15,
+                                displayColors: false,
+                                caretPadding: 10,
+                            },
+                            legend: {
+                                display: false
+                            },
+                            cutoutPercentage: 80,
+                        },
+                    });
                 })
             });
             document.cookie = "";
         }
+
+        function get_norm(data, mean, std) {
+            console.log("mean", mean);
+            console.log("std", std);
+            var left = 1 / (mean * Math.sqrt(2 * 3.141592));
+            var right = new Array();
+            var result = new Array();
+
+            for (i = 0; i < data.length; i++) {
+                right[i] = Math.pow(Math.E, (- ((data[i] - mean) * (data[i] - mean)) / (2 * std * std)));
+                result[i] = left * right[i];
+            }
+
+            //var right = Math.exp(- ((data - mean) * (data - mean)) / (2 * std * std));
+            console.log(left);
+            console.log(right);
+
+            return result;
+        }
+
+        // 평균 계산
+        function get_mean(numbers) {
+            var total = 0, i;
+            for (i = 0; i < numbers.length; i += 1) {
+                total += numbers[i];
+            }
+            return total / numbers.length;
+        }
+
+        // 표준편차 계산
+        function get_sigma(numbers) {
+            var up = 0;
+            var mean = get_mean(numbers);
+
+            for (i = 0; i < numbers.length; i++) {
+                up += ((numbers[i] - mean) ** 2);
+            }
+            var result = Math.sqrt(up / numbers.length);
+
+            return result;
+        }
+
 
         function getPercentile(data, percentile) {
             data.sort(function (a, b) { return a - b; });
@@ -469,6 +626,8 @@
             boxValues.t9 = Math.round(getPercentile(data, 75));
             boxValues.t10 = Math.round((getPercentile(data, 75) + Math.max.apply(Math, data)) / 2);
             boxValues.high = Math.round(Math.max.apply(Math, data));
+            boxValues.mean = Math.round(get_mean(data));
+            boxValues.sigma = Math.round(get_sigma(data));
             return boxValues;
         }
 
