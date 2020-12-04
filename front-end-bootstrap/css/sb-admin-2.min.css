@@ -2222,6 +2222,7 @@ textarea.form-control.is-invalid {
   width: 100%;
   color: #858796;
   text-align: center;
+  margin-top: 5px;
   vertical-align: middle;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -2354,33 +2355,33 @@ fieldset:disabled a.btn {
 }
 .btn-success {
   color: #fff;
-  background-color: #1d46b8;
-  border-color: #1d46b8;
+  background-color: #3823ade1;
+  border-color: #3823ade1;
 }
 .btn-success:hover {
   color: #fff;
-  background-color: #1d46b8;
-  border-color: #1d46b8;
+  background-color: #28197ee1;
+  border-color: #28197ee1;
 }
 .btn-success.focus,
 .btn-success:focus {
   color: #fff;
-  background-color: #1d46b8;
-  border-color: #1d46b8;
+  background-color: #28197ee1;
+  border-color: #28197ee1;
   box-shadow: 0 0 0 0.2rem rgba(62, 208, 156, 0.5);
 }
 .btn-success.disabled,
 .btn-success:disabled {
   color: #fff;
-  background-color: #1d46b8;
-  border-color: #1d46b8;
+  background-color: #1b1055e1;
+  border-color: #1b1055e1;
 }
 .btn-success:not(:disabled):not(.disabled).active,
 .btn-success:not(:disabled):not(.disabled):active,
 .show > .btn-success.dropdown-toggle {
   color: #fff;
-  background-color: #1d46b8;
-  border-color: #1d46b8;
+  background-color: #1b1055e1;
+  border-color: #1b1055e1;
 }
 .btn-success:not(:disabled):not(.disabled).active:focus,
 .btn-success:not(:disabled):not(.disabled):active:focus,
@@ -9574,11 +9575,11 @@ a:focus {
 }
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:hover,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item:hover {
-  background-color: #546299;
+  background-color: #5e3db8;
 }
 .sidebar .nav-item .collapse .collapse-inner .collapse-item:active,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item:active {
-  background-color: #2844e6;
+  background-color: #4b28e6;
 }
 .sidebar .nav-item .collapse .collapse-inner .collapse-item.active,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-item.active {
@@ -9653,7 +9654,7 @@ a:focus {
   margin-right: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(230, 230, 230, 0.1);
 }
 .sidebar .sidebar-card .sidebar-card-illustration {
   height: 3rem;
@@ -10445,10 +10446,11 @@ body.sidebar-toggled footer.sticky-footer {
   flex: 0 0 20%;
   max-width: 20%;
   float: left;
+  margin-left: 1%;
 }
 .card-2-8-8{
   padding: 5px;
-  margin-left: 0.7%;
+  margin-left: 1%;
   width: 77%;
   color: black;
   text-align: center;
