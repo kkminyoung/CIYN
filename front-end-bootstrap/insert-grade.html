@@ -27,6 +27,7 @@
     <meta name="google-signin-client_id"
         content="251105086649-7dp43c1tupf0tsmqdoahj1jcbud3spmq.apps.googleusercontent.com">
     <script type="text/javascript" src="login.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
     <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
 
@@ -363,7 +364,7 @@
                     var summ = true;
                     str += "<div class='card shadow mb-4'> <div class='card-header py-3'><h6 class='m-0 font-weight-bold text-primary'>" + x + " (" + dat[x]['prof'] + " 교수님)" + "</h6></div><div class = 'card-body'>";
                     if (dat[x]['mid'] == "") {
-                        str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' id = \"" + x + "\" class='form-control-score bg-light-2 border-0 small' placeholder='중간고사 성적입력' onkeypress='onlyNumber();'aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary ' onclick = 'insert_grade(\"mid\", \"" + x + "\", \"" + dat[x]['prof'] + "\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
+                        str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' id = \"mid" + x + "\" class='form-control-score bg-light-2 border-0 small' placeholder='중간고사 성적입력' onkeypress='onlyNumber();'aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary ' onclick = 'insert_grade(\"mid\", \"" + x + "\", \"" + dat[x]['prof'] + "\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
                         summ = false; console.log(x, 1);
                     } else {
                         str += "<label>중간고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='" + dat[x]['mid'] + "' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'profradio(\"mid\")' type='button'></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
@@ -384,22 +385,34 @@
                 list_subject.innerHTML += str;
             })
         });
-
-        function insert_grade(sem, subject, prof) { //userid 넣는 란도 넣어야 함!!!
-            /*
-            1. 0~100 값 아니면 return << 안 넣어도 될듯
-            2. database 정리 - user(맞는 userid), grade(맞는 과목, 맞는 교수) 에 삽입
-            3. chart내용 넣기
-            */
-            console.log(sem, subject, prof);
-
+        var myRadarChart;
+        function insert_grade(sem, subject, prof) {
+            sem = sem.replace(/\s+/g, '');
+            subject = subject.replace(/\s+/g, '');
+            prof = prof.replace(/\s+/g, '');
+            var l = parseInt(document.getElementById('mid'+subject).value);
+            var insert_dat = {
+                '2020-2':{
+                    [prof]:{
+                        'score':{
+                            [sem]:[l]
+                        }
+                    }
+                }
+            }
+            console.log(insert_dat);
+            
+            database.collection('grade').doc('base').set(insert_dat, {merge:true}).then(function(){
+                alert("done");
+            })
+            profradio(sem);
         }
 
         function onlyNumber() {
             if ((event.keyCode < 48) || (event.keyCode > 57))
                 event.returnValue = false;
         }
-        var myRadarChart;
+        
         function profradio(sem) {
             document.getElementById("canvasContainer").innerHTML = '&nbsp;';
             document.getElementById("canvasContainer").innerHTML = '<canvas id="GradeChart"></canvas>';
