@@ -10506,3 +10506,16 @@ table ,th ,tr {
   width: 300px;
   height: 300px;
 }
+
+.tell-professor-icon{
+  margin: 1%;
+
+}
+
+.tell-professor-box{
+  margin-left: 1%;
+}
+
+.text-area-professor{
+  width: 70%;
+}
