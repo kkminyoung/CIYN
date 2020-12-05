@@ -173,10 +173,10 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
+                            <input type="text" id="findCourse" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button onclick='getText()' class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -581,7 +581,7 @@
                 </select>
                 <br>
                 <label >Script</label><br>
-                <textarea rows="10" cols = "55" id = "scr" id ="scr" name = "scr"placeholder = "강의평을 입력해주세요!" ></textarea>
+                <textarea rows="10" cols = "55" id = "scr" id ="scr" name = "scr" placeholder = "강의평을 입력해주세요!" ></textarea>
              </div>
             </form>
              <div class="modal-footer">
@@ -592,8 +592,8 @@
          </div>
      </div>
  </div>
-    
 
+ 
     <script>
 		// Your web app's Firebase configuration
     var firebaseConfig = {
@@ -618,12 +618,18 @@
     const list_div2_5 = document.getElementById("faculty-table");
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
-    const col = database.collection('course').where('name', '==', '데이터베이스');
-    const rev = database.collection('review');
-    const lll = document.getElementById('llll');
-    var str = "<form id = 'prof_radio'>";
-    var str2 = "";
-    var prof_radio="";
+    var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
+
+    function getText(){
+        findCourseValue = document.getElementById("findCourse").value;
+        console.log(findCourseValue);
+
+        const col = database.collection('course').where('name', '==', findCourseValue);
+        const rev = database.collection('review');
+        const lll = document.getElementById('llll');
+        var str = "<form id = 'prof_radio'>";
+        var str2 = "";
+        var prof_radio="";
     col.get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
             var sc = doc.data().script;
@@ -663,9 +669,14 @@
            
             });
         });
+    
+    }
+
     var eval_grade =0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
     var ctx = document.getElementById('myChart').getContext('2d');
     var myRadarChart;
+
+    
     function profradio(thisid){
         eval_grade = 0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
         console.log(thisid);
@@ -673,7 +684,8 @@
         prof_radio="";
         
         console.log(prof_radio);
-        const revs = database.collection('review').where('name', '==', '데이터베이스');
+        const revs = database.collection('review').where('name', '==', findCourseValue);
+        console.log(findCourseValue);
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
                         var dat = docss.data()[thisid];
