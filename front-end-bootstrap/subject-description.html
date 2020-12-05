@@ -361,7 +361,15 @@
 
                                 </div>
                                 <div id = "faculty-table">
-
+                                    데이터베이스
+                                </div>
+                                <hr>
+                                <div id = "tell-prefessor">
+                                    <a href="#" class="fas fa-smile fa-2x text-gray-300 tell-professor-icon"></a>
+                                    <a href="#" class="fas fa-meh fa-2x text-gray-300 tell-professor-icon"></a>
+                                    <a href="#" class="fas fa-angry fa-2x text-gray-300 tell-professor-icon"></a>
+                                    <textarea class = "text-area-professor" rows="1" placeholder = "교수님에게 메세지를 보내보세요!" ></textarea>
+                                    <a href="#" class= "fas fa-paper-plane  fa-2x text-gray-600"></a>
                                 </div>
 
                             </div>
@@ -369,6 +377,7 @@
 
 
                     </div>
+                    
                 
                     <div class="col-lg-5" >
                         <div class='card shadow mb-4'>
@@ -573,16 +582,20 @@
     const list_div4 = document.getElementById("dd");
     var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
 
-    const col = database.collection('course').where('name', '==', "데이터베이스");
-    const rev = database.collection('review');
-    const lll = document.getElementById('llll');
-    var str = "<form id = 'prof_radio'>";
-    var str2 = "";
-    var prof_radio="";
 
     //초기 설정: 데이터 로딩
     var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "";
-    col.get().then(function(querySnapshot){
+    function getText(){
+        findCourseValue = document.getElementById("findCourse").value;
+        console.log(findCourseValue);
+
+        const col = database.collection('course').where('name', '==', findCourseValue);
+        const rev = database.collection('review');
+        const lll = document.getElementById('llll');
+        var str = "<form id = 'prof_radio'>";
+        var str2 = "";
+        var prof_radio="";
+        col.get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
             var sc = doc.data().script;
             if(sc == ""){
@@ -624,6 +637,7 @@
             });
         });
     
+    }
 
     var eval_grade =0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -636,8 +650,8 @@
         list_div4.innerHTML="";
         prof_radio="";
         
-        console.log(prof_radio);
-        const revs = database.collection('review').where('name', '==', '데이터베이스');//이거 바꿔주기!
+        console.log(prof_radio);const revs = database.collection('review').where('name', '==', findCourseValue);
+        console.log(findCourseValue);
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
                         var dat = docss.data()[thisid];
