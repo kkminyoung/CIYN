@@ -14,8 +14,7 @@
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
     <link rel="icon" type="image/x-icon" href="img/logo-right.png" />
 
@@ -30,7 +29,7 @@
     <script type="text/javascript" src="login.js"></script>
 
     <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
@@ -46,7 +45,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="daily-log.html">
                 <div class="sidebar-brand-icon ">
-                    <img class="fas" src="img/logo-right.png" width="50px" height="50px">
+                    <img class = "fas" src="img/logo-right.png" width="50px" height="50px">
                 </div>
                 <div class="sidebar-brand-text mx-3">CIYN<sup></sup></div>
             </a>
@@ -97,7 +96,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                회원관련
+               회원관련
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -202,8 +201,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span id="user_name" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <span id ="user_name" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -253,10 +253,10 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-purple text-uppercase mb-1">
                                                 총학점</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="sum_grade"></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"id = "sum_grade"></div>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="#" title="On 4.0, 4.5 Grade.." data-toggle="popover" data-trigger="focus" id = "popover_all" data-content="Click anywhere in the document to close this popover">Info</a>
+                                            <a href="#" class="fas fa-info fa-1x text-gray-300" title="On 4.0, 4.5 Grade.." data-toggle="popover" data-trigger="focus" id = "popover_all" data-content="Click anywhere in the document to close this popover"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -271,10 +271,10 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-green text-uppercase mb-1">
                                                 전공학점</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="maj_grade"></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id = "maj_grade"></div>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="#" title="On 4.0, 4.5 Grade.." data-toggle="popover" data-trigger="focus" id = "popover_maj" data-content="Click anywhere in the document to close this popover">Info</a>
+                                            <a href="#" class="fas fa-info fa-1x text-gray-300" title="On 4.0, 4.5 Grade.." data-toggle="popover" data-trigger="focus" id = "popover_maj" data-content="Click anywhere in the document to close this popover"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -291,24 +291,20 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
-                                                        id="done_grade">60%</div>
-                                                        <div class="progress progress-sm mr-2">
-                                                            <div class="progress-bar bg-info"  id = "progress-credit" role="progressbar"
-                                                                style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                                aria-valuemax="100"></div>
-                                                        </div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="done_grade">60%</div>
                                                 </div>
                                                 <div class="col">
+                                                    <div class="progress progress-sm mr-2">
+                                                        <div class="progress-bar bg-info"  id = "progress-credit" role="progressbar"
+                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-chess-queen fa-2x text-gray-300"></i>
-                                        </div>
-                                        <div class="col">
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -323,8 +319,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-green text-uppercase mb-1">
                                                 남은 학점</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="spare_grade">18
-                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"id = "spare_grade">18</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-chess-rook fa-2x text-gray-300"></i>
@@ -364,7 +359,7 @@
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">전체 학점분포</h6>
-
+                                    
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
@@ -388,7 +383,7 @@
                                             <i class="fas fa-circle text-b"></i> B0
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-bm"></i>B-
+                                            <i class="fas fa-circle text-bm"></i>B- 
                                         </span>
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-cp"></i>C+
@@ -412,15 +407,15 @@
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" width="100%" cellspacing="0">
-
+                                            
                                             <tr>
                                                 <th>학기</th>
                                                 <th>과목명</th>
                                                 <th>학점</th>
                                                 <th>성적</th>
                                                 <th>전공</th>
-                                            </tr>
-                                            <tbody id="dataTable"></tbody>
+                                              </tr>
+                                            <tbody id="dataTable" ></tbody>
                                         </table>
                                     </div>
                                 </div>
@@ -438,12 +433,14 @@
                                         <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">자료구조 <span class="float-right">40%</span></h4>
+                                    <h4 class="small font-weight-bold">자료구조 <span
+                                            class="float-right">40%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">컴퓨터구조 <span class="float-right">60%</span></h4>
+                                    <h4 class="small font-weight-bold">컴퓨터구조 <span
+                                            class="float-right">60%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar" role="progressbar" style="width: 60%"
                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
@@ -454,331 +451,322 @@
                                         <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">운영체제<span class="float-right">100%</span></h4>
+                                    <h4 class="small font-weight-bold">운영체제<span
+                                            class="float-right">100%</span></h4>
                                     <div class="progress">
                                         <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
                                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
                             </div>
+                            
+                        <div class="col-lg-6 mb-4">
 
-                            <div class="col-lg-6 mb-4">
-
-                                </div-->
-                            </div>
-
-                        </div>
-                        <!-- /.container-fluid -->
-
+                        </div-->
                     </div>
-                    <!-- End of Main Content -->
-
-                    <!-- Footer -->
-                    <footer class="sticky-footer bg-white">
-                        <div class="container my-auto">
-                            <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; CIYN 2020</span>
-                            </div>
-                        </div>
-                    </footer>
-                    <!-- End of Footer -->
 
                 </div>
-                <!-- End of Content Wrapper -->
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Page Wrapper -->
+            <!-- End of Main Content -->
 
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
-
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
-                        </div>
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; CIYN 2020</span>
                     </div>
                 </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="text-center">
-                <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
-            </div>
+    <div class="text-center">
+        <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
+    </div>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="vendor/jquery/jquery.min.js"></script>
-            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="js/sb-admin-2.min.js"></script>
-            <script src="../lib/jquery-3.4.1.min.js"></script>
-            <!-- Page level plugins -->
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../lib/jquery-3.4.1.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
 
-            <!-- Page level custom scripts -->
+    <!-- Page level custom scripts -->
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-            <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
-            <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
-            <script>
-                var firebaseConfig = {
-                    apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
-                    authDomain: "ciyn-7bfbc.firebaseapp.com",
-                    databaseURL: "https://ciyn-7bfbc.firebaseio.com",
-                    projectId: "ciyn-7bfbc",
-                    storageBucket: "ciyn-7bfbc.appspot.com",
-                    messagingSenderId: "251105086649",
-                    appId: "1:251105086649:web:ada3d55a17def3c0b7df68",
-                    measurementId: "G-4N9321T8ST"
-                };
-                // 로그인후 user_email에 해당하는 database 가져옴!
-                var user_email = sessionStorage.getItem('user_email');
-
-                // Initialize Firebase
-                var str = "";
-                firebase.initializeApp(firebaseConfig);
-                const database = firebase.firestore();
-                const usersCollection = database.collection('user').where('email', '==', user_email);
-                const list_subject = document.getElementById("dataTable");
-                const sum_up = document.getElementById("sum_grade");
-                const maj_up = document.getElementById("maj_grade");
-                const done_up = document.getElementById("done_grade");
-                const spare_up = document.getElementById("spare_grade");
-                var maj = 0, maj_cre = 0, sum = 0, sum_cre = 0;
-                var distri = { 'A+': 0, 'A0': 0, 'A-': 0, 'B+': 0, 'B0': 0, 'B-': 0, 'C+': 0, 'C0': 0 };
-                var distri_pie = [];
-                var sem_distri = { '2018-2': { 'sums': 0, 'sum_cre': 0 }, '2019-1': { 'sums': 0, 'sum_cre': 0 }, '2019-2': { 'sums': 0, 'sum_cre': 0 }, '2020-1': { 'sums': 0, 'sum_cre': 0 } };
-                var sem_pie = [];
-                usersCollection.get().then(function (querySnapshot) {
-                    querySnapshot.forEach(function (doc) {
-                        str = "";
-                        var dat = doc.data()['grade'];
-                        for (var x in dat) {
-
-                            for (var l in dat[x]) {
-                                console.log(dat[x][l]);
-                                str += "<tr><td>" + x + "</td><td>" + l + "</td><td>" + dat[x][l]['credit'] + "</td><td>" + dat[x][l]['grade'] + "</td><td>" + dat[x][l]['major'] + "</td></tr>";
-
-                                var m = dat[x][l]['major'];
-                                var k = gpa_change(dat[x][l]['grade']);
-                                distri[dat[x][l]['grade']]++;
-
-                                console.log(k);
-                                var n = dat[x][l]['credit'];
-                                if (m.indexOf('전공') >= 0) {
-                                    maj += parseFloat(k) * parseFloat(n);
-                                    maj_cre += parseFloat(n);
-                                }
-                                sum += parseFloat(k) * parseFloat(n);
-                                sum_cre += parseFloat(n);
-                                console.log(x, sem_distri[x]);
-                                sem_distri[x]['sums'] += parseFloat(k) * parseFloat(n);
-                                sem_distri[x]['sum_cre'] += parseFloat(n);
-
-                            }
-                        }
-                        if (sum_cre == 0) {
-                            maj_up.innerHTML = "0/4.3";
-                            sum_up.innerHTML = "0/4.3"
-                        }
-                        else if (maj_cre == 0) {
-                            maj_up.innerHTML = "0/4.3";
-                            sum_up.innerHTML = sum / sum_cre + "/4.3";
-                        } else {
-                            maj_up.innerHTML =  parseFloat(maj / maj_cre).toFixed(2) + "/4.3" + " " ;
-                            sum_up.innerHTML = parseFloat(sum / sum_cre).toFixed(2) + "/4.3" + " " ;
-                            var yourElement = document.getElementById("popover_all");
-                            var dataVal = yourElement.getAttribute("data-content");
-                            var newData = (parseFloat(sum / sum_cre) * (4.0 / 4.3)).toFixed(2) + "/4.0" +  " "+ (parseFloat(sum / sum_cre) * (4.5 / 4.3)).toFixed(2) + "/4.5";
-                            yourElement.setAttribute("data-content",newData);
-
-                            var yourElement2 = document.getElementById("popover_maj");
-                            var dataVal2 = yourElement2.getAttribute("data-content");
-                            var newData2 = (parseFloat(maj / maj_cre) * (4.0 / 4.3)).toFixed(2) + "/4.0" + " "+ (parseFloat(maj / maj_cre) * (4.5 / 4.3)).toFixed(2) + "/4.5";
-                            yourElement2.setAttribute("data-content",newData2);
-                        }
-                        done_up.innerHTML = parseFloat(sum_cre / 139).toFixed(2) * 100 + " %";
-                        
-                        var pg = document.getElementById("progress-credit");
-                        pg.setAttribute("aria-valuenow", parseInt(sum_cre/139*100));
-                        console.log(parseInt(sum_cre/139*100));
-                        $('#progress-credit').attr('aria-valuenow', parseInt(sum_cre/139*100)).css('width', parseInt(sum_cre/139*100)+'%');
-
-                        spare_up.innerHTML = 139 - sum_cre;
-                        list_subject.innerHTML += str;
-                        for (var i in distri) {
-                            distri_pie.push(distri[i]);
-                        }
-                        for (var ll in sem_distri) {
-                            if (sem_distri[ll]['sum_cre'] == 0) {
-                                sem_pie.push(0);
-                            } else {
-                                sem_pie.push(sem_distri[ll]['sums'] / sem_distri[ll]['sum_cre']);
-                            }
-                        }
-                        var ctx = document.getElementById("myGradeChart");
-                        var ctx2 = document.getElementById("myAreaChart");
-                        var myGradeChart = new Chart(ctx, {
-                            type: 'doughnut',
-                            data: {
-                                labels: ["A+", "A0", "A-", "B+", "B0", "B-", "C+"],
-                                datasets: [{
-                                    data: distri_pie,
-                                    backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38'],
-                                    hoverBackgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38'],
-                                    hoverBorderColor: "rgba(234, 236, 244, 1)",
-                                }],
-                            },
-                            options: {
-                                maintainAspectRatio: false,
-                                tooltips: {
-                                    backgroundColor: "rgb(255,255,255)",
-                                    bodyFontColor: "#858796",
-                                    borderColor: '#dddfeb',
-                                    borderWidth: 1,
-                                    xPadding: 15,
-                                    yPadding: 15,
-                                    displayColors: false,
-                                    caretPadding: 10,
-                                },
-                                legend: {
-                                    display: false
-                                },
-                                cutoutPercentage: 80,
-                            },
-                        });
-                        var myAreaChart = new Chart(ctx2, {
-                            type: 'line',
-                            data: {
-                                labels: ["2018-2", "2019-1", "2019-2", "2020-1"],
-                                datasets: [{
-                                    data: sem_pie
-                                }],
-                            },
-                    options: {
-                        maintainAspectRatio: false,
-                        scales:{yAxes: [{
-                                    ticks: {
-                                        beginAtZero:true,
-                                        min: 0,
-                                        max: 4.3,
-                                        stepSize: 0.5,
-                                    }
-                                }]},
-                        tooltips: {
-                            backgroundColor: "rgb(255,255,255)",
-                            borderWidth: 1,
-                            xPadding: 15,
-                            yPadding: 15,
-                            displayColors: false,
-                            caretPadding: 10,
-                        },
-                        legend: {
-                            display: false
-                        },
-                        cutoutPercentage: 80,
-                    },
-                        });
-
-                    })
-                });
-                function gpa_change(l) {
-                    switch (l) {
-                        case "A+": return 4.3;
-                        case "A0": return 4.0;
-                        case "A-": return 3.7;
-                        case "B+": return 3.3;
-                        case "B0": return 3.0;
-                        case "B-": return 2.7;
-                        case "C+": return 2.3;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+    <script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
+        authDomain: "ciyn-7bfbc.firebaseapp.com",
+        databaseURL: "https://ciyn-7bfbc.firebaseio.com",
+        projectId: "ciyn-7bfbc",
+        storageBucket: "ciyn-7bfbc.appspot.com",
+        messagingSenderId: "251105086649",
+        appId: "1:251105086649:web:ada3d55a17def3c0b7df68",
+        measurementId: "G-4N9321T8ST"
+    };
+      // Initialize Firebase
+      var str="";
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.firestore();
+      const usersCollection = database.collection('user').where('userid', '==','user1');
+      const list_subject = document.getElementById("dataTable");
+      const sum_up = document.getElementById("sum_grade");
+      const maj_up = document.getElementById("maj_grade");
+      const done_up = document.getElementById("done_grade");
+      const spare_up = document.getElementById("spare_grade");
+      var maj=0, maj_cre = 0, sum=0, sum_cre =0;
+      var distri = {'A+':0,'A0':0,'A-':0,'B+':0,'B0':0,'B-':0,'C+':0,'C0':0};
+      var distri_pie=[];
+      var sem_distri = {'2018-2':{'sums':0, 'sum_cre':0},'2019-1':{'sums':0, 'sum_cre':0},'2019-2':{'sums':0, 'sum_cre':0},'2020-1':{'sums':0, 'sum_cre':0}};
+      var sem_pie = [];
+      usersCollection.get().then(function(querySnapshot){
+        querySnapshot.forEach(function(doc){
+            str = "";
+            var dat = doc.data()['grade'];
+            for (var x in dat){
+               
+               for(var l in dat[x]){
+                    console.log(dat[x][l]);
+                    str+= "<tr><td>"+x+"</td><td>"+l+"</td><td>"+dat[x][l]['credit']+"</td><td>"+dat[x][l]['grade']+"</td><td>"+dat[x][l]['major']+"</td></tr>";
+                    
+                    var m = dat[x][l]['major'];
+                    var k = gpa_change(dat[x][l]['grade']);
+                    distri[dat[x][l]['grade']]++;
+                    
+                    console.log(k);
+                    var n = dat[x][l]['credit'];
+                    if(m.indexOf('전공')>=0){
+                        maj += parseFloat(k)*parseFloat(n);
+                        maj_cre += parseFloat(n);
                     }
-
-                }
-                var ctx = document.getElementById("myGradeChart");
-                var ctx2 = document.getElementById("myAreaChart");
-                var myGradeChart = new Chart(ctx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ["A+", "A0", "A-", "B+", "B0", "B-", "C+"],
-                        datasets: [{
-                            data: distri_pie,
-                            backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38'],
-                            hoverBackgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38'],
-                            hoverBorderColor: "rgba(234, 236, 244, 1)",
-                        }],
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        tooltips: {
-                            backgroundColor: "rgb(255,255,255)",
-                            bodyFontColor: "#858796",
-                            borderColor: '#dddfeb',
-                            borderWidth: 1,
-                            xPadding: 15,
-                            yPadding: 15,
-                            displayColors: false,
-                            caretPadding: 10,
-                        },
-                        legend: {
-                            display: false
-                        },
-                        cutoutPercentage: 80,
-                    },
-                });
-                var myAreaChart = new Chart(ctx2, {
-                    type: 'line',
-                    data: {
-                        labels: ["2018-2", "2019-1", "2019-2", "2020-1"],
-                        datasets: [{
-                            data: sem_pie
-                        }],
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        scales:{yAxes: [{
-                                    ticks: {
-                                        beginAtZero:true,
-                                        min: 0,
-                                        max: 4.3
-                                    }
-                                }]},
-                        tooltips: {
-                            backgroundColor: "rgb(255,255,255)",
-                            bodyFontColor: "#858796",
-                            borderColor: '#dddfeb',
-                            borderWidth: 1,
-                            xPadding: 15,
-                            yPadding: 15,
-                            displayColors: false,
-                            caretPadding: 10,
-                        },
-                        legend: {
-                            display: false
-                        },
-                        cutoutPercentage: 80,
-                    },
-                });
-
-                $(document).ready(function(){
-    $('[data-toggle="popover"]').popover();   
+                    sum += parseFloat(k)*parseFloat(n);
+                    sum_cre += parseFloat(n);
+                    console.log(x,sem_distri[x]);
+                    sem_distri[x]['sums'] += parseFloat(k)*parseFloat(n);
+                    sem_distri[x]['sum_cre'] += parseFloat(n);
+                    
+               }
+            }
+            if(sum_cre ==0){
+                maj_up.innerHTML="0/4.3";
+                sum_up.innerHTML = "0/4.3"
+            }
+            else if(maj_cre==0){
+                maj_up.innerHTML="0/4.3";
+                sum_up.innerHTML=sum/sum_cre+"/4.3";
+            }else{
+                maj_up.innerHTML=(parseFloat(maj/maj_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(maj/maj_cre).toFixed(2)+"/4.3"+" "+(parseFloat(maj/maj_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+                sum_up.innerHTML=(parseFloat(sum/sum_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(sum/sum_cre).toFixed(2)+"/4.3"+" "+(parseFloat(sum/sum_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+            }
+            done_up.innerHTML = parseFloat(sum_cre/139).toFixed(2)*100+" %";
+            /*
+            document.getElementById("progress-credit").setAttribute = ("aria-valuenow", parseInt(sum_cre/139*100));
+            set('#progress-credit',  parseInt(sum_cre/139*100));*/
+            spare_up.innerHTML = 139-sum_cre;
+            list_subject.innerHTML += str;
+            for(var i in distri){
+                distri_pie.push(distri[i]);
+            }
+            for (var ll in sem_distri){
+                if(sem_distri[ll]['sum_cre'] ==0){
+                    sem_pie.push(0);
+                }else{
+                    sem_pie.push(sem_distri[ll]['sums']/sem_distri[ll]['sum_cre']);
+            }
+            }
+            var ctx = document.getElementById("myGradeChart");
+      var ctx2 = document.getElementById("myAreaChart");
+var myGradeChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["A+", "A0", "A-","B+", "B0", "B-", "C+"],
+    datasets: [{
+      data: distri_pie,
+      backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
+      hoverBackgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
 });
-            </script>
+var myAreaChart = new Chart(ctx2, {
+  type: 'line',
+  data: {
+    labels: ["2018-2","2019-1","2019-2", "2020-1"],
+    datasets: [{
+      data: sem_pie,
+      ineTension: 0.3,
+      backgroundColor: "rgba(78, 115, 223, 0.05)",
+      borderColor: "rgba(78, 115, 223, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+            
+        })
+      });
+      function gpa_change(l){
+        switch(l){
+            case "A+": return 4.3;
+            case "A0": return 4.0;
+            case "A-": return 3.7;
+            case "B+": return 3.3;
+            case "B0": return 3.0;
+            case "B-": return 2.7;
+            case "C+": return 2.3;
+        }
+
+      }
+      var ctx = document.getElementById("myGradeChart");
+      var ctx2 = document.getElementById("myAreaChart");
+var myGradeChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ["A+", "A0", "A-","B+", "B0", "B-", "C+"],
+    datasets: [{
+      data: distri_pie,
+      backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
+      hoverBackgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
+      hoverBorderColor: "rgba(234, 236, 244, 1)",
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+var myAreaChart = new Chart(ctx2, {
+  type: 'line',
+  data: {
+    labels: ["2018-2","2019-1","2019-2", "2020-1"],
+    datasets: [{
+      data: sem_pie,
+      ineTension: 0.3,
+      backgroundColor: "rgba(78, 115, 223, 0.05)",
+      borderColor: "rgba(78, 115, 223, 1)",
+      pointRadius: 3,
+      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHitRadius: 10,
+      pointBorderWidth: 2
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+    },
+    legend: {
+      display: false
+    },
+    cutoutPercentage: 80,
+  },
+});
+    </script>
 </body>
 
 </html>
