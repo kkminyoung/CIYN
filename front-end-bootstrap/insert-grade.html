@@ -467,12 +467,12 @@
             revs.get().then(snapshot => {
                 snapshot.docs.forEach(docss => {
                     try{
-                        var dat_fin = docss.data()['2020-2'][prof]['score'][sem];
+                        var dat = docss.data()['2020-2'][prof]['score'][sem];
                     }catch(e){
                         alert("해당 데이터베이스가 존재하지 않습니다");return;
                     }
-                    var dat_fin = docss.data()['2020-2'][prof]['score'][sem];
-                    var result = make_stack_chart(dat_fin); var last_dat = result.last_dat, labels = result.labels;
+                    if(dat != undefined){}else{dat = [];}
+                    var result = make_stack_chart(dat); var last_dat = result.last_dat, labels = result.labels;
                     var data = {
                         labels: labels,
                         backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538'],
@@ -501,8 +501,8 @@
             const revs = database.collection('grade').where('name', '==',subject);
             revs.get().then(snapshot => {
                 snapshot.docs.forEach(docss => {
-                    try{var dat_mid = docss.data()['2020-2'][prof]['score']['mid'];}catch(e){}
-                    try{var dat_fin = docss.data()['2020-2'][prof]['score']['fin'];}catch(e){}
+                    var dat_mid = docss.data()['2020-2'][prof]['score']['mid'];if(dat_mid != undefined){}else{dat_mid = [];}
+                    var dat_fin = docss.data()['2020-2'][prof]['score']['fin'];if(dat_fin != undefined){}else{dat_fin = [];}
                     var hist = [];
                     for (var i in dat_fin) {
                         hist[i] = dat_mid[i] + dat_fin[i];
@@ -525,12 +525,12 @@
 
                 })
             });
-            document.cookie = "";
+            document.cookie = "";profradio2(subject, prof);
         }
 
     
 //성적 입력 필요없을 때: 밑 표준분포 그래프(chartjs 그래프 아래에 꺼)
-        function profradio2(sem, subject, prof) { //정규분포그래프
+        function profradio2(subject, prof) { //정규분포그래프
             document.getElementById("canvasContainer2").innerHTML = '&nbsp;';
             document.getElementById("canvasContainer2").innerHTML = '<canvas id="GradeChart2"></canvas>';
             var ctx = document.getElementById("GradeChart2").getContext("2d");
@@ -539,45 +539,80 @@
             const revs = database.collection('grade').where('name', '==', subject);
             revs.get().then(snapshot => {
                 snapshot.docs.forEach(docss => {
-                    var dat_fin1 = docss.data()['2018-2'][prof]['score'][sem];
-                    var dat_fin2 = docss.data()['2019-1'][prof]['score'][sem];
-                    var dat_fin3 = docss.data()['2019-2'][prof]['score'][sem];
-                    var dat_fin4 = docss.data()['2020-1'][prof]['score'][sem];
-
-
+                    var possible = {};
+                    try{
+                        var dat_fin1 = docss.data()['2018-1'][prof]['score']['mid']; 
+                        if(dat_fin1 != undefined){}else{dat_fin1 = [];} 
+                        var result = make_sum_chart(dat_fin1); 
+                        possible['2018-2']=result;}catch(e){}
+                    try{
+                        var dat_fin2 = docss.data()['2018-2'][prof]['score']['mid']; 
+                        if(dat_fin2 != undefined){}else{dat_fin2 = [];}
+                        var result = make_sum_chart(dat_fin1); 
+                        possible['2018-2']=result;}catch(e){}
+                    try{
+                        var dat_fin3 = docss.data()['2019-1'][prof]['score']['mid']; 
+                        if(dat_fin3 != undefined){}else{dat_fin3 = [];}
+                        var result = make_sum_chart(dat_fin3); 
+                        possible['2019-1']=result;}catch(e){}
+                    try{
+                        var dat_fin4 = docss.data()['2019-2'][prof]['score']['mid']; 
+                        if(dat_fin4 != undefined){}else{dat_fin4 = [];}
+                        var result = make_sum_chart(dat_fin4); 
+                        possible['2019-2']=result;}catch(e){}
+                    try{
+                        var dat_fin5 = docss.data()['2020-1'][prof]['score']['mid']; 
+                        if(dat_fin5 != undefined){}else{dat_fin5 = [];}
+                        var result = make_sum_chart(dat_fin5); 
+                        possible['2020-1']=result;}catch(e){}
+                    var datasets=[];
+                    var i = 0;
+                    console.log(possible);
+                    for (var key in possible){
+                        i++;
+                        switch(parseInt(i/2)){
+                            case(0):
+                                var l = {
+                                data: possible[key],
+                                    ineTension: 0.3,
+                                    backgroundColor: "rgba(78, 115, 223, 0.05)",
+                                    borderColor: "rgba(78, 115, 223, 1)",
+                                    pointRadius: 3,
+                                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                                    pointBorderColor: "rgba(78, 115, 223, 1)",
+                                    pointHoverRadius: 3,
+                                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                                    pointHitRadius: 10,
+                                    pointBorderWidth: 2
+                                };
+                                break;
+                            case(1):
+                                var l = {
+                                    data: possible[key],
+                                    ineTension: 0.3,
+                                    backgroundColor: "rgba(80, 80, 80, 0.05)",
+                                    borderColor: "rgba(80, 80, 80, 1)",
+                                    pointRadius: 3,
+                                    pointBackgroundColor: "rgba(80, 80, 80, 1)",
+                                    pointBorderColor: "rgba(80, 80, 80, 1)",
+                                    pointHoverRadius: 3,
+                                    pointHoverBackgroundColor: "rgba(80, 80, 80, 1)",
+                                    pointHoverBorderColor: "rgba(80, 80, 80, 1)",
+                                    pointHitRadius: 10,
+                                    pointBorderWidth: 2
+                                };
+                                break;
+                        }
+                        
+                        datasets.push(l);
+                    }
+                    console.log(datasets);
                     var myAreaChart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: dat_fin,
-                            datasets: [{
-                                data: norm_dat_fin,
-                                ineTension: 0.3,
-                                backgroundColor: "rgba(78, 115, 223, 0.05)",
-                                borderColor: "rgba(78, 115, 223, 1)",
-                                pointRadius: 3,
-                                pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                                pointBorderColor: "rgba(78, 115, 223, 1)",
-                                pointHoverRadius: 3,
-                                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                                pointHitRadius: 10,
-                                pointBorderWidth: 2
-                            },
-                            {
-                                //이거 2018입니당 회색으로 바꿈
-                                data: norm_dat_fin2,
-                                ineTension: 0.3,
-                                backgroundColor: "rgba(80, 80, 80, 0.05)",
-                                borderColor: "rgba(80, 80, 80, 1)",
-                                pointRadius: 3,
-                                pointBackgroundColor: "rgba(80, 80, 80, 1)",
-                                pointBorderColor: "rgba(80, 80, 80, 1)",
-                                pointHoverRadius: 3,
-                                pointHoverBackgroundColor: "rgba(80, 80, 80, 1)",
-                                pointHoverBorderColor: "rgba(80, 80, 80, 1)",
-                                pointHitRadius: 10,
-                                pointBorderWidth: 2
-                            }],
+                            labels: [0,10,20,30,40,50,60,70,80,90],
+                            datasets: datasets
                         },
                         options: {
                             maintainAspectRatio: false,
@@ -593,12 +628,6 @@
                             },
                             legend: {
                                 display: false
-                            },
-                            scale: {
-                                ticks: {
-                                    min: 0,
-                                    stepSize: 5
-                                }
                             },
                             cutoutPercentage: 80,
                         },
@@ -638,7 +667,7 @@
             }else{
                 norm_dat_fin = [0,0,0,0,0,0,0,0,0,0];
             }
-            return {norm_dat_fin:norm_dat_fin};
+            return norm_dat_fin;
         }
 
         //표준편차, 평균 구하기
