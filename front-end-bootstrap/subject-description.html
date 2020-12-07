@@ -10,22 +10,21 @@
     <meta name="author" content="">
 
     <title>강의 평가</title>
+    <link rel="icon" type="image/x-icon" href="img/logo-right.png" />
 
+    
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="css/heart-button.css" rel="stylesheet">
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/heart-button.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -38,14 +37,15 @@
     <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     
-<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
-<meta name="apple-mobile-web-app-title" content="CodePen">
+    <link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
 
-<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
 
-<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+    <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
 
-</head>
+    </head>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -55,7 +55,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="daily-log.html">
                 <div class="sidebar-brand-icon ">
                     <img class = "fas" src="img/logo-right.png" width="50px" height="50px">
                 </div>
@@ -67,7 +67,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="daily-log.html">
                     <i class="fas fa-fw fa-paperclip"></i>
                     <span>전체 보고서</span></a>
             </li>
@@ -92,7 +92,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header"></h6>
                         <a class="collapse-item" href="search-result.html">강의 소개만 보기</a>
-                        <a class="collapse-item" href="course-evaluations.html">강의 평가 보기</a>
+                        <a class="collapse-item" href="subject-description.html">강의 평가 보기</a>
                     </div>
                 </div>
             </li>
@@ -144,8 +144,8 @@
             <!-- Sidebar Message -->
             <div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
-                <a class="btn btn-primary btn-sm" href="https://cyber.ewha.ac.kr/local/ubion/user/grade.php">사이버캠퍼스 성적확인</a>
-                <a class="btn btn-primary btn-sm" href="https://cyber.ewha.ac.kr/">   사이버캠퍼스   </a>
+                <a class="btn-score btn-primary btn-sm" href="https://cyber.ewha.ac.kr/local/ubion/user/grade.php">사이버캠퍼스 성적확인</a>
+                <a class="btn-score btn-primary btn-sm" href="https://cyber.ewha.ac.kr/">   사이버캠퍼스   </a>
                 
 
             </div>
@@ -171,10 +171,10 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
+                            <input type="text" id="findCourse" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button onclick='getText()' class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
                             </div>
@@ -213,7 +213,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">이화연</span>
+                                <span id ="user_name" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
@@ -248,53 +248,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <h1 class="h3 mb-4 text-gray-800" style="padding-left: 1%;">  Search Results</h1>
-                        <div>
-                            <input type="checkbox" id="checkbox" />
-                            <label for="checkbox">
-                              <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
-                                <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
-                                  <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
-                                  <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
-                        
-                                  <g id="grp7" opacity="0" transform="translate(7 6)">
-                                    <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>
-                                    <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>
-                                  </g>
-                        
-                                  <g id="grp6" opacity="0" transform="translate(0 28)">
-                                    <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>
-                                    <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>
-                                  </g>
-                        
-                                  <g id="grp3" opacity="0" transform="translate(52 28)">
-                                    <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>
-                                    <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>
-                                  </g>
-                        
-                                  <g id="grp2" opacity="0" transform="translate(44 6)">
-                                    <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>
-                                    <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>
-                                  </g>
-                        
-                                  <g id="grp5" opacity="0" transform="translate(14 50)">
-                                    <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>
-                                    <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>
-                                  </g>
-                        
-                                  <g id="grp4" opacity="0" transform="translate(35 50)">
-                                    <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>
-                                    <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>
-                                  </g>
-                        
-                                  <g id="grp1" opacity="0" transform="translate(24)">
-                                    <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>
-                                    <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>
-                                  </g>
-                                </g>
-                              </svg>
-                            </label>
-                        
-                          </div>
+                       
                         
                       </div>
                 <div class="row" >
@@ -337,30 +291,46 @@
                                         </button>
                                     </div>
                                     <form id = 'add_review'>
-                                    <div class="modal-body" id = "llll"></div>
-                                    <div class="modal-body" id = "llll2">
-
-                                       <label>Term</label>
-                                       <select class ="custom-select" name= "term" id = "term">
+                                        
+                                    <div class="modal-body" id = "past_grade">
+                                        <label>자신의 정보에 해당하는 해당 학기, 교수, 학점을 적어주세요. <br><b>2020년 2학기 현 학기는 적용되지 않습니다.</b><br><br>Term</label>
+                                       <select class ="custom-select" name= "past_term_rad2" id = "past_term_rad2">
                                            <option value = "2018-2">2018-2</option>
                                            <option value = "2019-1">2019-1</option>
                                            <option value = "2019-2">2019-2</option>
                                            <option value = "2020-1">2020-1</option>
                                            <option value = "2020-2">2020-2</option>
                                        </select>
+                                       <br><br>
                                        <label>Prof</label>
-                                       <select class ="custom-select" name= "prof" id = "prof">
+                                       <select class ="custom-select" name= "past_prof_rad2" id = "past_prof_rad2">
                                          <option value = "이인기">이인기</option>
                                          <option value = "이민수">이민수</option>
                                          <option value = "용환승">용환승</option>
-                                     </select>
-                                     <br>
-
-
+                                       </select>
+                                       <br><br>
+				       <label>grade</label>
+                                       <select class ="custom-select" name= "past_grade_rad2" id = "past_grade_rad2">
+                                         <option value = "A+">A+</option>
+                                         <option value = "A0">A0</option>
+                                         <option value = "A-">A-</option>
+                                         <option value = "B+">B+</option>
+                                         <option value = "B0">B0</option>
+                                         <option value = "B-">B-</option>
+                                         <option value = "C+">C+</option>
+                                         <option value = "C0">C0</option>
+                                         <option value = "C-">C-</option>
+                                         <option value = "D+">D+</option>
+                                         <option value = "D0">D0</option>
+                                         <option value = "D-">D-</option>
+                                         <option value = "F">F</option>
+                                       </select>
+                                       <br>
+					    
                                     </div>
                                    </form>
                                     <div class="modal-footer">
-                                       <button class="btn btn-primary" type="button" onclick = "add_rev()" data-dismiss="modal" >추가하기</button>
+                                       <button class="btn btn-primary" type="button" onclick = "add_grade()" data-dismiss="modal" >추가하기</button>
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                     </div>
 
@@ -376,12 +346,12 @@
                                 <div class="card-3-3-3 col-md-6 mb-4">
                                     <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">현재 과목</div><hr><br>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre" ></div>
-<br>
+                                <br>
                                 </div>
                                 <div class="card-3-3-3 col-md-6 mb-4">
                                     <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선후과목</div><hr><br>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-post" ></div>
-<br>
+                                <br>
                                 </div>
                                 
                             </div>
@@ -391,7 +361,15 @@
 
                                 </div>
                                 <div id = "faculty-table">
-
+                                    데이터베이스
+                                </div>
+                                <hr>
+                                <div id = "tell-prefessor">
+                                    <a href="#" class="fas fa-smile fa-2x text-gray-300 tell-professor-icon"></a>
+                                    <a href="#" class="fas fa-meh fa-2x text-gray-300 tell-professor-icon"></a>
+                                    <a href="#" class="fas fa-angry fa-2x text-gray-300 tell-professor-icon"></a>
+                                    <textarea class = "text-area-professor" rows="1" placeholder = "교수님에게 메세지를 보내보세요!" ></textarea>
+                                    <a href="#" class= "fas fa-paper-plane  fa-2x text-gray-600"></a>
                                 </div>
 
                             </div>
@@ -399,6 +377,7 @@
 
 
                     </div>
+                    
                 
                     <div class="col-lg-5" >
                         <div class='card shadow mb-4'>
@@ -414,7 +393,7 @@
                                         <div class="dropdown-header">강의평 확인</div>
                                        
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reviewModal">추가하기</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reviewModal">강의평 추가하기</a>
                                     </div>
                                 </div>
                             </div>
@@ -440,7 +419,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; CIYN 2020</span>
                     </div>
                 </div>
             </footer>
@@ -502,7 +481,7 @@
      <div class="modal-dialog" role="document">
          <div class="modal-content">
              <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">강의평 추가하기</h5>
+                 <h5 class="modal-title" id="exampleModalLabel">강의평 </h5>
                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true">×</span>
                  </button>
@@ -564,7 +543,7 @@
                 </select>
                 <br>
                 <label >Script</label><br>
-                <textarea rows="10" cols = "55" id = "scr" id ="scr" name = "scr"placeholder = "강의평을 입력해주세요!" ></textarea>
+                <textarea rows="10" cols = "55" id = "scr" id ="scr" name = "scr" placeholder = "강의평을 입력해주세요!" ></textarea>
              </div>
             </form>
              <div class="modal-footer">
@@ -575,8 +554,8 @@
          </div>
      </div>
  </div>
-    
 
+ 
     <script>
 		// Your web app's Firebase configuration
     var firebaseConfig = {
@@ -601,21 +580,42 @@
     const list_div2_5 = document.getElementById("faculty-table");
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
-    const col = database.collection('course').where('name', '==', '데이터베이스');
-    const rev = database.collection('review');
-    const lll = document.getElementById('llll');
-    var str = "<form id = 'prof_radio'>";
-    var str2 = "";
-    var prof_radio="";
-    col.get().then(function(querySnapshot){
+    var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
+
+    var flag=0;
+    var Course_id;
+
+
+    //초기 설정: 데이터 로딩
+    var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "", past_id = "";
+    function getText(){
+        if(flag!=0){
+            return;
+        }
+        flag=1;
+        findCourseValue = document.getElementById("findCourse").value;
+        console.log(findCourseValue);
+
+        var col = database.collection('course').where('name', '==', findCourseValue);
+        const rev = database.collection('review');
+        const lll = document.getElementById('llll');
+        var str = "<form id = 'prof_radio'>";
+        var str2 = "";
+        var prof_radio="";
+        col.get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
             var sc = doc.data().script;
             if(sc == ""){
                 sc = "등록되지 않았습니다.";
             }
             basic = doc.data().name+ " (" + doc.data().num+")" ;
-
-            course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>"+sc +"</div><br><br>";
+            past_credit=doc.data().credit;
+            past_maj = doc.data().div;
+            past_name = doc.data().name;
+            console.log("이건가",past_name);
+            Course_id = doc.data().id;
+            past_id = doc.data().id;
+            course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점</div><br><br> <div class='card-2-8-2'><b>키워드</b></div><div class='card-2-8-8'>"+doc.data().keyword.lang+"," +doc.data().keyword.step+", "+doc.data().keyword.step_div+"</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>"+sc +"</div><br><br>";
 
             realted = "<b>연관과목</b>";
             related_subject_pre = doc.data().prepro.pre;
@@ -627,13 +627,30 @@
                 related_subject_post="없음";
             }
             prof = "<hr><b>교수진</b><br><table class='semester'><tr><th class = 'semester-title'><b>2019-2</b></th><th>"+doc.data().prof["2019-1"]+"</th><tr><th><b>2018-2</b></th><th> "+doc.data().prof["2018-1"]+"</th></tr>";
+            year_prof_array = doc.data().prof; //연도별 교수 Array
+
+            var k=0;
+            var a = new Array();
+
+            for(var i in year_prof_array){
+                console.log(i);
+                a[k] = doc.data().prof[i];
+                k++;
+            }
+
             a1 = doc.data().prof["2018-1"];
+            console.log(a1);
+            console.log(year_prof_array);
             a2 = doc.data().prof["2019-1"];
-            lists = a1.concat(a2); 
+
+
+            lists = a[0].concat(a[1]); 
+            console.log(a[0].concat(a[1]));
+            //console.log(a1.concat(a2));
             lists = lists.filter((item, index) => lists.indexOf(item) === index);
             lists.forEach(element=>{
-                str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp"+element+" </label>&nbsp&nbsp&nbsp";
-                str2 += "<input type = 'radio' id = ' "+element+" ' name = 'rev'><label> &nbsp"+element+" </label>&nbsp&nbsp&nbsp";
+                str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp"+element+" </label>&nbsp&nbsp";
+                str2 += "<input type = 'radio' id = ' "+element+" ' name = 'rev'><label> &nbsp"+element+" </label>&nbsp&nbsp";
             });
             list_div3.innerHTML += str;
             llll.innerHTML += str2;
@@ -646,20 +663,27 @@
            
             });
         });
+    
+    }
+
+
     var eval_grade =0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
     var ctx = document.getElementById('myChart').getContext('2d');
     var myRadarChart;
+
+    //오른쪽 탭 라디오 버튼 누르면에 해당하는 데이터(chartjs, 강의평, 추가버튼)
     function profradio(thisid){
         eval_grade = 0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
         console.log(thisid);
         list_div4.innerHTML="";
         prof_radio="";
         
-        console.log(prof_radio);
-        const revs = database.collection('review').where('name', '==', '데이터베이스');
+        console.log(prof_radio);const revs = database.collection('review').where('name', '==', findCourseValue);
+        console.log(findCourseValue);
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
                         var dat = docss.data()[thisid];
+                        console.log(dat);
                         if(dat==[]){
                             prof_radio += "No data <br>"
                         }else{
@@ -671,7 +695,7 @@
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
                                         
-                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a class ='btn btn-primary'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn"+m+"'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><br><a class ='btn btn-success'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn"+m+"'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
                                         eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
                                         eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
                                         eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
@@ -686,17 +710,38 @@
                             myRadarChart = new Chart(ctx, {
                                 type: 'radar',
                                 data: {
-                                    labels: ['grade', 'hard', 'talk', 'teach'],
+                                    labels: ['grade', 'hard', 'talk', 'teach','attend'],
                                     datasets: [{
-                                    data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num]}]},
+                                    data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num],
+                                    label: thisid,
+                                    lineTension: 0.1,
+                                    backgroundColor: "rgba(102, 153, 204, 0.2)",
+                                    borderColor: "rgba(102, 153, 204, 1)",
+                                    pointBackgroundColor: "rgba(102, 153, 204, 1)",
+                                    pointBorderColor: "#fff",
+                                    pointHoverRadius: 5,
+                                    pointHoverBackgroundColor: "#fff",
+                                    pointHoverBorderColor: "rgba(102, 153, 204, 1)",
+                                    }]},
                                 options:{
                                     scale: {
-                                        responsive: false,maintainAspectRatio: false,
+                                        angleLines: {
+                                            display: true,
+                                            lineWidth: 0.5
+                                        },
+                                        pointLabels: {
+                                            fontSize: 14,
+                                            fontStyle: '300',
+                                            fontFamily: "'Lato', sans-serif"
+                                        },
                                         ticks: {
-                                            suggestedMin: 0,
-                                            suggestedMax: 5
+                                            beginAtZero: true,
+                                            maxTicksLimit: 5,
+                                            min: 0,
+                                            max: 5,
+                                            display: false
                                         }
-                                    }
+                                        }
                                 }
                             }); 
                             
@@ -707,6 +752,8 @@
                 });
                 document.cookie="";
     }
+
+    //chartjs부분 크기 계산
     function calcHeight (numOfBars) {
             var maxHeightOfChart = 100;
             var minHeight = 40; //setting the min height of the bar + margin between
@@ -714,16 +761,20 @@
             
             document.getElementById("canvasContainer").style.height = chartHeight.toString()+"px";
     }
+
+    //강의평 추가 modal 위한 value 준비
     var eg = document.getElementById("eg");
-        var term = document.getElementById("term");
-        var g = document.getElementById("g");
-        var h = document.getElementById("h");
-        var ta = document.getElementById("ta");
-        var te = document.getElementById("te");
-        
-        var scr = document.getElementById('scr'); 
-        
-        var llld = "";
+    var term = document.getElementById("term");
+    var g = document.getElementById("g");
+    var h = document.getElementById("h");
+    var ta = document.getElementById("ta");
+    var te = document.getElementById("te");
+    var scr = document.getElementById('scr'); 
+    var llld = "";//체크한 라디오 버튼 확인
+
+    
+
+    //강의평 추가 modal 처리
     function add_rev(){
         var rev = document.getElementsByName('rev'); 
         for(i = 0; i < rev.length; i++) { 
@@ -746,11 +797,13 @@
             }}};
             console.log(hi);
             
-        database.collection('review').doc('DataBase').set(hi,{merge:true}).then(function(){
+        database.collection('review').doc(Course_id).set(hi,{merge:true}).then(function(){
             console.log("okay");
            alert("success!!")
         })
     }
+
+    //추천버튼 누르면 정보 올라가게
     function recom(prof,id, good){
         var rev = document.getElementsByName('rev'); 
         id = id.replace(/\s+/g, '');
@@ -765,61 +818,52 @@
             }
         }
         console.log(dataaa);
-        database.collection('review').doc('DataBase').set(dataaa, {merge:true}).then(function(){
+        database.collection('review').doc(Course_id).set(dataaa, {merge:true}).then(function(){
             spann.innerHTML = "<b>&nbsp추천 | </b> "+(good+1)+"<br>";
             console.log("done");
         })
     }
-/*
-    function additem(id){
-        var addd = database.collection("user").doc("user1");
-        var docData = {
-            '':
-        }
-        var setwithmerge = addd.set(docData).then(function(){
-            console.log("a");
-        });
-    }
-*/
-    /*
-    col.get().then(function(querySnapshot){
-    querySnapshot.forEach(function(doc){
-        var sc = doc.data().script;
-        if(sc == ""){
-            sc = "등록되지 않았습니다.";
-        }
-        basic = " <div class='card shadow mb-4'><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+"</h6></div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
-        related = "<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
-        prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-2"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-2"];
 
-        var a1 = doc.data().prof["2018-2"];
-        var a2 = doc.data().prof["2019-2"]
-        var lists =a1.concat(a2); 
-        lists = lists.filter((item, index) => lists.indexOf(item) === index);
-        fin_prof="";
-        lists.forEach(element =>{
-            const reviews = rev.where('name','==', doc.data().name);
-            var pro = doc.data().name;
-            reviews.get().then(snapshot =>{
-                snapshot.docs.forEach(docs =>{
-                    fin_prof+="<br>"+element+"<br>";
-                    var dat = docs.data()[element];
-                    for(x in dat){ 
-                        fin_prof += "term "+dat[x]['term']+"  "+dat[x]['eg'] +" expected <br> "+ dat[x]['script']+"<br>";
+    //지난학기 과목 추가
+    function add_grade(){
+        var past_term_rad = document.getElementById('past_term_rad2').value; 
+        var past_prof_rad = document.getElementById('past_prof_rad2').value; 
+        var past_grade_rad = document.getElementById('past_grade_rad2').value; 
+        past_term_rad = past_term_rad.replace(/\s+/g, '');
+        past_prof_rad = past_prof_rad.replace(/\s+/g, '');
+        past_grade_rad = past_grade_rad.replace(/\s+/g, '');
+        past_maj = past_maj.replace(/\s+/g, '');
+        past_id = past_id.replace(/\s+/g, '');
+        if(past_term_rad!="2020-2"){
+        var insert_dat = {
+            'grade':{
+                [past_term_rad]:{
+                    [past_name]:{
+                        'credit': past_credit,
+                        'grade': past_grade_rad,
+                        'major': past_maj,
+                        'id': past_id
                     }
-                    console.log("hey"+fin_prof);
-                    list_div.innerHTML += (basic + related + prof+fin_prof+"</div></div>");
-                })
-            })
-    
-        });
-        
-        console.log("this is final prof2"+fin_prof); 
-        
-        
-    })
-    console.log("final"+fin_prof);
-  })*/
+                }
+            }
+        }}else{
+            var insert_dat = {
+            'term':{
+                [past_term_rad]:{
+                    [past_name]:{
+                        'fin': "",
+                        'mid': "",
+                        'prof': past_prof_rad,
+                        'id':past_id
+                    }
+                }
+            }
+        }
+        }
+        database.collection('user').doc('user2').set(insert_dat, {merge:true}).then(function(){
+            alert("done");
+        })
+    }
 
 	</script>
 
