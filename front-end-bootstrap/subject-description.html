@@ -581,24 +581,28 @@
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
     var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
-
-    var flag=0;
-    var Course_id;
+    var flag=0; // 동일한 버튼 두번 눌렀을 경우, 창이 여러개 생기지 않게 하기위해 사용할 flag
+    var Course_id; // 텍스트로 입력받은 과목의 id를 DB에서 찾아와 담을 변수
 
 
     //초기 설정: 데이터 로딩
     var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "", past_id = "";
     function getText(){
+	// 버튼을 두번이상 눌렀을 경우에 대한 예외처리
         if(flag!=0){
             return;
         }
         flag=1;
+	    
+	// 검색창으로부터 얻어온 과목명
         findCourseValue = document.getElementById("findCourse").value;
         console.log(findCourseValue);
-
+        
+	// Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
         var col = database.collection('course').where('name', '==', findCourseValue);
         const rev = database.collection('review');
         const lll = document.getElementById('llll');
+	    
         var str = "<form id = 'prof_radio'>";
         var str2 = "";
         var prof_radio="";
@@ -612,7 +616,6 @@
             past_credit=doc.data().credit;
             past_maj = doc.data().div;
             past_name = doc.data().name;
-            console.log("이건가",past_name);
             Course_id = doc.data().id;
             past_id = doc.data().id;
             course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점</div><br><br> <div class='card-2-8-2'><b>키워드</b></div><div class='card-2-8-8'>"+doc.data().keyword.lang+"," +doc.data().keyword.step+", "+doc.data().keyword.step_div+"</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>"+sc +"</div><br><br>";
@@ -627,26 +630,20 @@
                 related_subject_post="없음";
             }
             prof = "<hr><b>교수진</b><br><table class='semester'><tr><th class = 'semester-title'><b>2019-2</b></th><th>"+doc.data().prof["2019-1"]+"</th><tr><th><b>2018-2</b></th><th> "+doc.data().prof["2018-1"]+"</th></tr>";
-            year_prof_array = doc.data().prof; //연도별 교수 Array
-
-            var k=0;
-            var a = new Array();
-
+            
+	    
+	    // 해당과목 연도-학기별 교수 찾기위한 부분	
+	    year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
+            var k=0; //count용 
+            var a = new Array(); // 연도별 prof 담을 array
+	 
             for(var i in year_prof_array){
-                console.log(i);
                 a[k] = doc.data().prof[i];
                 k++;
             }
-
-            a1 = doc.data().prof["2018-1"];
-            console.log(a1);
-            console.log(year_prof_array);
-            a2 = doc.data().prof["2019-1"];
-
-
+            // 해당과목 연도별 교수를 담은 리스트
             lists = a[0].concat(a[1]); 
-            console.log(a[0].concat(a[1]));
-            //console.log(a1.concat(a2));
+
             lists = lists.filter((item, index) => lists.indexOf(item) === index);
             lists.forEach(element=>{
                 str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp"+element+" </label>&nbsp&nbsp";
