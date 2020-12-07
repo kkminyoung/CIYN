@@ -304,9 +304,6 @@
                                        <br><br>
                                        <label>Prof</label>
                                        <select class ="custom-select" name= "past_prof_rad2" id = "past_prof_rad2">
-                                         <option value = "이인기">이인기</option>
-                                         <option value = "이민수">이민수</option>
-                                         <option value = "용환승">용환승</option>
                                        </select>
                                        <br><br>
 				       <label>grade</label>
@@ -365,11 +362,8 @@
                                 </div>
                                 <hr>
                                 <div id = "tell-prefessor">
-                                    <a href="#" class="fas fa-smile fa-2x text-gray-300 tell-professor-icon"></a>
-                                    <a href="#" class="fas fa-meh fa-2x text-gray-300 tell-professor-icon"></a>
-                                    <a href="#" class="fas fa-angry fa-2x text-gray-300 tell-professor-icon"></a>
-                                    <textarea class = "text-area-professor" rows="1" placeholder = "교수님에게 메세지를 보내보세요!" ></textarea>
-                                    <a href="#" class= "fas fa-paper-plane  fa-2x text-gray-600"></a>
+                                    <textarea  id = "send_text" class = "text-area-professor" rows="1" placeholder = "교수님에게 메세지를 보내보세요!" ></textarea>
+                                    <a href="#" onclick = "set_text()" class= "fas fa-paper-plane  fa-2x text-gray-600" style="padding: 20px"></a>
                                 </div>
 
                             </div>
@@ -394,6 +388,8 @@
                                        
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reviewModal">강의평 추가하기</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#mediumModal">강의평 기준</a>
                                     </div>
                                 </div>
                             </div>
@@ -502,6 +498,7 @@
                 <br>
                 <label>Term</label>
                 <select class ="custom-select" name= "term" id = "term">
+                    <option value = "2018-1">2018-1</option>
                     <option value = "2018-2">2018-2</option>
                     <option value = "2019-1">2019-1</option>
                     <option value = "2019-2">2019-2</option>
@@ -581,17 +578,30 @@
     const list_div3 = document.getElementById("cc");
     const list_div4 = document.getElementById("dd");
     var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
-
+    var flag=0; // 동일한 버튼 두번 눌렀을 경우, 창이 여러개 생기지 않게 하기위해 사용할 flag
+    var Course_id; // 텍스트로 입력받은 과목의 id를 DB에서 찾아와 담을 변수
+    var course_textprof=[];
+  getText();
 
     //초기 설정: 데이터 로딩
     var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "", past_id = "";
     function getText(){
-        findCourseValue = document.getElementById("findCourse").value;
+	// 버튼을 두번이상 눌렀을 경우에 대한 예외처리
+        if(flag!=0){
+            return;
+        }
+        flag=1;
+	    
+	// 검색창으로부터 얻어온 과목명
+//        findCourseValue = document.getElementById("findCourse").value;
+        findCourseValue = '데이터베이스'
         console.log(findCourseValue);
-
-        const col = database.collection('course').where('name', '==', findCourseValue);
+        
+	// Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
+        var col = database.collection('course').where('name', '==', findCourseValue);
         const rev = database.collection('review');
         const lll = document.getElementById('llll');
+	    
         var str = "<form id = 'prof_radio'>";
         var str2 = "";
         var prof_radio="";
@@ -605,6 +615,8 @@
             past_credit=doc.data().credit;
             past_maj = doc.data().div;
             past_name = doc.data().name;
+            Course_id = doc.data().id;
+            course_textprof= doc.data().textprof;
             past_id = doc.data().id;
             course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점</div><br><br> <div class='card-2-8-2'><b>키워드</b></div><div class='card-2-8-8'>"+doc.data().keyword.lang+"," +doc.data().keyword.step+", "+doc.data().keyword.step_div+"</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>"+sc +"</div><br><br>";
 
@@ -617,14 +629,28 @@
             if(related_subject_post==null){
                 related_subject_post="없음";
             }
-            prof = "<hr><b>교수진</b><br><table class='semester'><tr><th class = 'semester-title'><b>2019-2</b></th><th>"+doc.data().prof["2019-1"]+"</th><tr><th><b>2018-2</b></th><th> "+doc.data().prof["2018-1"]+"</th></tr>";
-            a1 = doc.data().prof["2018-1"];
-            a2 = doc.data().prof["2019-1"];
-            lists = a1.concat(a2); 
+            prof = "<hr><b>교수진</b><br><table class='semester'>";
+            
+	    
+	    // 해당과목 연도-학기별 교수 찾기위한 부분	
+	    year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
+            
+            var k=0; //count용 
+            var a = new Array(); // 연도별 prof 담을 array]
+            for(var i in year_prof_array){
+                prof += "<tr><th class = 'semester-title'><b>"+i+"</b></th><th>"+doc.data().prof[i]+"</th></tr>";
+                a[k] = doc.data().prof[i];
+                k++;
+            }
+            prof += "</table>";
+            // 해당과목 연도별 교수를 담은 리스트
+            lists = a[0].concat(a[1]); 
+            var strr_add_rev = "";
             lists = lists.filter((item, index) => lists.indexOf(item) === index);
             lists.forEach(element=>{
                 str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp"+element+" </label>&nbsp&nbsp";
                 str2 += "<input type = 'radio' id = ' "+element+" ' name = 'rev'><label> &nbsp"+element+" </label>&nbsp&nbsp";
+                strr_add_rev += "<option value = '"+element+"'> "+element+"</option>";
             });
             list_div3.innerHTML += str;
             llll.innerHTML += str2;
@@ -633,6 +659,7 @@
             list_div2_2.innerHTML = related_subject_pre;
             list_div2_3.innerHTML = related_subject_post;
             list_div2_4.innerHTML = prof;
+            past_prof_rad2.innerHTML += strr_add_rev;
             
            
             });
@@ -640,10 +667,11 @@
     
     }
 
+
     var eval_grade =0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
     var ctx = document.getElementById('myChart').getContext('2d');
     var myRadarChart;
-
+    var all_talk=0, all_teach=0, all_hard =0, all_grade = 0, all_attend=0;
     //오른쪽 탭 라디오 버튼 누르면에 해당하는 데이터(chartjs, 강의평, 추가버튼)
     function profradio(thisid){
         eval_grade = 0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
@@ -656,14 +684,20 @@
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
                         var dat = docss.data()[thisid];
-                        console.log(dat);
+                        var dat_all = docss.data()['all'];
+                        all_talk = parseFloat(dat_all['talk']/dat_all['sum']);
+                        all_teach = parseFloat(dat_all['teach']/dat_all['sum']);
+                        all_hard = parseFloat(dat_all['hard']/dat_all['sum']);
+                        all_grade = parseFloat(dat_all['grade']/dat_all['sum']);
+                        //all_attend = parseFloat(dat_all['attend']/dat_all['sum']);
+                        console.log(docss.data());
                         if(dat==[]){
                             prof_radio += "No data <br>"
                         }else{
                             for(var x in docss.data()){ 
 
                                 thisid = thisid.replace(/\s+/g, '');
-                                var l = (thisid.localeCompare(x));
+                                var l = (thisid.localeCompare(x));//thisid = radio button 당사자, x는 review 데이터베이스에 나오는 당사자
 
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
@@ -673,6 +707,7 @@
                                         eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
                                         eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
                                         eval_teach+=parseInt(docss.data()[x][m]['eval_teach']);
+                                        //eval_attend+=parseInt(docss.data()[x][m]['eval_attend']);
                                         eval_num++;
                                     }
                                 } 
@@ -685,17 +720,30 @@
                                 data: {
                                     labels: ['grade', 'hard', 'talk', 'teach','attend'],
                                     datasets: [{
-                                    data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num],
-                                    label: thisid,
-                                    lineTension: 0.1,
-                                    backgroundColor: "rgba(102, 153, 204, 0.2)",
-                                    borderColor: "rgba(102, 153, 204, 1)",
-                                    pointBackgroundColor: "rgba(102, 153, 204, 1)",
-                                    pointBorderColor: "#fff",
-                                    pointHoverRadius: 5,
-                                    pointHoverBackgroundColor: "#fff",
-                                    pointHoverBorderColor: "rgba(102, 153, 204, 1)",
-                                    }]},
+                                        data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num],
+                                        label: thisid,
+                                        lineTension: 0.1,
+                                        backgroundColor: "rgba(255,0,0, 0.2)",
+                                        borderColor: "rgba(255,0,0, 1)",
+                                        pointBackgroundColor: "rgba(255,0,0, 1)",
+                                        pointBorderColor: "#fff",
+                                        pointHoverRadius: 5,
+                                        pointHoverBackgroundColor: "#fff",
+                                        pointHoverBorderColor: "rgba(255,0,0, 1)",
+                                        },
+                                        {
+                                        data:[all_grade, all_hard, all_talk,all_teach, all_attend],
+                                        label: "학과 평균",
+                                        lineTension: 0.1,
+                                        backgroundColor: "rgba(102, 153, 204, 0.2)",
+                                        borderColor: "rgba(102, 153, 204, 1)",
+                                        pointBackgroundColor: "rgba(102, 153, 204, 1)",
+                                        pointBorderColor: "#fff",
+                                        pointHoverRadius: 5,
+                                        pointHoverBackgroundColor: "#fff",
+                                        pointHoverBorderColor: "rgba(102, 153, 204, 1)",
+                                        }]
+                                },    
                                 options:{
                                     scale: {
                                         angleLines: {
@@ -745,6 +793,7 @@
     var scr = document.getElementById('scr'); 
     var llld = "";//체크한 라디오 버튼 확인
 
+    
 
     //강의평 추가 modal 처리
     function add_rev(){
@@ -769,7 +818,7 @@
             }}};
             console.log(hi);
             
-        database.collection('review').doc('DataBase').set(hi,{merge:true}).then(function(){
+        database.collection('review').doc(Course_id).set(hi,{merge:true}).then(function(){
             console.log("okay");
            alert("success!!")
         })
@@ -790,7 +839,7 @@
             }
         }
         console.log(dataaa);
-        database.collection('review').doc('DataBase').set(dataaa, {merge:true}).then(function(){
+        database.collection('review').doc(Course_id).set(dataaa, {merge:true}).then(function(){
             spann.innerHTML = "<b>&nbsp추천 | </b> "+(good+1)+"<br>";
             console.log("done");
         })
@@ -836,7 +885,27 @@
             alert("done");
         })
     }
+    function set_text(){
+        if(document.getElementById("send_text").value ==""){
+            alert("하고 싶은 말을 적어주세요!")
+        }
+        if(document.getElementById("send_text").value !=""){
+            send_msg(document.getElementById('send_text').value);
+            document.getElementById("send_text").value == "";
+        }
+    }
 
+    function send_msg(script){
+        console.log(course_textprof);
+        course_textprof.push(script)
+        console.log(course_textprof);
+        
+        var insert_dat = {
+            'textprof':course_textprof
+        }
+        database.collection('course').doc(Course_id).set(insert_dat, {merge:true}).then(function(){
+        })
+    }
 	</script>
 
 </body>
