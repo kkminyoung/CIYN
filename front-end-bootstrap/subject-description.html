@@ -419,7 +419,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; CIYN 2020</span>
                     </div>
                 </div>
             </footer>
@@ -584,7 +584,7 @@
 
 
     //초기 설정: 데이터 로딩
-    var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "";
+    var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "", past_id = "";
     function getText(){
         findCourseValue = document.getElementById("findCourse").value;
         console.log(findCourseValue);
@@ -605,6 +605,7 @@
             past_credit=doc.data().credit;
             past_maj = doc.data().div;
             past_name = doc.data().name;
+            past_id = doc.data().id;
             course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점</div><br><br> <div class='card-2-8-2'><b>키워드</b></div><div class='card-2-8-8'>"+doc.data().keyword.lang+"," +doc.data().keyword.step+", "+doc.data().keyword.step_div+"</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>"+sc +"</div><br><br>";
 
             realted = "<b>연관과목</b>";
@@ -804,6 +805,7 @@
         past_prof_rad = past_prof_rad.replace(/\s+/g, '');
         past_grade_rad = past_grade_rad.replace(/\s+/g, '');
         past_maj = past_maj.replace(/\s+/g, '');
+        past_id = past_id.replace(/\s+/g, '');
         if(past_term_rad!="2020-2"){
         var insert_dat = {
             'grade':{
@@ -811,7 +813,8 @@
                     [past_name]:{
                         'credit': past_credit,
                         'grade': past_grade_rad,
-                        'major': past_maj
+                        'major': past_maj,
+                        'id': past_id
                     }
                 }
             }
@@ -822,7 +825,8 @@
                     [past_name]:{
                         'fin': "",
                         'mid': "",
-                        'prof': past_prof_rad
+                        'prof': past_prof_rad,
+                        'id':past_id
                     }
                 }
             }
