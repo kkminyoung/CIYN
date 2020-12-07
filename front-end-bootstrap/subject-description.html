@@ -581,8 +581,7 @@
     var flag=0; // 동일한 버튼 두번 눌렀을 경우, 창이 여러개 생기지 않게 하기위해 사용할 flag
     var Course_id; // 텍스트로 입력받은 과목의 id를 DB에서 찾아와 담을 변수
     var course_textprof=[];
-  getText();
-
+     // getText();
     //초기 설정: 데이터 로딩
     var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "", past_id = "";
     function getText(){
@@ -593,14 +592,11 @@
         flag=1;
 	    
 	// 검색창으로부터 얻어온 과목명
-        findCourseValue = document.getElementById("findCourse").value;
-//        findCourseValue = '데이터베이스'
-        console.log(findCourseValue);
-        
 	// Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
         findCourseValue = document.getElementById("findCourse").value;
         console.log(findCourseValue);
-
+        
+	// Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
         var col = database.collection('course').where('name', '==', findCourseValue);
         const rev = database.collection('review');
         const lll = document.getElementById('llll');
@@ -633,11 +629,9 @@
                 related_subject_post="없음";
             }
             prof = "<hr><b>교수진</b><br><table class='semester'>";
-            
-	    
+          
 	    // 해당과목 연도-학기별 교수 찾기위한 부분	
 	    year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
-            
             var k=0; //count용 
             var a = new Array(); // 연도별 prof 담을 array]
             for(var i in year_prof_array){
