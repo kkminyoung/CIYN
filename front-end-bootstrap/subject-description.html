@@ -582,10 +582,16 @@
     const list_div4 = document.getElementById("dd");
     var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
 
+    var flag=0;
+
 
     //초기 설정: 데이터 로딩
     var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "", past_id = "";
     function getText(){
+        if(flag!=0){
+            return;
+        }
+        flag=1;
         findCourseValue = document.getElementById("findCourse").value;
         console.log(findCourseValue);
 
@@ -639,6 +645,7 @@
         });
     
     }
+
 
     var eval_grade =0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
     var ctx = document.getElementById('myChart').getContext('2d');
