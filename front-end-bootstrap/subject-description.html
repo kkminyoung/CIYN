@@ -37,14 +37,14 @@
     <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
     
-<link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
-<meta name="apple-mobile-web-app-title" content="CodePen">
+    <link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
 
-<link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
 
-<link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+    <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
 
-</head>
+    </head>
 
 <body id="page-top">
 
@@ -291,25 +291,26 @@
                                         </button>
                                     </div>
                                     <form id = 'add_review'>
-                                    <div class="modal-body" id = "llll"></div>
-                                    <div class="modal-body" id = "llll2">
-
-                                       <label>Term</label>
-                                       <select class ="custom-select" name= "term" id = "term">
+                                        
+                                    <div class="modal-body" id = "past_grade">
+                                        <label>자신의 정보에 해당하는 해당 학기, 교수, 학점을 적어주세요. <br><b>2020년 2학기 현 학기는 적용되지 않습니다.</b><br><br>Term</label>
+                                       <select class ="custom-select" name= "past_term_rad2" id = "past_term_rad2">
                                            <option value = "2018-2">2018-2</option>
                                            <option value = "2019-1">2019-1</option>
                                            <option value = "2019-2">2019-2</option>
                                            <option value = "2020-1">2020-1</option>
                                            <option value = "2020-2">2020-2</option>
                                        </select>
+                                       <br><br>
                                        <label>Prof</label>
-                                       <select class ="custom-select" name= "prof" id = "prof">
+                                       <select class ="custom-select" name= "past_prof_rad2" id = "past_prof_rad2">
                                          <option value = "이인기">이인기</option>
                                          <option value = "이민수">이민수</option>
                                          <option value = "용환승">용환승</option>
                                        </select>
+                                       <br><br>
 				       <label>grade</label>
-                                       <select class ="custom-select" name= "grade" id = "grade">
+                                       <select class ="custom-select" name= "past_grade_rad2" id = "past_grade_rad2">
                                          <option value = "A+">A+</option>
                                          <option value = "A0">A0</option>
                                          <option value = "A-">A-</option>
@@ -329,7 +330,7 @@
                                     </div>
                                    </form>
                                     <div class="modal-footer">
-                                       <button class="btn btn-primary" type="button" onclick = "add_rev()" data-dismiss="modal" >추가하기</button>
+                                       <button class="btn btn-primary" type="button" onclick = "add_grade()" data-dismiss="modal" >추가하기</button>
                                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                     </div>
 
@@ -345,12 +346,12 @@
                                 <div class="card-3-3-3 col-md-6 mb-4">
                                     <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">현재 과목</div><hr><br>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre" ></div>
-<br>
+                                <br>
                                 </div>
                                 <div class="card-3-3-3 col-md-6 mb-4">
                                     <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선후과목</div><hr><br>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-post" ></div>
-<br>
+                                <br>
                                 </div>
                                 
                             </div>
@@ -392,7 +393,7 @@
                                         <div class="dropdown-header">강의평 확인</div>
                                        
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reviewModal">추가하기</a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reviewModal">강의평 추가하기</a>
                                     </div>
                                 </div>
                             </div>
@@ -480,7 +481,7 @@
      <div class="modal-dialog" role="document">
          <div class="modal-content">
              <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">강의평 추가하기</h5>
+                 <h5 class="modal-title" id="exampleModalLabel">강의평 </h5>
                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                      <span aria-hidden="true">×</span>
                  </button>
@@ -581,6 +582,9 @@
     const list_div4 = document.getElementById("dd");
     var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
 
+
+    //초기 설정: 데이터 로딩
+    var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "";
     function getText(){
         findCourseValue = document.getElementById("findCourse").value;
         console.log(findCourseValue);
@@ -591,15 +595,17 @@
         var str = "<form id = 'prof_radio'>";
         var str2 = "";
         var prof_radio="";
-    col.get().then(function(querySnapshot){
+        col.get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
             var sc = doc.data().script;
             if(sc == ""){
                 sc = "등록되지 않았습니다.";
             }
             basic = doc.data().name+ " (" + doc.data().num+")" ;
-
-            course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>"+sc +"</div><br><br>";
+            past_credit=doc.data().credit;
+            past_maj = doc.data().div;
+            past_name = doc.data().name;
+            course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점</div><br><br> <div class='card-2-8-2'><b>키워드</b></div><div class='card-2-8-8'>"+doc.data().keyword.lang+"," +doc.data().keyword.step+", "+doc.data().keyword.step_div+"</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>"+sc +"</div><br><br>";
 
             realted = "<b>연관과목</b>";
             related_subject_pre = doc.data().prepro.pre;
@@ -616,8 +622,8 @@
             lists = a1.concat(a2); 
             lists = lists.filter((item, index) => lists.indexOf(item) === index);
             lists.forEach(element=>{
-                str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp"+element+" </label>&nbsp&nbsp&nbsp";
-                str2 += "<input type = 'radio' id = ' "+element+" ' name = 'rev'><label> &nbsp"+element+" </label>&nbsp&nbsp&nbsp";
+                str += "<input type = 'radio' id = ' "+element+" ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp"+element+" </label>&nbsp&nbsp";
+                str2 += "<input type = 'radio' id = ' "+element+" ' name = 'rev'><label> &nbsp"+element+" </label>&nbsp&nbsp";
             });
             list_div3.innerHTML += str;
             llll.innerHTML += str2;
@@ -637,19 +643,19 @@
     var ctx = document.getElementById('myChart').getContext('2d');
     var myRadarChart;
 
-    
+    //오른쪽 탭 라디오 버튼 누르면에 해당하는 데이터(chartjs, 강의평, 추가버튼)
     function profradio(thisid){
         eval_grade = 0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0;
         console.log(thisid);
         list_div4.innerHTML="";
         prof_radio="";
         
-        console.log(prof_radio);
-        const revs = database.collection('review').where('name', '==', findCourseValue);
+        console.log(prof_radio);const revs = database.collection('review').where('name', '==', findCourseValue);
         console.log(findCourseValue);
         revs.get().then(snapshot =>{
                     snapshot.docs.forEach(docss =>{
                         var dat = docss.data()[thisid];
+                        console.log(dat);
                         if(dat==[]){
                             prof_radio += "No data <br>"
                         }else{
@@ -661,7 +667,7 @@
                                 if(l==0&& x!="name"){
                                     for (var m in docss.data()[x]){
                                         
-                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><a class ='btn btn-success'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn"+m+"'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><br><a class ='btn btn-success'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn"+m+"'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
                                         eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
                                         eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
                                         eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
@@ -676,17 +682,38 @@
                             myRadarChart = new Chart(ctx, {
                                 type: 'radar',
                                 data: {
-                                    labels: ['grade', 'hard', 'talk', 'teach'],
+                                    labels: ['grade', 'hard', 'talk', 'teach','attend'],
                                     datasets: [{
-                                    data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num]}]},
+                                    data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num],
+                                    label: thisid,
+                                    lineTension: 0.1,
+                                    backgroundColor: "rgba(102, 153, 204, 0.2)",
+                                    borderColor: "rgba(102, 153, 204, 1)",
+                                    pointBackgroundColor: "rgba(102, 153, 204, 1)",
+                                    pointBorderColor: "#fff",
+                                    pointHoverRadius: 5,
+                                    pointHoverBackgroundColor: "#fff",
+                                    pointHoverBorderColor: "rgba(102, 153, 204, 1)",
+                                    }]},
                                 options:{
                                     scale: {
-                                        responsive: false,maintainAspectRatio: false,
+                                        angleLines: {
+                                            display: true,
+                                            lineWidth: 0.5
+                                        },
+                                        pointLabels: {
+                                            fontSize: 14,
+                                            fontStyle: '300',
+                                            fontFamily: "'Lato', sans-serif"
+                                        },
                                         ticks: {
-                                            suggestedMin: 0,
-                                            suggestedMax: 5
+                                            beginAtZero: true,
+                                            maxTicksLimit: 5,
+                                            min: 0,
+                                            max: 5,
+                                            display: false
                                         }
-                                    }
+                                        }
                                 }
                             }); 
                             
@@ -697,6 +724,8 @@
                 });
                 document.cookie="";
     }
+
+    //chartjs부분 크기 계산
     function calcHeight (numOfBars) {
             var maxHeightOfChart = 100;
             var minHeight = 40; //setting the min height of the bar + margin between
@@ -704,16 +733,19 @@
             
             document.getElementById("canvasContainer").style.height = chartHeight.toString()+"px";
     }
+
+    //강의평 추가 modal 위한 value 준비
     var eg = document.getElementById("eg");
-        var term = document.getElementById("term");
-        var g = document.getElementById("g");
-        var h = document.getElementById("h");
-        var ta = document.getElementById("ta");
-        var te = document.getElementById("te");
-        
-        var scr = document.getElementById('scr'); 
-        
-        var llld = "";
+    var term = document.getElementById("term");
+    var g = document.getElementById("g");
+    var h = document.getElementById("h");
+    var ta = document.getElementById("ta");
+    var te = document.getElementById("te");
+    var scr = document.getElementById('scr'); 
+    var llld = "";//체크한 라디오 버튼 확인
+
+
+    //강의평 추가 modal 처리
     function add_rev(){
         var rev = document.getElementsByName('rev'); 
         for(i = 0; i < rev.length; i++) { 
@@ -741,6 +773,8 @@
            alert("success!!")
         })
     }
+
+    //추천버튼 누르면 정보 올라가게
     function recom(prof,id, good){
         var rev = document.getElementsByName('rev'); 
         id = id.replace(/\s+/g, '');
@@ -760,56 +794,44 @@
             console.log("done");
         })
     }
-/*
-    function additem(id){
-        var addd = database.collection("user").doc("user1");
-        var docData = {
-            '':
-        }
-        var setwithmerge = addd.set(docData).then(function(){
-            console.log("a");
-        });
-    }
-*/
-    /*
-    col.get().then(function(querySnapshot){
-    querySnapshot.forEach(function(doc){
-        var sc = doc.data().script;
-        if(sc == ""){
-            sc = "등록되지 않았습니다.";
-        }
-        basic = " <div class='card shadow mb-4'><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>"+doc.data().name+ " (" + doc.data().num+")"+"</h6></div><div class='card-body'><b>분류</b>  컴퓨터공학과, "+ doc.data().div +", "+doc.data().credit+"학점<br><b>설명</b>   "+sc +"<br><br>";
-        related = "<b>연관과목</b><br><tab><b>선수과목</b> | "+doc.data().prepro.pre+"<br><b>선후과목</b> | "+doc.data().prepro.pro;
-        prof = "<br><br><b>교수진</b><br><b>2019-2</b> | "+doc.data().prof["2019-2"]+"<br><b>2018-2</b> | "+doc.data().prof["2018-2"];
 
-        var a1 = doc.data().prof["2018-2"];
-        var a2 = doc.data().prof["2019-2"]
-        var lists =a1.concat(a2); 
-        lists = lists.filter((item, index) => lists.indexOf(item) === index);
-        fin_prof="";
-        lists.forEach(element =>{
-            const reviews = rev.where('name','==', doc.data().name);
-            var pro = doc.data().name;
-            reviews.get().then(snapshot =>{
-                snapshot.docs.forEach(docs =>{
-                    fin_prof+="<br>"+element+"<br>";
-                    var dat = docs.data()[element];
-                    for(x in dat){ 
-                        fin_prof += "term "+dat[x]['term']+"  "+dat[x]['eg'] +" expected <br> "+ dat[x]['script']+"<br>";
+    //지난학기 과목 추가
+    function add_grade(){
+        var past_term_rad = document.getElementById('past_term_rad2').value; 
+        var past_prof_rad = document.getElementById('past_prof_rad2').value; 
+        var past_grade_rad = document.getElementById('past_grade_rad2').value; 
+        past_term_rad = past_term_rad.replace(/\s+/g, '');
+        past_prof_rad = past_prof_rad.replace(/\s+/g, '');
+        past_grade_rad = past_grade_rad.replace(/\s+/g, '');
+        past_maj = past_maj.replace(/\s+/g, '');
+        if(past_term_rad!="2020-2"){
+        var insert_dat = {
+            'grade':{
+                [past_term_rad]:{
+                    [past_name]:{
+                        'credit': past_credit,
+                        'grade': past_grade_rad,
+                        'major': past_maj
                     }
-                    console.log("hey"+fin_prof);
-                    list_div.innerHTML += (basic + related + prof+fin_prof+"</div></div>");
-                })
-            })
-    
-        });
-        
-        console.log("this is final prof2"+fin_prof); 
-        
-        
-    })
-    console.log("final"+fin_prof);
-  })*/
+                }
+            }
+        }}else{
+            var insert_dat = {
+            'term':{
+                [past_term_rad]:{
+                    [past_name]:{
+                        'fin': "",
+                        'mid': "",
+                        'prof': past_prof_rad
+                    }
+                }
+            }
+        }
+        }
+        database.collection('user').doc('user2').set(insert_dat, {merge:true}).then(function(){
+            alert("done");
+        })
+    }
 
 	</script>
 
