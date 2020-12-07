@@ -30,6 +30,7 @@
     <meta name="google-signin-client_id"
         content="251105086649-7dp43c1tupf0tsmqdoahj1jcbud3spmq.apps.googleusercontent.com">
     <script type="text/javascript" src="login.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
     <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
 
@@ -258,6 +259,7 @@
                                         <canvas style="height: 500px"></canvas>
                                     </div>
                                 </div>
+                                <div class='card-body' id = "analysis_result"></div>
                                 <div class='card-body' style="height: auto">
                                     <div id="canvasContainer2">
                                         <canvas style="height: 500px"></canvas>
@@ -265,6 +267,7 @@
                                 </div>
 
                             </div>
+                            
                         </div>
 
                         <div class="col-xl-4 col-lg-5" id="ll">
@@ -284,7 +287,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; CIYN 2020</span>
                     </div>
                 </div>
             </footer>
@@ -321,7 +324,7 @@
         </div>
     </div>
 
-    <div class="text-center">
+    <div class="text-center" style="display: none;">
         <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
     </div>
 
@@ -355,7 +358,7 @@
 
         // 로그인후 user_email에 해당하는 database 가져옴!
         var user_email = sessionStorage.getItem('user_email');
-
+//        const usersCollection = database.collection('user').where('email', '==', 'kmy8759@ewhain.net');
         const usersCollection = database.collection('user').where('email', '==', user_email);
         const list_subject = document.getElementById("ll");
         usersCollection.get().then(function (querySnapshot) {
@@ -366,179 +369,356 @@
                     var summ = true;
                     str += "<div class='card shadow mb-4'> <div class='card-header py-3'><h6 class='m-0 font-weight-bold text-primary'>" + x + " (" + dat[x]['prof'] + " 교수님)" + "</h6></div><div class = 'card-body'>";
                     if (dat[x]['mid'] == "") {
-                        str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' id = \"" + x + "\" class='form-control-score bg-light-2 border-0 small' placeholder='중간고사 성적입력' onkeypress='onlyNumber();'aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary ' onclick = 'insert_grade(\"mid\", \"" + x + "\", \"" + dat[x]['prof'] + "\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
-                        summ = false; console.log(x, 1);
+                        str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' id = \"mid" + x + "\" class='form-control-score bg-light-2 border-0 small' placeholder='중간고사 성적입력' onkeypress='onlyNumber();' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary id = 'mid"+x+"2' onclick = 'insert_grade_check(\"mid\", \"" + x + "\", \"" + dat[x]['prof'] + "\", \""+dat[x]['id']+"\")' type='button' style ='margin-left: 10px; margin-top:0px'><span class='icon text-gray-600'></span><span class='text' id = 'mid"+x+"3' > 성적 확정</span></button></div><br></div><hr>"
+                        summ = false;
                     } else {
-                        str += "<label>중간고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='" + dat[x]['mid'] + "' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'profradio(\"mid\")' type='button'></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
+                        str += "<label>중간고사</label> <div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='" + dat[x]['mid'] + "' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'this_sem_profradio(\"mid\",  \"" + x + "\", \"" + dat[x]['prof'] +"\")' type='button' style ='margin-left: 10px; margin-top:0px'><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                     }
                     if (dat[x]['fin'] == "") {
-                        str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='기말고사 성적입력' onkeypress='onlyNumber();' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary' onclick = 'insert_grade(\"fin\")' type='button'><span class='icon text-gray-600'></span><span class='text'> 성적 확정</span></button></div><br></div><hr>"
+                        str += "<label>기말고사</label><br><div class ='row'> <input type = 'text' id = \"fin" + x + "\"  class='form-control-score bg-light-2 border-0 small' placeholder='기말고사 성적입력' onkeypress='onlyNumber();' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary' id = 'fin"+x+"2' onclick = 'insert_grade_check(\"fin\", \"" + x + "\", \"" + dat[x]['prof'] + "\", \""+dat[x]['id']+"\")' type='button' style ='margin-left: 10px; margin-top:0px'><span class='icon text-gray-600'></span><span class='text' id = 'fin"+x+"3' > 성적 확정</span></button></div><br></div><hr>"
                         summ = false;
-                        console.log(x, 2);
                     } else {
-                        str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='" + dat[x]['fin'] + "' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'profradio(\"fin\")' type='button'></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
+                        str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='" + dat[x]['fin'] + "' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'this_sem_profradio(\"fin\",  \"" + x + "\", \"" + dat[x]['prof'] +"\")' type='button' style ='margin-left: 10px; margin-top:0px'></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                     }
-                    if (summ == false) {
-                        str += "<br></form><a href='#' class='btn btn-secondary btn-icon-split'onclick = 'sum_grade()' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>시험 성적을 입력해주세요.</span></a></div></div>";
+                    if (summ == false) { //성적 입력을 받음, 안받음 여부에 따라 다른 버튼 
+                        str += "<br></form><a href='#' class='btn btn-secondary btn-icon-split' onclick = 'aler(\""+x+"\", \"" + dat[x]['prof']+"\");' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>시험 성적을 입력해주세요.</span></a></div></div>";
                     } else {
-                        str += "<br></form><a href='#' class='btn btn-success btn-icon-split'onclick = 'sum_grade()' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>전체 성적 위치 확인하기</span></a></div></div>";
+                        str += "<br></form><a href='#' class='btn btn-success btn-icon-split'onclick = 'sum_grade(\"" + x + "\", \"" + dat[x]['prof']+"\" )' ><span class='icon text-white-50'><i class='fas fa-check'></i></span><span class='text'>전체 성적 위치 확인하기</span></a></div></div>";
                     }
                 }
                 list_subject.innerHTML += str;
             })
         });
 
-        function insert_grade(sem, subject, prof) { //userid 넣는 란도 넣어야 함!!!
-            /*
-            1. 0~100 값 아니면 return << 안 넣어도 될듯
-            2. database 정리 - user(맞는 userid), grade(맞는 과목, 맞는 교수) 에 삽입
-            3. chart내용 넣기
-            */
-            console.log(sem, subject, prof);
-
-        }
-
-        function onlyNumber() {
-            if ((event.keyCode < 48) || (event.keyCode > 57))
-                event.returnValue = false;
+        function aler(x, prof){
+            var mid_check = document.getElementById("mid"+x);
+            var fin_check = document.getElementById("fin"+x);
+            console.log(mid_check.value);
+            console.log(fin_check.value);
+            if(mid_check.value != "" && fin_check.value != ""){
+                sum_grade(x, prof);
+            }else{
+                alert("중간, 기말을 입력 완료해주세요!");
+            }
         }
         var myRadarChart;
-        function profradio(sem) {
+
+        //성적 입력 전에 제대로 정확한 값을 입력했는지 확인: 정수 범위 버그, blank, char 버그 제거
+        function insert_grade_check(sem, subject, prof, id){
+            var l = parseInt(document.getElementById(sem+subject).value);
+            if (document.getElementById(sem+subject).value == ""){
+                alert("점수를 입력하시오.");
+            }else if(l >1000 || l<0){
+                alert("유효한 숫자만을 입력해주세요");
+            }else{
+                insert_grade(sem, subject, prof, id);
+                console.log("going insert grade", id);
+            }
+        }
+
+        /*성적 입력 필요한 곳: (user, grade) 데이터 추가하기
+        즉, 성적 벌써 입력됨: 곧바로 this_sem_profradio 함수
+        성적 입력 이번에 함: 성적 입력함수 insert_grade 후에 this_sem_profile 작동*/
+        function insert_grade(sem, subject, prof, id) {
+            sem = sem.replace(/\s+/g, '');
+            subject = subject.replace(/\s+/g, '');
+            prof = prof.replace(/\s+/g, '');
+            var l = parseInt(document.getElementById(sem+subject).value);
+            var dat_mid=[];var insert_dat=[], insert_user = [];
+            const revs = database.collection('grade').where('name', '==', subject);
+            console.log(sem, subject, prof);
+            revs.get().then(snapshot => {
+                snapshot.docs.forEach(docss => { 
+                    dat_mid = docss.data()['2020-2'][prof]['score'][sem];
+                    if(dat_mid != undefined){dat_mid.push(l);}else{dat_mid = [];}
+                    insert_dat = {  //grade 데이터 추가
+                        '2020-2':{
+                            [prof]:{
+                                'score':{
+                                    [sem]:dat_mid
+                                }
+                            }
+                        }
+                    }
+                    
+                    insert_user = { //user 시험 정보 추가
+                        'term':{
+                            '2020-2':{
+                                [subject]:{
+                                    [sem]: l, 'prof':prof
+                                }
+                            }
+                        }
+                    }
+                    console.log(insert_user);
+                    database.collection('grade').doc(id).set(insert_dat, {merge:true}).then(function(){
+                    });
+                    
+                    database.collection('user').doc('user1').set(insert_user, {merge:true}).then(function(){    //userid받아와서 이름 넣기
+                    });
+
+                    var change_input = document.getElementById(sem+subject);
+                    var change_but = document.getElementById(sem+subject+"3");
+                    change_input.readOnly = true; 
+                    change_but.innerHTML = "변경 불가";
+                    this_sem_profradio(sem, subject, prof); //성적 입력 받은거 그래프로 나타내러 가기
+                })
+            }
+            );
+        }
+
+        /*성적 입력 필요한 곳 연계 함수 
+        -  이번 학기 확정된 성적 그래프 나타나게! 
+        즉, 성적 벌써 입력됨: 곧바로 this_sem_profradio 함수
+        성적 입력 이번에 함: 성적 입력함수 insert_grade 후에 this_sem_profile 작동*/
+        function this_sem_profradio(sem, subject, prof) {
             document.getElementById("canvasContainer").innerHTML = '&nbsp;';
             document.getElementById("canvasContainer").innerHTML = '<canvas id="GradeChart"></canvas>';
             var ctx = document.getElementById("GradeChart").getContext("2d");
+            var analysis = document.getElementById("analysis_result");
 
-            eval_grade = 0, eval_hard = 0, eval_talk = 0, eval_teach = 0, eval_num = 0;
             //console.log(thisid);
-            const revs = database.collection('grade').where('name', '==', '컴퓨터구조');//나중에 thisid로 바뀌어야
+            const revs = database.collection('grade').where('name', '==', subject);
             revs.get().then(snapshot => {
                 snapshot.docs.forEach(docss => {
-                    console.log(docss.data());
-                    var dat_fin = docss.data()['2019-2']['조동섭']['score'][sem];
-                    var dat_fin2 = docss.data()['2018-2']['조동섭']['score'][sem];
-                    var box_val = getBoxValues(dat_fin);
-                    var box_val2 = getBoxValues(dat_fin2);
-                    console.log(box_val);
-                    var labels = [box_val.t1 + "~", box_val.t2 + "~", box_val.t3 + "~", box_val.t4 + "~", box_val.t5 + "~", box_val.t6 + "~", box_val.t7 + "~", box_val.t8 + "~", box_val.t9 + "~", box_val.t10 + "~"];
-                    console.log(labels);
-                    var labelss = [box_val.t1, box_val.t2, box_val.t3, box_val.t4, box_val.t5, box_val.t6, box_val.t7, box_val.t8, box_val.t9, box_val.t10];
-                    var last_dat = hiss(labelss, dat_fin);
-
-                    // 표준화 후, 곡선 그래프 셋팅 
-                    var norm_dat_fin = get_norm(dat_fin, box_val.mean, box_val.sigma);
-                    var norm_dat_fin2 = get_norm(dat_fin2, box_val2.mean, box_val2.sigma);
-                    console.log("norm_data_Fin : ", norm_dat_fin);
-                    console.log("norm_data_Fin : ", norm_dat_fin2);
-
+                    var dat = docss.data()['2020-2'][prof]['score'][sem];
+                    if(dat != undefined){}else{dat = [];alert("해당 데이터베이스가 존재하지 않습니다");}
+                    var result = make_stack_chart(dat); var last_dat = result.last_dat, labels = result.labels;
                     var data = {
                         labels: labels,
-                        backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538'],
                         datasets: [{
                             data: last_dat,
+                            backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538']
                         }]
                     };
-                    var option = {
-                        tooltips: {
-                            enabled: false
-                        },
-                        legend: {
-                            display: false
-                        }
+
+                    var myBarChart = new Chart.Bar(ctx, {
+                        data: data,
+                        backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538'],
+                        options: option
+                    });
+                    
+                    var ana = getBoxValues(dat);
+                    analysis.innerHTML = "현재 분포상 평균은 " + ana.mean + ", 중간점은 "+ana.middle+", 최저점은 "+ana.t1 + ", 최고점은 "+ana.high+"입니다.<br>하위 30%은 "+ana.l3 +"까지이며, 상위 30%는 "+ana.h3+"입니다." ;
+                })
+            });
+            document.cookie = "";profradio2(subject,prof);
+        }
+
+        //전체 성적 체크하기:  중간 기말 성적 다 된 곳
+        function sum_grade(subject, prof) {
+            document.getElementById("canvasContainer").innerHTML = '&nbsp;';
+            document.getElementById("canvasContainer").innerHTML = '<canvas id="GradeChart"></canvas>';
+            var ctx = document.getElementById("GradeChart").getContext("2d");
+            var analysis = document.getElementById("analysis_result");
+            const revs = database.collection('grade').where('name', '==',subject);
+            revs.get().then(snapshot => {
+                snapshot.docs.forEach(docss => {
+                    //mid, fin 중에 없는 경우 대비하여 코드 추가 작성
+                    var dat_mid = docss.data()['2020-2'][prof]['score']['mid'];if(dat_mid != undefined){}else{dat_mid = null;}
+                    var dat_fin = docss.data()['2020-2'][prof]['score']['fin'];if(dat_fin != undefined){}else{dat_fin = null;}
+                    var hist = [];
+                    if(dat_fin==null){
+                        hist = dat_mid;
+                    }else if(dat_mid==null){
+                        hist = dat_fin;
+                    }else{
+                    for (var i in dat_fin) {
+                        hist[i] = dat_mid[i] + dat_fin[i];
+                    }}
+                    var result = make_stack_chart(hist); var last_dat = result.last_dat, labels = result.labels;
+                    var data = {
+                        labels: labels,
+                        datasets: [{
+                            data: last_dat,
+                            backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538']
+                        }]
                     };
 
-                    var myBarChart = new Chart(ctx, {
-                        type: 'bar',
+                    var myBarChart = new Chart.Bar(ctx, {
                         data: data,
                         backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538'],
                         options: option
                     });
 
-                    
+                    var ana = getBoxValues(hist);
+                    analysis.innerHTML = "현재 분포상 평균은 " + ana.mean + ", 중간점은 "+ana.middle+", 최저점은 "+ana.t1 + ", 최고점은 "+ana.high+"입니다.<br>하위 30%은 "+ana.l3 +"까지이며, 상위 30%는 "+ana.h3+"입니다." ;
 
                 })
             });
-            document.cookie = "";
-            profradio2(sem);
+            document.cookie = "";profradio2(subject, prof);
         }
 
-        function profradio2(sem) { //정규분포그래프
+    
+//성적 입력 필요없을 때: 밑 표준분포 그래프(chartjs 그래프 아래에 꺼)
+        function profradio2(subject, prof) { //정규분포그래프
             document.getElementById("canvasContainer2").innerHTML = '&nbsp;';
             document.getElementById("canvasContainer2").innerHTML = '<canvas id="GradeChart2"></canvas>';
             var ctx = document.getElementById("GradeChart2").getContext("2d");
 
-            eval_grade = 0, eval_hard = 0, eval_talk = 0, eval_teach = 0, eval_num = 0;
-            //console.log(thisid);
-            const revs = database.collection('grade').where('name', '==', '컴퓨터구조');//나중에 thisid로 바뀌어야
+            const revs = database.collection('grade').where('name', '==', subject);
             revs.get().then(snapshot => {
                 snapshot.docs.forEach(docss => {
-                    console.log(docss.data());
-                    var dat_fin = docss.data()['2019-2']['조동섭']['score'][sem];
-                    var dat_fin2 = docss.data()['2018-2']['조동섭']['score'][sem];
-                    var box_val = getBoxValues(dat_fin);
-                    var box_val2 = getBoxValues(dat_fin2);
-                    console.log(box_val);
-                    var labels = [box_val.t1 + "~", box_val.t2 + "~", box_val.t3 + "~", box_val.t4 + "~", box_val.t5 + "~", box_val.t6 + "~", box_val.t7 + "~", box_val.t8 + "~", box_val.t9 + "~", box_val.t10 + "~"];
-                    console.log(labels);
-                    var labelss = [box_val.t1, box_val.t2, box_val.t3, box_val.t4, box_val.t5, box_val.t6, box_val.t7, box_val.t8, box_val.t9, box_val.t10];
-                    var last_dat = hiss(labelss, dat_fin);
+                    var possible = {};
+                    try{
+                        /*여기부터 2018-1 ~ 2020-1 점수 분포 가져오기
+                            dat_fin[학기순]으로 이름 지정
+                            - 없는 경우를 대비하여 try_catch으로 지정, mid/fin 중에 없는 경우 대비하여 if 문처리
+                            - make_sum_chart에서 정규분포 결과 다 나오게 지정,
+                            - possible dictionary 에 분석 결과 데이터 모두 저장, chart에 적용하고자 함
+                        */
+                        //2018-1 학기: dat_fin1
+                        var dat_fin1_mid = docss.data()['2018-1'][prof]['score']['mid']; 
+                        var dat_fin1=[];
+                        try{
+                            var dat_fin1_fin = docss.data()['2018-1'][prof]['score']['fin'];if(dat_fin1_fin != undefined){}else{dat_fin1_fin = null;}
+                            if(dat_fin1_fin==null){
+                                dat_fin1 = dat_fin1_mid;
+                            }else{
+                            for (var i in dat_fin1_mid) {
+                                dat_fin1[i] = dat_fin1_mid[i] + dat_fin1_fin[i];
+                            }}
+                        }catch(e){}
+                        if(dat_fin1 != undefined){
+                            var result = make_sum_chart(dat_fin1); possible['2018-1']=result;
+                    }}catch(e){}
 
-                    // 표준화 후, 곡선 그래프 셋팅 
-                    var norm_dat_fin = get_norm(dat_fin, box_val.mean, box_val.sigma);
-                    var norm_dat_fin2 = get_norm(dat_fin2, box_val2.mean, box_val2.sigma);
-                    console.log("norm_data_Fin : ", norm_dat_fin);
-                    console.log("norm_data_Fin : ", norm_dat_fin2);
+                    //2018-2 학기: dat_fin2
+                    try{
+                        var dat_fin2_mid = docss.data()['2018-2'][prof]['score']['mid']; 
+                        var dat_fin2=[];
+                        try{
+                            var dat_fin2_fin = docss.data()['2018-2'][prof]['score']['fin'];if(dat_fin2_fin != undefined){}else{dat_fin2_fin = null;}
+                            console.log(dat_fin2_fin);
+                            if(dat_fin2_fin==null){
+                                dat_fin2 = dat_fin2_mid;
+                            }else{
+                                for (var i in dat_fin2_mid) {
+                                    dat_fin2[i] = dat_fin2_mid[i] + dat_fin2_fin[i];
+                                }
+                            }
+                        }catch(e){}
+                        if(dat_fin2 != undefined){
+                            var result = make_sum_chart(dat_fin2); possible['2018-2']=result;
+                    }}catch(e){}
 
-                    var data = {
-                        labels: labels,
-                        backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538'],
-                        datasets: [{
-                            data: last_dat,
-                        }]
-                    };
-                    var option = {
-                        tooltips: {
-                            enabled: false
-                        },
-                        legend: {
-                            display: false
+                    //2019-1 학기: dat_fin3
+                    try{
+                        var dat_fin3_mid = docss.data()['2019-1'][prof]['score']['mid']; 
+                        var dat_fin3=[];
+                        try{
+                            var dat_fin3_fin = docss.data()['2019-1'][prof]['score']['fin'];if(dat_fin3_fin != undefined){}else{dat_fin3_fin = null;}
+                            if(dat_fin3_fin==null){
+                                dat_fin3 = dat_fin3_mid;
+                            }else{
+                            for (var i in dat_fin3_mid) {
+                                dat_fin3[i] = dat_fin3_mid[i] + dat_fin3_fin[i];
+                            }}
+                        }catch(e){}
+                        if(dat_fin3 != undefined){
+                        var result = make_sum_chart(dat_fin3); 
+                        possible['2019-1']=result;
+                    }}catch(e){}
+
+                    //2019-2 학기: dat_fin4
+                    try{
+                        var dat_fin4_mid = docss.data()['2019-2'][prof]['score']['mid']; 
+                        var dat_fin4=[];
+                        try{
+                            var dat_fin4_fin = docss.data()['2019-2'][prof]['score']['fin'];
+                        console.log(5);
+                            if(dat_fin4_fin != undefined){}else{dat_fin4_fin = null;}
+                            if(dat_fin4_fin == null){
+                                dat_fin4 = dat_fin4_mid;
+                            }else{
+                                for (var i in dat_fin4_mid) {
+                                    dat_fin4[i] = dat_fin4_fin[i] + dat_fin4_mid[i];
+                                }
+                            }
+                            console.log(dat_fin4); 
+                        }catch(e){}
+                        if(dat_fin4 != undefined){
+                        var result = make_sum_chart(dat_fin4); 
+                        possible['2019-2']=result;
+                        }}catch(e){}
+                    
+                    //2020-1 학기: dat_fin5
+                    try{
+                        var dat_fin5_mid = docss.data()['2020-1'][prof]['score']['mid']; 
+                        var dat_fin5=[];
+                        try{
+                            var dat_fin5_fin = docss.data()['2020-1'][prof]['score']['fin'];if(dat_fin5_fin != undefined){}else{dat_fin5_fin = null;}
+                            if(dat_fin5_fin==null){
+                                dat_fin5 = dat_fin5_mid;
+                            }else{
+                            for (var i in dat_fin5_mid) {
+                                dat_fin5[i] = dat_fin5_mid[i] + dat_fin5_fin[i];
+                            }}
+                        }catch(e){}
+                        if(dat_fin5 != undefined){
+                        var result = make_sum_chart(dat_fin5); 
+                        possible['2020-1']=result;}}catch(e){}
+
+                    //possible에 넣은 결과 데이터에 option 추가하여 datasets에 최종적으로 담기
+                    var datasets=[];
+                    var i = 0;
+                    for (var key in possible){
+                        i++;
+                        switch(parseInt(i/2)){
+                            case(0):
+                                var l = {
+                                data: possible[key],
+                                label: key,
+                                    lineTension: 0.3,
+                                    backgroundColor: "rgba(78, 115, 223, 0.05)",
+                                    borderColor: "rgba(78, 115, 223, 1)",
+                                    pointRadius: 3,
+                                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                                    pointBorderColor: "rgba(78, 115, 223, 1)",
+                                    pointHoverRadius: 3,
+                                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                                    pointHitRadius: 10,
+                                    pointBorderWidth: 2
+                                };
+                                console.log(l);
+                                break;
+                            case(1):
+                                var l = {
+                                    data: possible[key],label: key,
+                                    ineTension: 0.3,
+                                    backgroundColor: "rgba(80, 80, 80, 0.05)",
+                                    borderColor: "rgba(80, 80, 80, 1)",
+                                    pointRadius: 3,
+                                    pointBackgroundColor: "rgba(80, 80, 80, 1)",
+                                    pointBorderColor: "rgba(80, 80, 80, 1)",
+                                    pointHoverRadius: 3,
+                                    pointHoverBackgroundColor: "rgba(80, 80, 80, 1)",
+                                    pointHoverBorderColor: "rgba(80, 80, 80, 1)",
+                                    pointHitRadius: 10,
+                                    pointBorderWidth: 2
+                                };
+                                console.log(l);
+                                break;
                         }
-                    };
-
+                        datasets.push(l);
+                    }
+                    
+                    //label 지정하긴 했는데 수정해야 할 듯.... 아무렇게나 작성함 + label이 위에 색깔+이름으로 명시되는걸 해보고 싶은데 적용이 안됨.
+                    var labels=[];var i=0;
+                    for (i =0;i<31;i++){
+                        labels.push(parseInt(100/33*i));
+                    }
+                    
+                    //chart 정의
                     var myAreaChart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: dat_fin,
-                            datasets: [{
-                                data: norm_dat_fin,
-                                ineTension: 0.3,
-                                backgroundColor: "rgba(78, 115, 223, 0.05)",
-                                borderColor: "rgba(78, 115, 223, 1)",
-                                pointRadius: 3,
-                                pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                                pointBorderColor: "rgba(78, 115, 223, 1)",
-                                pointHoverRadius: 3,
-                                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                                pointHitRadius: 10,
-                                pointBorderWidth: 2
-                            },
-                            {
-                                //이거 2018입니당 회색으로 바꿈
-                                data: norm_dat_fin2,
-                                ineTension: 0.3,
-                                backgroundColor: "rgba(80, 80, 80, 0.05)",
-                                borderColor: "rgba(80, 80, 80, 1)",
-                                pointRadius: 3,
-                                pointBackgroundColor: "rgba(80, 80, 80, 1)",
-                                pointBorderColor: "rgba(80, 80, 80, 1)",
-                                pointHoverRadius: 3,
-                                pointHoverBackgroundColor: "rgba(80, 80, 80, 1)",
-                                pointHoverBorderColor: "rgba(80, 80, 80, 1)",
-                                pointHitRadius: 10,
-                                pointBorderWidth: 2
-                            }],
+                            labels: labels,
+                            datasets: datasets
                         },
                         options: {
+                            title:{display:true, text:'지난학기 시험 및 학점 분포 분석'},
                             maintainAspectRatio: false,
                             tooltips: {
                                 backgroundColor: "rgb(255,255,255)",
@@ -553,7 +733,16 @@
                             legend: {
                                 display: false
                             },
-                            cutoutPercentage: 80,
+                            scales:{
+                                yAxes:[{
+                                    ticks:{
+                                        beginAtZero:true, min:0
+                                    },
+                                    scaleLabel: {
+                                        display:true, labelString:'정규분포 값'
+                                    }
+                                }]
+                            },
                         },
                     });
                 })
@@ -561,9 +750,43 @@
             document.cookie = "";
         }
 
+
+/* 여기서부터는 위의 함수를 돕거나 일반적인 함수 모음 */
+        //chartjs 만들때 일일이 가져오기 귀찮아서 만든 함수
+        function make_stack_chart(dat){
+            var box_val, labelss, last_dat, labels;
+            if(dat != undefined){
+                box_val = getBoxValues(dat);
+                labels = [box_val.t1 + "~", box_val.t2 + "~", box_val.t3 + "~", box_val.t4 + "~", box_val.t5 + "~", box_val.t6 + "~", box_val.t7 + "~", box_val.t8 + "~", box_val.t9 + "~", box_val.t10 + "~"];
+                labelss = [box_val.t1, box_val.t2, box_val.t3, box_val.t4, box_val.t5, box_val.t6, box_val.t7, box_val.t8, box_val.t9, box_val.t10];
+                last_dat = hiss(labelss, dat);
+                console.log(last_dat);
+            }else{
+                console.log(2);
+                last_dat = [0,0,0,0,0,0,0,0,0,0];
+                labels = [0,0,0,0,0,0,0,0,0,0];
+            }
+            return {last_dat: last_dat, labels:labels};
+        }
+
+        function make_sum_chart(dat){
+            var box_val, labelss, last_dat, labelsv,norm_dat_fin;
+            if(dat != undefined){
+                box_val = getBoxValues(dat);
+                labels = [box_val.t1 + "~", box_val.t2 + "~", box_val.t3 + "~", box_val.t4 + "~", box_val.t5 + "~", box_val.t6 + "~", box_val.t7 + "~", box_val.t8 + "~", box_val.t9 + "~", box_val.t10 + "~"];
+                labelss = [box_val.t1, box_val.t2, box_val.t3, box_val.t4, box_val.t5, box_val.t6, box_val.t7, box_val.t8, box_val.t9, box_val.t10];
+                last_dat = hiss(labelss, dat);
+                norm_dat_fin = get_norm(dat, box_val.mean, box_val.sigma);
+            }else{
+                norm_dat_fin = [0,0,0,0,0,0,0,0,0,0];
+            }
+            return norm_dat_fin;
+        }
+
+        //표준편차, 평균 구하기
         function get_norm(data, mean, std) {
-            console.log("mean", mean);
-            console.log("std", std);
+            //console.log("mean", mean);
+            //console.log("std", std);
             var left = 1 / (mean * Math.sqrt(2 * 3.141592));
             var right = new Array();
             var result = new Array();
@@ -572,11 +795,7 @@
                 right[i] = Math.pow(Math.E, (- ((data[i] - mean) * (data[i] - mean)) / (2 * std * std)));
                 result[i] = left * right[i];
             }
-
             //var right = Math.exp(- ((data - mean) * (data - mean)) / (2 * std * std));
-            console.log(left);
-            console.log(right);
-
             return result;
         }
 
@@ -602,7 +821,7 @@
             return result;
         }
 
-
+        //사분위수 위한 수학 함수
         function getPercentile(data, percentile) {
             data.sort(function (a, b) { return a - b; });
             var index = (percentile / 100) * data.length;
@@ -615,12 +834,17 @@
             }
             return result;
         }
+
+        //사분위수, 그래프 형성에 필요한 거 모음
         function getBoxValues(data) {
             var boxValues = {};
             boxValues.low = Math.round(Math.min.apply(Math, data));
             boxValues.t1 = Math.round(Math.min.apply(Math, data));
             boxValues.t2 = Math.round((getPercentile(data, 25) + Math.min.apply(Math, data)) / 2);
             boxValues.t3 = Math.round(getPercentile(data, 25));
+            boxValues.l3 = Math.round(getPercentile(data, 30));
+            boxValues.h3 = Math.round(getPercentile(data, 70));
+            boxValues.middle = Math.round(getPercentile(data, 50));
             boxValues.t4 = Math.round((getPercentile(data, 25) * 5 + getPercentile(data, 75) * 1) / 6);
             boxValues.t5 = Math.round((getPercentile(data, 25) * 4 + getPercentile(data, 75) * 2) / 6);
             boxValues.t6 = Math.round((getPercentile(data, 25) * 3 + getPercentile(data, 75) * 3) / 6);
@@ -634,9 +858,9 @@
             return boxValues;
         }
 
+        //위 범위에 따라 해당하는 값들 만들기
         function hiss(lab, dat) {
             var hist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            console.log(lab); console.log(dat);
             for (var i in dat) {
                 if (lab[0] <= dat[i] && dat[i] < lab[1]) {
                     hist[0]++;
@@ -664,59 +888,32 @@
             return hist;
         }
 
-        function sum_grade() {//중간, 기말 둘 중 하나 없으면 안 받는거 처리해야 함.
-
-            document.getElementById("canvasContainer").innerHTML = '&nbsp;';
-            document.getElementById("canvasContainer").innerHTML = '<canvas id="GradeChart"></canvas>';
-            var ctx = document.getElementById("GradeChart").getContext("2d");
-            eval_grade = 0, eval_hard = 0, eval_talk = 0, eval_teach = 0, eval_num = 0;
-            //console.log(thisid);
-            const revs = database.collection('grade').where('name', '==', '컴퓨터구조');//나중에 thisid로 바뀌어야
-            revs.get().then(snapshot => {
-                snapshot.docs.forEach(docss => {
-                    console.log(docss.data());
-                    var dat_mid = docss.data()['2019-2']['조동섭']['score']['mid'];
-                    var dat_fin = docss.data()['2019-2']['조동섭']['score']['fin'];
-                    var hist = [];
-                    for (var i in dat_fin) {
-                        hist[i] = dat_mid[i] + dat_fin[i];
-                    }
-                    var box_val = getBoxValues(hist);
-                    console.log(box_val);
-                    var labels = [box_val.t1 + "~", box_val.t2 + "~", box_val.t3 + "~", box_val.t4 + "~", box_val.t5 + "~", box_val.t6 + "~", box_val.t7 + "~", box_val.t8 + "~", box_val.t9 + "~", box_val.t10 + "~"];
-                    console.log(labels);
-                    var labelss = [box_val.t1, box_val.t2, box_val.t3, box_val.t4, box_val.t5, box_val.t6, box_val.t7, box_val.t8, box_val.t9, box_val.t10];
-                    var last_dat = hiss(labelss, hist);
-
-                    var randomColorGenerator = function () {
-                        return '#' + (Math.random().toString(16) + '0000000').slice(2, 8);
-                    };
-                    var data = {
-                        labels: labels,
-                        datasets: [{
-                            data: last_dat,
-                            backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538']
-                        }]
-                    };
-                    var option = {
+        //데이터 넣는거 오직 숫자만 가능하게
+        function onlyNumber() {
+            if ((event.keyCode < 48) || (event.keyCode > 57))
+                event.returnValue = false;
+        }
+        //chartjs에 들어갈 option 설정
+        var option = {
+                title:{display:true, text:'이번 학기 성적 분포'},responsive:true,
                         tooltips: {
                             enabled: false
                         },
                         legend: {
                             display: false
+                        },
+                        scales: {
+                            yAxes:[{
+                                display:true,
+                                    ticks:{
+                                        beginAtZero:true, min: 0, max:20
+                                    },
+                                    scaleLabel: {
+                                        display:true, labelString:'동일성적 학생분포'
+                                    }
+                                }]
                         }
                     };
-
-                    var myBarChart = new Chart.Bar(ctx, {
-                        data: data,
-                        backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312', '#F79F1F', '#FFC312', '#006266', '#009432', '#A3CB38', '#C4E538'],
-                        options: option
-                    });
-
-                })
-            });
-            document.cookie = "";
-        }
     </script>
 </body>
 
