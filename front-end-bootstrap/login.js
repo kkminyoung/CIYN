@@ -114,3 +114,18 @@ function signOut() {
         })
     });
 }
+
+var course_delivery = document.getElementById('course_delivery');
+console.log(course_delivery);
+if(course_delivery){
+    course_delivery.addEventListener('click', subbb, false);
+}
+else{
+    console.log('아니?');
+}
+
+function subbb() {
+    //document.id.action = "subject-description.html";
+    //document.acc.submit();
+    console.log("되나");
+}
