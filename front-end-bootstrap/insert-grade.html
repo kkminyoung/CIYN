@@ -358,8 +358,9 @@
 
         // 로그인후 user_email에 해당하는 database 가져옴!
         var user_email = sessionStorage.getItem('user_email');
-//        const usersCollection = database.collection('user').where('email', '==', 'kmy8759@ewhain.net');
+ //       const usersCollection = database.collection('user').where('email', '==', 'kmy8759@ewhain.net');
         const usersCollection = database.collection('user').where('email', '==', user_email);
+        var mid_put=false;var fin_put=true;
         const list_subject = document.getElementById("ll");
         usersCollection.get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
@@ -372,12 +373,14 @@
                         str += "<label>중간고사</label><br><div class ='row'> <input type = 'text' id = \"mid" + x + "\" class='form-control-score bg-light-2 border-0 small' placeholder='중간고사 성적입력' onkeypress='onlyNumber();' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary id = 'mid"+x+"2' onclick = 'insert_grade_check(\"mid\", \"" + x + "\", \"" + dat[x]['prof'] + "\", \""+dat[x]['id']+"\")' type='button' style ='margin-left: 10px; margin-top:0px'><span class='icon text-gray-600'></span><span class='text' id = 'mid"+x+"3' > 성적 확정</span></button></div><br></div><hr>"
                         summ = false;
                     } else {
+                        mid_put=true;
                         str += "<label>중간고사</label> <div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='" + dat[x]['mid'] + "' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'this_sem_profradio(\"mid\",  \"" + x + "\", \"" + dat[x]['prof'] +"\")' type='button' style ='margin-left: 10px; margin-top:0px'><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                     }
                     if (dat[x]['fin'] == "") {
                         str += "<label>기말고사</label><br><div class ='row'> <input type = 'text' id = \"fin" + x + "\"  class='form-control-score bg-light-2 border-0 small' placeholder='기말고사 성적입력' onkeypress='onlyNumber();' aria-label='Search' aria-describedby='basic-addon2'> <div class='input-group-append'> <button class='btn-score btn-secondary' id = 'fin"+x+"2' onclick = 'insert_grade_check(\"fin\", \"" + x + "\", \"" + dat[x]['prof'] + "\", \""+dat[x]['id']+"\")' type='button' style ='margin-left: 10px; margin-top:0px'><span class='icon text-gray-600'></span><span class='text' id = 'fin"+x+"3' > 성적 확정</span></button></div><br></div><hr>"
                         summ = false;
                     } else {
+                        fin_put=true;
                         str += "<label>기말고사</label><div class ='row'> <input type = 'text' class='form-control-score bg-light-2 border-0 small' placeholder='" + dat[x]['fin'] + "' aria-label='Search' aria-describedby='basic-addon2'readonly> <div class='input-group-append'> <button class='btn-score btn-danger btn-icon-split' onclick = 'this_sem_profradio(\"fin\",  \"" + x + "\", \"" + dat[x]['prof'] +"\")' type='button' style ='margin-left: 10px; margin-top:0px'></span><span class='text'> 변경 불가</span></button></div><br></div><hr>"
                     }
                     if (summ == false) { //성적 입력을 받음, 안받음 여부에 따라 다른 버튼 
@@ -405,12 +408,23 @@
 
         //성적 입력 전에 제대로 정확한 값을 입력했는지 확인: 정수 범위 버그, blank, char 버그 제거
         function insert_grade_check(sem, subject, prof, id){
+            if(sem=='mid'){
+                mid_put=true;
+            }
+            if(sem=='fin'){
+                fin_put=true;
+            }
             var l = parseInt(document.getElementById(sem+subject).value);
             if (document.getElementById(sem+subject).value == ""){
                 alert("점수를 입력하시오.");
             }else if(l >1000 || l<0){
                 alert("유효한 숫자만을 입력해주세요");
-            }else{
+            }else if(sem=='mid' && mid_put==true){
+                this_sem_profradio(sem, subject,prof);
+            }else if(sem=='fin' && fin_put==true){
+                this_sem_profradio(sem, subject,prof);
+            }
+            else{
                 insert_grade(sem, subject, prof, id);
                 console.log("going insert grade", id);
             }
@@ -420,6 +434,8 @@
         즉, 성적 벌써 입력됨: 곧바로 this_sem_profradio 함수
         성적 입력 이번에 함: 성적 입력함수 insert_grade 후에 this_sem_profile 작동*/
         function insert_grade(sem, subject, prof, id) {
+            if(sem=='mid'){mid_put=true};
+            if(sem=='fin'){fin_put=true};
             sem = sem.replace(/\s+/g, '');
             subject = subject.replace(/\s+/g, '');
             prof = prof.replace(/\s+/g, '');
@@ -450,7 +466,6 @@
                             }
                         }
                     }
-                    console.log(insert_user);
                     database.collection('grade').doc(id).set(insert_dat, {merge:true}).then(function(){
                     });
                     
@@ -666,9 +681,8 @@
                         i++;
                         switch(parseInt(i/2)){
                             case(0):
-                                var l = {
+                                var l = {label: key,
                                 data: possible[key],
-                                label: key,
                                     lineTension: 0.3,
                                     backgroundColor: "rgba(78, 115, 223, 0.05)",
                                     borderColor: "rgba(78, 115, 223, 1)",
@@ -684,8 +698,8 @@
                                 console.log(l);
                                 break;
                             case(1):
-                                var l = {
-                                    data: possible[key],label: key,
+                                var l = {label: key,
+                                    data: possible[key],
                                     ineTension: 0.3,
                                     backgroundColor: "rgba(80, 80, 80, 0.05)",
                                     borderColor: "rgba(80, 80, 80, 1)",
@@ -729,9 +743,6 @@
                                 yPadding: 15,
                                 displayColors: false,
                                 caretPadding: 10,
-                            },
-                            legend: {
-                                display: false
                             },
                             scales:{
                                 yAxes:[{
@@ -906,7 +917,7 @@
                             yAxes:[{
                                 display:true,
                                     ticks:{
-                                        beginAtZero:true, min: 0, max:20
+                                        beginAtZero:true, min: 0, max:15
                                     },
                                     scaleLabel: {
                                         display:true, labelString:'동일성적 학생분포'
