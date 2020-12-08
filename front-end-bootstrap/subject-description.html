@@ -293,7 +293,7 @@
                                     <form id = 'add_review'>
                                         
                                     <div class="modal-body" id = "past_grade">
-                                        <label>자신의 정보에 해당하는 해당 학기, 교수, 학점을 적어주세요. <br><b>2020년 2학기 현 학기는 적용되지 않습니다.</b><br><br>Term</label>
+                                        <label>자신의 정보에 해당하는 해당 학기, 교수, 학점을 적어주세요. <br><b>2020년 2학기 현 학기는 학점이 적용되지 않습니다.</b><br><br>Term</label>
                                        <select class ="custom-select" name= "past_term_rad2" id = "past_term_rad2">
                                            <option value = "2018-2">2018-2</option>
                                            <option value = "2019-1">2019-1</option>
@@ -362,7 +362,7 @@
                                 </div>
                                 <hr>
                                 <div id = "tell-prefessor">
-                                    <textarea  id = "send_text" class = "text-area-professor" rows="1" placeholder = "교수님에게 메세지를 보내보세요!" ></textarea>
+                                    <textarea  id = "send_text" class = "text-area-professor" rows="1" cols = "auto"placeholder = "교수님에게 메세지를 보내보세요!" ></textarea>
                                     <a href="#" onclick = "set_text()" class= "fas fa-paper-plane  fa-2x text-gray-600" style="padding: 20px"></a>
                                 </div>
 
@@ -395,7 +395,7 @@
                             </div>
                             <div style="height:100%; position: relative">
                                 <div id="canvasContainer">
-                                    <canvas id="myChart"  width = "100" height = "100"></canvas>
+                                    <canvas id="myChart"  width = "100" height = "100" style="padding:20px;"></canvas>
                                 </div>
                             </div>
                             <div class='card-body' id = "dd">
@@ -540,11 +540,11 @@
                 </select>
                 <br>
                 <label >Script</label><br>
-                <textarea rows="10" cols = "55" id = "scr" id ="scr" name = "scr" placeholder = "강의평을 입력해주세요!" ></textarea>
+                <textarea rows="10" cols = "40" id = "scr" id ="scr" name = "scr" placeholder = "강의평을 입력해주세요!" ></textarea>
              </div>
             </form>
              <div class="modal-footer">
-                <button class="btn btn-primary" type="button" onclick = "add_rev()" data-dismiss="modal" >추가하기</button>
+                <button class="btn btn-primary" type="button" onclick = "check_rev()" data-dismiss="modal" >추가하기</button>
                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
              </div>
             
@@ -593,12 +593,9 @@
         flag=1;
 	    
 	// 검색창으로부터 얻어온 과목명
-        findCourseValue = document.getElementById("findCourse").value;
-//        findCourseValue = '데이터베이스'
-        console.log(findCourseValue);
-        
 	// Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
         findCourseValue = document.getElementById("findCourse").value;
+//        findCourseValue = 'JAVA프로그래밍및실습';
         console.log(findCourseValue);
 
         var col = database.collection('course').where('name', '==', findCourseValue);
@@ -693,7 +690,7 @@
                         all_hard = parseFloat(dat_all['hard']/dat_all['sum']);
                         all_grade = parseFloat(dat_all['grade']/dat_all['sum']);
                         //all_attend = parseFloat(dat_all['attend']/dat_all['sum']);
-                        console.log(docss.data());
+                        console.log(all_talk, all_teach, all_hard, all_grade);
                         if(dat==[]){
                             prof_radio += "No data <br>"
                         }else{
@@ -796,10 +793,19 @@
     var scr = document.getElementById('scr'); 
     var llld = "";//체크한 라디오 버튼 확인
 
+    function check_rev(){
+        if(scr.value==""){
+            alert("강의평을 입력해주셔야 올라갑니다. 강의평도 작성해주세요!");
+        }else{
+            check_rev();
+            add_rev();
+        }
+    }
     
 
     //강의평 추가 modal 처리
     function add_rev(){
+        /*
         var rev = document.getElementsByName('rev'); 
         for(i = 0; i < rev.length; i++) { 
                 if(rev[i].checked){
@@ -824,7 +830,7 @@
         database.collection('review').doc(Course_id).set(hi,{merge:true}).then(function(){
             console.log("okay");
            alert("success!!")
-        })
+        })*/
     }
 
     //추천버튼 누르면 정보 올라가게
