@@ -10489,6 +10489,28 @@ body.sidebar-toggled footer.sticky-footer {
   float: left;
 }
 
+
+.card-2-8-10{
+  padding: 5px;
+  margin-bottom: 20px;
+  width: 100%;
+  color: black;
+  text-align: center;
+  position: relative;
+  display: block;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #7c778141;
+  background-clip: border-box;
+  border: 1px solid #e3e6f0;
+  border-radius: .35rem;
+  flex: 0 0 80%;
+  max-width: 100%;
+  float: left;
+}
+
+
 table ,th ,tr {
   border: 1px solid black;
 }
