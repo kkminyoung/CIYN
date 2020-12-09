@@ -251,12 +251,13 @@
         const list_div = document.getElementById("list_div");
         database.collection("course").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
-                list_div.innerHTML += "<div class='card shadow mb-4' onclick = \"subbb();\" id = '" + doc.data().name + "'><form id = 'acc' name = 'acc'><input type = 'hidden' id =" + doc.data().name + "name=  " + doc.data().name + " ></form><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>" + doc.data().name + " (" + doc.data().num + ")" + "</h6></div><div class='card-body'><div class ='card-2-8-2'> <b>분류</b> </div> <div class='card-2-8-8'> 컴퓨터공학과, " + doc.data().div +", "+doc.data().credit+"학점</div><br><br><div class='card-2-8-2'><b>키워드</b>  </div><div class='card-2-8-8'> "+doc.data().keyword.lang+", "+doc.data().keyword.step+", "+doc.data().keyword.step_div +"</div><br><br><div class='card-2-8-2'><b>설명</b>  </div><div class='card-2-8-8'> " + doc.data().script+ "</div></div></div></form>";
+                list_div.innerHTML += "<a href='prof-subject-description.html' onclick = \"subbb("+doc.data().name+");\" > <div class='card shadow mb-4' onclick = \"subbb();\" id = '" + doc.data().name + "'><form id = 'acc' name = 'acc'><input type = 'hidden' id =" + doc.data().name + "name=  " + doc.data().name + " ></form><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>" + doc.data().name + " (" + doc.data().num + ")" + "</h6></div><div class='card-body'><div class ='card-2-8-2'> <b>분류</b> </div> <div class='card-2-8-8'> 컴퓨터공학과, " + doc.data().div +", "+doc.data().credit+"학점</div><br><br><div class='card-2-8-2'><b>키워드</b>  </div><div class='card-2-8-8'> "+doc.data().keyword.lang+", "+doc.data().keyword.step+", "+doc.data().keyword.step_div +"</div><br><br><div class='card-2-8-2'><b>설명</b>  </div><div class='card-2-8-8'> " + doc.data().script+ "</div></div></div></a></form>";
         })})
-
-        function subbb() {
-            document.id.action = "link_page.html";
-            document.acc.submit();
+        
+        // CourseId 변수 전달
+        function subbb(course_name) {
+            console.log(course_name.id);
+            sessionStorage.setItem('course_name', course_name.id);
         }
 
         // 키워드서치 부분!!!
