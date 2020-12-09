@@ -12,11 +12,12 @@
     <title>강의 평가</title>
     <link rel="icon" type="image/x-icon" href="img/logo-right.png" />
 
-    
+
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -33,18 +34,22 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-    
-    <link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+
+    <link rel="apple-touch-icon" type="image/png"
+        href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
     <meta name="apple-mobile-web-app-title" content="CodePen">
 
-    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    <link rel="shortcut icon" type="image/x-icon"
+        href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
 
-    <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+    <link rel="mask-icon" type=""
+        href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
+        color="#111" />
 
-    </head>
+</head>
 
 <body id="page-top">
 
@@ -57,7 +62,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="daily-log.html">
                 <div class="sidebar-brand-icon ">
-                    <img class = "fas" src="img/logo-right.png" width="50px" height="50px">
+                    <img class="fas" src="img/logo-right.png" width="50px" height="50px">
                 </div>
                 <div class="sidebar-brand-text mx-3">CIYN<sup></sup></div>
             </a>
@@ -108,7 +113,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-               회원관련
+                회원관련
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -144,9 +149,10 @@
             <!-- Sidebar Message -->
             <div class="sidebar-card">
                 <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
-                <a class="btn-score btn-primary btn-sm" href="https://cyber.ewha.ac.kr/local/ubion/user/grade.php">사이버캠퍼스 성적확인</a>
-                <a class="btn-score btn-primary btn-sm" href="https://cyber.ewha.ac.kr/">   사이버캠퍼스   </a>
-                
+                <a class="btn-score btn-primary btn-sm"
+                    href="https://cyber.ewha.ac.kr/local/ubion/user/grade.php">사이버캠퍼스 성적확인</a>
+                <a class="btn-score btn-primary btn-sm" href="https://cyber.ewha.ac.kr/"> 사이버캠퍼스 </a>
+
 
             </div>
 
@@ -171,8 +177,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" id="findCourse" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" id="findCourse" class="form-control bg-light border-0 small"
+                                placeholder="강의를 찾아보세요..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button onclick='getText()' class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -213,9 +219,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span id ="user_name" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span id="user_name" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -247,344 +252,441 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="row">
-                        <h1 class="h3 mb-4 text-gray-800" style="padding-left: 1%;">  Search Results</h1>
-                       
-                        
-                      </div>
-                <div class="row" >
-                    <div class="col-lg-7">
-                        <div class='card shadow mb-4'>
-                            <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'>
-                                <h6 class='m-0 font-weight-bold text-primary' id = "aa">
-                                </h6>
-
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                        aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">지난 과목 내 계정에 등록</div>
-
-
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reviewModal2">추가하기</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class='card-body' id = "bb">
-
-                            </div>
-                            <div class='card-body' id = "description-course">
-                            </div>
-
-                            <div class="modal fade" id="reviewModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="exampleModalLabel">지난 과목 등록하기</h5>
-                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </div>
-                                    <form id = 'add_review'>
-                                        
-                                    <div class="modal-body" id = "past_grade">
-                                        <label>자신의 정보에 해당하는 해당 학기, 교수, 학점을 적어주세요. <br><b>2020년 2학기 현 학기는 학점이 적용되지 않습니다.</b><br><br>Term</label>
-                                       <select class ="custom-select" name= "past_term_rad2" id = "past_term_rad2">
-                                           <option value = "2018-2">2018-2</option>
-                                           <option value = "2019-1">2019-1</option>
-                                           <option value = "2019-2">2019-2</option>
-                                           <option value = "2020-1">2020-1</option>
-                                           <option value = "2020-2">2020-2</option>
-                                       </select>
-                                       <br><br>
-                                       <label>Prof</label>
-                                       <select class ="custom-select" name= "past_prof_rad2" id = "past_prof_rad2">
-                                       </select>
-                                       <br><br>
-				       <label>grade</label>
-                                       <select class ="custom-select" name= "past_grade_rad2" id = "past_grade_rad2">
-                                         <option value = "A+">A+</option>
-                                         <option value = "A0">A0</option>
-                                         <option value = "A-">A-</option>
-                                         <option value = "B+">B+</option>
-                                         <option value = "B0">B0</option>
-                                         <option value = "B-">B-</option>
-                                         <option value = "C+">C+</option>
-                                         <option value = "C0">C0</option>
-                                         <option value = "C-">C-</option>
-                                         <option value = "D+">D+</option>
-                                         <option value = "D0">D0</option>
-                                         <option value = "D-">D-</option>
-                                         <option value = "F">F</option>
-                                       </select>
-                                       <br>
-					    
-                                    </div>
-                                   </form>
-                                    <div class="modal-footer">
-                                       <button class="btn btn-primary" type="button" onclick = "add_grade()" data-dismiss="modal" >추가하기</button>
-                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                            <div class = "row card-body">
-                                <div class="card-3-3-3 col-md-6 mb-4">
-                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선수과목</div><hr><br>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre" ></div>
-
-                                </div>
-                                <div class="card-3-3-3 col-md-6 mb-4">
-                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">현재 과목</div><hr><br>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre" ></div>
-                                <br>
-                                </div>
-                                <div class="card-3-3-3 col-md-6 mb-4">
-                                    <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선후과목</div><hr><br>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-post" ></div>
-                                <br>
-                                </div>
-                                
-                            </div>
-                           
-                            <div class='card-body' id = "faculty">
-                                <div id = "faculty-title">
-
-                                </div>
-                                <div id = "faculty-table">
-                                    데이터베이스
-                                </div>
-                                <hr>
-                                <div id = "tell-prefessor">
-                                    <textarea  id = "send_text" class = "text-area-professor" rows="1" cols = "auto"placeholder = "교수님에게 메세지를 보내보세요!" ></textarea>
-                                    <a href="#" onclick = "set_text()" class= "fas fa-paper-plane  fa-2x text-gray-600" style="padding: 20px"></a>
-                                </div>
-
-                            </div>
-                        </div>
+                        <h1 class="h3 mb-4 text-gray-800" style="padding-left: 1%;"> Search Results</h1>
 
 
                     </div>
-                    
-                
-                    <div class="col-lg-5" >
-                        <div class='card shadow mb-4'>
-                            <div class='card-header py-3 d-flex flex-row align-items-center justify-content-between'> 
-                                <h6 class='m-0 font-weight-bold text-primary' id = "cc"></h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                        aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">강의평 확인</div>
-                                       
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reviewModal">강의평 추가하기</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#mediumModal">강의평 기준</a>
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class='card shadow mb-4'>
+                                <div
+                                    class='card-header py-3 d-flex flex-row align-items-center justify-content-between'>
+                                    <h6 class='m-0 font-weight-bold text-primary' id="aa">
+                                    </h6>
+
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">지난 과목 내 계정에 등록</div>
+
+
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#reviewModal2">추가하기</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div style="height:100%; position: relative">
-                                <div id="canvasContainer">
-                                    <canvas id="myChart"  width = "100" height = "100" style="padding:20px;"></canvas>
+
+                                <div class='card-body' id="bb">
+
+                                </div>
+                                <div class='card-body' id="description-course">
+                                </div>
+
+                                <div class="modal fade" id="reviewModal2" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">지난 과목 등록하기</h5>
+                                                <button class="close" type="button" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <form id='add_review'>
+
+                                                <div class="modal-body" id="past_grade">
+                                                    <label>자신의 정보에 해당하는 해당 학기, 교수, 학점을 적어주세요. <br><b>2020년 2학기 현 학기는 학점이
+                                                            적용되지 않습니다.</b><br><br>Term</label>
+                                                    <select class="custom-select" name="past_term_rad2"
+                                                        id="past_term_rad2">
+                                                        <option value="2018-2">2018-2</option>
+                                                        <option value="2019-1">2019-1</option>
+                                                        <option value="2019-2">2019-2</option>
+                                                        <option value="2020-1">2020-1</option>
+                                                        <option value="2020-2">2020-2</option>
+                                                    </select>
+                                                    <br><br>
+                                                    <label>Prof</label>
+                                                    <select class="custom-select" name="past_prof_rad2"
+                                                        id="past_prof_rad2">
+                                                    </select>
+                                                    <br><br>
+                                                    <label>grade</label>
+                                                    <select class="custom-select" name="past_grade_rad2"
+                                                        id="past_grade_rad2">
+                                                        <option value="A+">A+</option>
+                                                        <option value="A0">A0</option>
+                                                        <option value="A-">A-</option>
+                                                        <option value="B+">B+</option>
+                                                        <option value="B0">B0</option>
+                                                        <option value="B-">B-</option>
+                                                        <option value="C+">C+</option>
+                                                        <option value="C0">C0</option>
+                                                        <option value="C-">C-</option>
+                                                        <option value="D+">D+</option>
+                                                        <option value="D0">D0</option>
+                                                        <option value="D-">D-</option>
+                                                        <option value="F">F</option>
+                                                    </select>
+                                                    <br>
+
+                                                </div>
+                                            </form>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" type="button" onclick="add_grade()"
+                                                    data-dismiss="modal">추가하기</button>
+                                                <button class="btn btn-secondary" type="button"
+                                                    data-dismiss="modal">Cancel</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row card-body">
+                                    <div class="card-3-3-3 col-md-6 mb-4">
+                                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선수과목
+                                        </div>
+                                        <hr><br>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-3-3-3 col-md-6 mb-4">
+                                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">현재 과목
+                                        </div>
+                                        <hr><br>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre">
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class="card-3-3-3 col-md-6 mb-4">
+                                        <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">선후과목
+                                        </div>
+                                        <hr><br>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-post">
+                                        </div>
+                                        <br>
+                                    </div>
+
+                                </div>
+
+                                <div class='card-body' id="faculty">
+                                    <div id="faculty-title">
+
+                                    </div>
+                                    <div id="faculty-table">
+                                        데이터베이스
+                                    </div>
+                                    <hr>
+                                    <div id="tell-prefessor">
+                                        <textarea id="send_text" class="text-area-professor" rows="1" cols="auto"
+                                            placeholder="교수님에게 메세지를 보내보세요!"></textarea>
+                                        <a href="#" onclick="set_text()" class="fas fa-paper-plane  fa-2x text-gray-600"
+                                            style="padding: 20px"></a>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class='card-body' id = "dd">
-                               
-                            </div>
-                            <!-- input 값 받을 때
+
+
+                        </div>
+
+
+                        <div class="col-lg-5">
+                            <div class='card shadow mb-4'>
+                                <div
+                                    class='card-header py-3 d-flex flex-row align-items-center justify-content-between'>
+                                    <h6 class='m-0 font-weight-bold text-primary' id="cc"></h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">강의평 확인</div>
+
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#reviewModal">강의평 추가하기</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-toggle="modal"
+                                                data-target="#mediumModal">강의평 기준</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="height:100%; position: relative">
+                                    <div id="canvasContainer">
+                                        <canvas id="myChart" width="100" height="100" style="padding:20px;"></canvas>
+                                    </div>
+                                </div>
+                                <div class='card-body' id="dd">
+
+                                </div>
+                                <!-- input 값 받을 때
                             <input type="hidden" id ="hiddenfieldid" >
                             <input type="hidden" id ="hiddenfieldid" >
                             -->
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
-            <!-- End of Main Content -->
+                <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; CIYN 2020</span>
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; CIYN 2020</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
+
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+        <!-- Done Modal-->
+        <div class="modal fade" id="DoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Successfully Added!</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">정상적으로 처리되었습니다.이용해주셔서 감사합니다.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Okay</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Done Modal-->
-    <div class="modal fade" id="DoneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Successfully Added!</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">정상적으로 처리되었습니다.이용해주셔서 감사합니다.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Okay</button>
+        <!-- add review Modal-->
+        <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">강의평 </h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form id='add_review'>
+                        <div class="modal-body" id="llll"></div>
+                        <div class="modal-body" id="llll2">
+                            <label>Expected Grade:</label>
+
+                            <select class="custom-select" name="eg" id="eg">
+                                <option value="A+">A+</option>
+                                <option value="A0">A0</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B0">B0</option>
+                                <option value="B-">B-</option>
+                            </select>
+                            <br>
+                            <label>Term</label>
+                            <select class="custom-select" name="term" id="term">
+                                <option value="2018-1">2018-1</option>
+                                <option value="2018-2">2018-2</option>
+                                <option value="2019-1">2019-1</option>
+                                <option value="2019-2">2019-2</option>
+                                <option value="2020-1">2020-1</option>
+                            </select>
+                            <br>
+                            <label>Check Grade</label>
+                            <select class="custom-select" name="g" id="g">
+                                <option value=5>5</option>
+                                <option value=4>4</option>
+                                <option value=3>3</option>
+                                <option value=2>2</option>
+                                <option value=1>1</option>
+                            </select>
+
+                            <label>Hard</label>
+                            <select class="custom-select" name="h" id="h">
+                                <option value=5>5</option>
+                                <option value=4>4</option>
+                                <option value=3>3</option>
+                                <option value=2>2</option>
+                                <option value=1>1</option>
+                            </select>
+                            <label>Talk</label>
+                            <select class="custom-select" name="ta" id="ta">
+                                <option value=5>5</option>
+                                <option value=4>4</option>
+                                <option value=3>3</option>
+                                <option value=2>2</option>
+                                <option value=1>1</option>
+                            </select>
+                            <label>Teach</label>
+                            <select class="custom-select" name="te" id="te">
+                                <option value=5>5</option>
+                                <option value=4>4</option>
+                                <option value=3>3</option>
+                                <option value=2>2</option>
+                                <option value=1>1</option>
+                            </select>
+                            <br>
+                            <label>Script</label><br>
+                            <textarea rows="10" cols="40" id="scr" id="scr" name="scr"
+                                placeholder="강의평을 입력해주세요!"></textarea>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" onclick="check_rev()"
+                            data-dismiss="modal">추가하기</button>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
 
-     <!-- add review Modal-->
-     <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-     <div class="modal-dialog" role="document">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">강의평 </h5>
-                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">×</span>
-                 </button>
-             </div>
-             <form id = 'add_review'>
-             <div class="modal-body" id = "llll"></div>
-             <div class="modal-body" id = "llll2">
-                <label>Expected Grade:</label>
-                
-                <select class ="custom-select" name= "eg" id = "eg">
-                    <option value = "A+">A+</option>
-                    <option value = "A0">A0</option>
-                    <option value = "A-">A-</option>
-                    <option value = "B+">B+</option>
-                    <option value = "B0">B0</option>
-                    <option value = "B-">B-</option>
-                </select>
-                <br>
-                <label>Term</label>
-                <select class ="custom-select" name= "term" id = "term">
-                    <option value = "2018-1">2018-1</option>
-                    <option value = "2018-2">2018-2</option>
-                    <option value = "2019-1">2019-1</option>
-                    <option value = "2019-2">2019-2</option>
-                    <option value = "2020-1">2020-1</option>
-                </select>
-                <br>
-                <label>Check Grade</label>
-                <select class ="custom-select" name= "g" id = "g">
-                    <option value = 5>5</option>
-                    <option value = 4>4</option>
-                    <option value = 3>3</option>
-                    <option value = 2>2</option>
-                    <option value = 1>1</option>
-                </select>
-                
-                <label>Hard</label>
-                <select class ="custom-select" name= "h" id = "h">
-                    <option value = 5>5</option>
-                    <option value = 4>4</option>
-                    <option value = 3>3</option>
-                    <option value = 2>2</option>
-                    <option value = 1>1</option>
-                </select>
-                <label>Talk</label>
-                <select class ="custom-select" name= "ta" id = "ta">
-                    <option value = 5>5</option>
-                    <option value = 4>4</option>
-                    <option value = 3>3</option>
-                    <option value = 2>2</option>
-                    <option value = 1>1</option>
-                </select>
-                <label>Teach</label>
-                <select class ="custom-select" name= "te" id = "te">
-                    <option value = 5>5</option>
-                    <option value = 4>4</option>
-                    <option value = 3>3</option>
-                    <option value = 2>2</option>
-                    <option value = 1>1</option>
-                </select>
-                <br>
-                <label >Script</label><br>
-                <textarea rows="10" cols = "40" id = "scr" id ="scr" name = "scr" placeholder = "강의평을 입력해주세요!" ></textarea>
-             </div>
-            </form>
-             <div class="modal-footer">
-                <button class="btn btn-primary" type="button" onclick = "check_rev()" data-dismiss="modal" >추가하기</button>
-                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-             </div>
-            
-         </div>
-     </div>
- </div>
 
- 
-    <script>
-		// Your web app's Firebase configuration
-    var firebaseConfig = {
-    apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
-    authDomain: "ciyn-7bfbc.firebaseapp.com",
-    databaseURL: "https://ciyn-7bfbc.firebaseio.com",
-    projectId: "ciyn-7bfbc",
-    storageBucket: "ciyn-7bfbc.appspot.com",
-    messagingSenderId: "251105086649",
-    appId: "1:251105086649:web:ada3d55a17def3c0b7df68",
-    measurementId: "G-4N9321T8ST"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  const database = firebase.firestore();
-    const list_div = document.getElementById("aa");
-    const list_div2 = document.getElementById("bb");
-    const list_div2_1 = document.getElementById("description-course");
-    const list_div2_2 = document.getElementById("related-courses-pre");
-    const list_div2_3 = document.getElementById("related-courses-post");
-    const list_div2_4 = document.getElementById("faculty-title");
-    const list_div2_5 = document.getElementById("faculty-table");
-    const list_div3 = document.getElementById("cc");
-    const list_div4 = document.getElementById("dd");
-    var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
-    var flag=0; // 동일한 버튼 두번 눌렀을 경우, 창이 여러개 생기지 않게 하기위해 사용할 flag
-    var Course_id; // 텍스트로 입력받은 과목의 id를 DB에서 찾아와 담을 변수
-    var course_textprof=[];
-    //getText();
-    //초기 설정: 데이터 로딩
-    var past_term = "", past_prof= "", past_grade = "", past_credit="", past_maj = "", past_name = "", past_id = "";
-    function getText(){
+        <script>
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
+                authDomain: "ciyn-7bfbc.firebaseapp.com",
+                databaseURL: "https://ciyn-7bfbc.firebaseio.com",
+                projectId: "ciyn-7bfbc",
+                storageBucket: "ciyn-7bfbc.appspot.com",
+                messagingSenderId: "251105086649",
+                appId: "1:251105086649:web:ada3d55a17def3c0b7df68",
+                measurementId: "G-4N9321T8ST"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            const database = firebase.firestore();
+            const list_div = document.getElementById("aa");
+            const list_div2 = document.getElementById("bb");
+            const list_div2_1 = document.getElementById("description-course");
+            const list_div2_2 = document.getElementById("related-courses-pre");
+            const list_div2_3 = document.getElementById("related-courses-post");
+            const list_div2_4 = document.getElementById("faculty-title");
+            const list_div2_5 = document.getElementById("faculty-table");
+            const list_div3 = document.getElementById("cc");
+            const list_div4 = document.getElementById("dd");
+            var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
+            var flag = 0; // 동일한 버튼 두번 눌렀을 경우, 창이 여러개 생기지 않게 하기위해 사용할 flag
+            var Course_id; // 텍스트로 입력받은 과목의 id를 DB에서 찾아와 담을 변수
+            var course_textprof = [];
+            // getText();
+            //초기 설정: 데이터 로딩
+            var past_term = "", past_prof = "", past_grade = "", past_credit = "", past_maj = "", past_name = "", past_id = "";
+
+            // 검색창으로부터 얻어온 과목명
+            // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
+            findCourseValue = sessionStorage.getItem('course_name');
+            //        findCourseValue = 'JAVA프로그래밍및실습';
+            console.log(findCourseValue);
+
+            var col = database.collection('course').where('name', '==', findCourseValue);
+            const rev = database.collection('review');
+            const lll = document.getElementById('llll');
+
+            var str = "<form id = 'prof_radio'>";
+            var str2 = "";
+            var prof_radio = "";
+            col.get().then(function (querySnapshot) {
+                querySnapshot.forEach(function (doc) {
+                    var sc = doc.data().script;
+                    if (sc == "") {
+                        sc = "등록되지 않았습니다.";
+                    }
+                    basic = doc.data().name + " (" + doc.data().num + ")";
+                    past_credit = doc.data().credit;
+                    past_maj = doc.data().div;
+                    past_name = doc.data().name;
+                    Course_id = doc.data().id;
+                    course_textprof = doc.data().textprof;
+                    past_id = doc.data().id;
+                    course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, " + doc.data().div + ", " + doc.data().credit + "학점</div><br><br> <div class='card-2-8-2'><b>키워드</b></div><div class='card-2-8-8'>" + doc.data().keyword.lang + "," + doc.data().keyword.step + ", " + doc.data().keyword.step_div + "</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>" + sc + "</div><br><br>";
+
+                    realted = "<b>연관과목</b>";
+                    related_subject_pre = doc.data().prepro.pre;
+                    if (related_subject_pre == null) {
+                        related_subject_pre = "없음";
+                    }
+                    related_subject_post = doc.data().prepro.pro;
+                    if (related_subject_post == null) {
+                        related_subject_post = "없음";
+                    }
+                    prof = "<hr><b>교수진</b><br><table class='semester'>";
+
+                    // 해당과목 연도-학기별 교수 찾기위한 부분	
+                    year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
+                    var k = 0; //count용 
+                    var a = new Array(); // 연도별 prof 담을 array]
+                    for (var i in year_prof_array) {
+                        prof += "<tr><th class = 'semester-title'><b>" + i + "</b></th><th>" + doc.data().prof[i] + "</th></tr>";
+                        a[k] = doc.data().prof[i];
+                        k++;
+                    }
+                    prof += "</table>";
+                    // 해당과목 연도별 교수를 담은 리스트
+                    lists = a[0].concat(a[1]);
+                    var strr_add_rev = "";
+                    lists = lists.filter((item, index) => lists.indexOf(item) === index);
+                    lists.forEach(element => {
+                        str += "<input type = 'radio' id = ' " + element + " ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp" + element + " </label>&nbsp&nbsp";
+                        str2 += "<input type = 'radio' id = ' " + element + " ' name = 'rev'><label> &nbsp" + element + " </label>&nbsp&nbsp";
+                        strr_add_rev += "<option value = '" + element + "'> " + element + "</option>";
+                    });
+                    list_div3.innerHTML += str;
+                    llll.innerHTML += str2;
+                    list_div.innerHTML = (basic);
+                    list_div2_1.innerHTML = course_desc + "<br><br><hr>" + realted;
+                    list_div2_2.innerHTML = related_subject_pre;
+                    list_div2_3.innerHTML = related_subject_post;
+                    list_div2_4.innerHTML = prof;
+                    past_prof_rad2.innerHTML += strr_add_rev;
+
+
+                });
+            });
+
+            function getText(){
 	// 버튼을 두번이상 눌렀을 경우에 대한 예외처리
         if(flag!=0){
             return;
@@ -689,8 +791,8 @@
                         all_attend = parseFloat(dat_all['attend']/dat_all['sum']);
                         if(dat==[]){
                             prof_radio += "No data <br>"
-                        }else{
-                            for(var x in docss.data()){ 
+                        } else {
+                            for (var x in docss.data()) {
 
                                 thisid = thisid.replace(/\s+/g, '');
                                 var l = (thisid.localeCompare(x));//thisid = radio button 당사자, x는 review 데이터베이스에 나오는 당사자
@@ -707,7 +809,7 @@
                                         eval_num++;
                                         console.log(x, m,eval_attend);
                                     }
-                                } 
+                                }
                             }
                             list_div4.innerHTML += prof_radio;
                            console.log([eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num,eval_attend/eval_num]);
@@ -715,7 +817,7 @@
                             myRadarChart = new Chart(ctx, {
                                 type: 'radar',
                                 data: {
-                                    labels: ['grade', 'hard', 'talk', 'teach','attend'],
+                                    labels: ['grade', 'hard', 'talk', 'teach', 'attend'],
                                     datasets: [{
                                         data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num, eval_attend/eval_num],
                                         label: thisid,
@@ -727,9 +829,9 @@
                                         pointHoverRadius: 5,
                                         pointHoverBackgroundColor: "#fff",
                                         pointHoverBorderColor: "rgba(255,0,0, 1)",
-                                        },
-                                        {
-                                        data:[all_grade, all_hard, all_talk,all_teach, all_attend],
+                                    },
+                                    {
+                                        data: [all_grade, all_hard, all_talk, all_teach, all_attend],
                                         label: "학과 평균",
                                         lineTension: 0.1,
                                         backgroundColor: "rgba(102, 153, 204, 0.2)",
@@ -739,9 +841,9 @@
                                         pointHoverRadius: 5,
                                         pointHoverBackgroundColor: "#fff",
                                         pointHoverBorderColor: "rgba(102, 153, 204, 1)",
-                                        }]
-                                },    
-                                options:{
+                                    }]
+                                },
+                                options: {
                                     scale: {
                                         angleLines: {
                                             display: true,
@@ -759,160 +861,161 @@
                                             max: 5,
                                             display: false
                                         }
-                                        }
+                                    }
                                 }
-                            }); 
-                            
+                            });
+
                         }
-                        
-                        
+
+
                     })
                 });
-                document.cookie="";
-    }
+                document.cookie = "";
+            }
 
-    //chartjs부분 크기 계산
-    function calcHeight (numOfBars) {
-            var maxHeightOfChart = 100;
-            var minHeight = 40; //setting the min height of the bar + margin between
-            var chartHeight = minHeight * numOfBars > maxHeightOfChart ? minHeight * numOfBars : maxHeightOfChart;
-            
-            document.getElementById("canvasContainer").style.height = chartHeight.toString()+"px";
-    }
+            //chartjs부분 크기 계산
+            function calcHeight(numOfBars) {
+                var maxHeightOfChart = 100;
+                var minHeight = 40; //setting the min height of the bar + margin between
+                var chartHeight = minHeight * numOfBars > maxHeightOfChart ? minHeight * numOfBars : maxHeightOfChart;
 
-    //강의평 추가 modal 위한 value 준비
-    var eg = document.getElementById("eg");
-    var term = document.getElementById("term");
-    var g = document.getElementById("g");
-    var h = document.getElementById("h");
-    var ta = document.getElementById("ta");
-    var te = document.getElementById("te");
-    var scr = document.getElementById('scr'); 
-    var llld = "";//체크한 라디오 버튼 확인
+                document.getElementById("canvasContainer").style.height = chartHeight.toString() + "px";
+            }
 
-    function check_rev(){
-        if(scr.value==""){
-            alert("강의평을 입력해주셔야 올라갑니다. 강의평도 작성해주세요!");
-        }else{
-            check_rev();
-            add_rev();
-        }
-    }
-    
+            //강의평 추가 modal 위한 value 준비
+            var eg = document.getElementById("eg");
+            var term = document.getElementById("term");
+            var g = document.getElementById("g");
+            var h = document.getElementById("h");
+            var ta = document.getElementById("ta");
+            var te = document.getElementById("te");
+            var scr = document.getElementById('scr');
+            var llld = "";//체크한 라디오 버튼 확인
 
-    //강의평 추가 modal 처리
-    function add_rev(){
-        /*
-        var rev = document.getElementsByName('rev'); 
-        for(i = 0; i < rev.length; i++) { 
-                if(rev[i].checked){
-                    llld= rev[i].id;
-                }
-                
-        } 
-        llld = llld.replace(/\s+/g, '');
-        var hi = {[llld] :{
-            'user-session-change-pillyou': {
-                'eg': eg.value, 
-                'eval_grade': g.value, 
-                'eval_hard': h.value, 
-                'eval_talk': ta.value, 
-                'eval_teach': te.value, 
-                'good':0, 
-                'script':scr.value,
-                'term':term.value
-            }}};
-            console.log(hi);
-            
-        database.collection('review').doc(Course_id).set(hi,{merge:true}).then(function(){
-            console.log("okay");
-           alert("success!!")
-        })*/
-    }
-
-    //추천버튼 누르면 정보 올라가게
-    function recom(prof,id, good){
-        var rev = document.getElementsByName('rev'); 
-        id = id.replace(/\s+/g, '');
-        prof = prof.replace(/\s+/g, '');
-        var spann = document.getElementById('spannn'+id);
-        console.log('spannn'+id);
-        var dataaa = {
-            [prof]:{
-                [id]:{
-                    'good': good+1
+            function check_rev() {
+                if (scr.value == "") {
+                    alert("강의평을 입력해주셔야 올라갑니다. 강의평도 작성해주세요!");
+                } else {
+                    check_rev();
+                    add_rev();
                 }
             }
-        }
-        console.log(dataaa);
-        database.collection('review').doc(Course_id).set(dataaa, {merge:true}).then(function(){
-            spann.innerHTML = "<b>&nbsp추천 | </b> "+(good+1)+"<br>";
-            console.log("done");
-        })
-    }
 
-    //지난학기 과목 추가
-    function add_grade(){
-        var past_term_rad = document.getElementById('past_term_rad2').value; 
-        var past_prof_rad = document.getElementById('past_prof_rad2').value; 
-        var past_grade_rad = document.getElementById('past_grade_rad2').value; 
-        past_term_rad = past_term_rad.replace(/\s+/g, '');
-        past_prof_rad = past_prof_rad.replace(/\s+/g, '');
-        past_grade_rad = past_grade_rad.replace(/\s+/g, '');
-        past_maj = past_maj.replace(/\s+/g, '');
-        past_id = past_id.replace(/\s+/g, '');
-        if(past_term_rad!="2020-2"){
-        var insert_dat = {
-            'grade':{
-                [past_term_rad]:{
-                    [past_name]:{
-                        'credit': past_credit,
-                        'grade': past_grade_rad,
-                        'major': past_maj,
-                        'id': past_id
+
+            //강의평 추가 modal 처리
+            function add_rev() {
+                /*
+                var rev = document.getElementsByName('rev'); 
+                for(i = 0; i < rev.length; i++) { 
+                        if(rev[i].checked){
+                            llld= rev[i].id;
+                        }
+                        
+                } 
+                llld = llld.replace(/\s+/g, '');
+                var hi = {[llld] :{
+                    'user-session-change-pillyou': {
+                        'eg': eg.value, 
+                        'eval_grade': g.value, 
+                        'eval_hard': h.value, 
+                        'eval_talk': ta.value, 
+                        'eval_teach': te.value, 
+                        'good':0, 
+                        'script':scr.value,
+                        'term':term.value
+                    }}};
+                    console.log(hi);
+                    
+                database.collection('review').doc(Course_id).set(hi,{merge:true}).then(function(){
+                    console.log("okay");
+                   alert("success!!")
+                })*/
+            }
+
+            //추천버튼 누르면 정보 올라가게
+            function recom(prof, id, good) {
+                var rev = document.getElementsByName('rev');
+                id = id.replace(/\s+/g, '');
+                prof = prof.replace(/\s+/g, '');
+                var spann = document.getElementById('spannn' + id);
+                console.log('spannn' + id);
+                var dataaa = {
+                    [prof]: {
+                        [id]: {
+                            'good': good + 1
+                        }
                     }
                 }
+                console.log(dataaa);
+                database.collection('review').doc(Course_id).set(dataaa, { merge: true }).then(function () {
+                    spann.innerHTML = "<b>&nbsp추천 | </b> " + (good + 1) + "<br>";
+                    console.log("done");
+                })
             }
-        }}else{
-            var insert_dat = {
-            'term':{
-                [past_term_rad]:{
-                    [past_name]:{
-                        'fin': "",
-                        'mid': "",
-                        'prof': past_prof_rad,
-                        'id':past_id
+
+            //지난학기 과목 추가
+            function add_grade() {
+                var past_term_rad = document.getElementById('past_term_rad2').value;
+                var past_prof_rad = document.getElementById('past_prof_rad2').value;
+                var past_grade_rad = document.getElementById('past_grade_rad2').value;
+                past_term_rad = past_term_rad.replace(/\s+/g, '');
+                past_prof_rad = past_prof_rad.replace(/\s+/g, '');
+                past_grade_rad = past_grade_rad.replace(/\s+/g, '');
+                past_maj = past_maj.replace(/\s+/g, '');
+                past_id = past_id.replace(/\s+/g, '');
+                if (past_term_rad != "2020-2") {
+                    var insert_dat = {
+                        'grade': {
+                            [past_term_rad]: {
+                                [past_name]: {
+                                    'credit': past_credit,
+                                    'grade': past_grade_rad,
+                                    'major': past_maj,
+                                    'id': past_id
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    var insert_dat = {
+                        'term': {
+                            [past_term_rad]: {
+                                [past_name]: {
+                                    'fin': "",
+                                    'mid': "",
+                                    'prof': past_prof_rad,
+                                    'id': past_id
+                                }
+                            }
+                        }
                     }
                 }
+                database.collection('user').doc('user2').set(insert_dat, { merge: true }).then(function () {
+                    alert("done");
+                })
             }
-        }
-        }
-        database.collection('user').doc('user2').set(insert_dat, {merge:true}).then(function(){
-            alert("done");
-        })
-    }
-    function set_text(){
-        if(document.getElementById("send_text").value ==""){
-            alert("하고 싶은 말을 적어주세요!")
-        }
-        if(document.getElementById("send_text").value !=""){
-            send_msg(document.getElementById('send_text').value);
-            document.getElementById("send_text").value == "";
-        }
-    }
+            function set_text() {
+                if (document.getElementById("send_text").value == "") {
+                    alert("하고 싶은 말을 적어주세요!")
+                }
+                if (document.getElementById("send_text").value != "") {
+                    send_msg(document.getElementById('send_text').value);
+                    document.getElementById("send_text").value == "";
+                }
+            }
 
-    function send_msg(script){
-        console.log(course_textprof);
-        course_textprof.push(script)
-        console.log(course_textprof);
-        
-        var insert_dat = {
-            'textprof':course_textprof
-        }
-        database.collection('course').doc(Course_id).set(insert_dat, {merge:true}).then(function(){
-        })
-    }
-	</script>
+            function send_msg(script) {
+                console.log(course_textprof);
+                course_textprof.push(script)
+                console.log(course_textprof);
+
+                var insert_dat = {
+                    'textprof': course_textprof
+                }
+                database.collection('course').doc(Course_id).set(insert_dat, { merge: true }).then(function () {
+                })
+            }
+        </script>
 
 </body>
 
