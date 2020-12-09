@@ -42,102 +42,12 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="daily-log.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="prof-search-result.html">
                 <div class="sidebar-brand-icon ">
                     <img class="fas" src="img/logo-right.png" width="50px" height="50px">
                 </div>
                 <div class="sidebar-brand-text mx-3">CIYN<sup></sup></div>
             </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="daily-log.html">
-                    <i class="fas fa-fw fa-paperclip"></i>
-                    <span>전체 보고서</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                메뉴
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-award"></i>
-                    <span>강의 소개 및 평가</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header"></h6>
-                        <a class="collapse-item" href="search-result.html">강의 소개만 보기</a>
-                        <a class="collapse-item" href="subject-description.html">강의 평가 보기</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="insert-grade.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>학점예측 및 입력</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                회원관련
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>회원정보메뉴</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">회원정보관리</h6>
-                        <a class="collapse-item" href="login.html">로그인</a>
-                        <a class="collapse-item" href="register.html">회원가입</a>
-                        <a class="collapse-item" href="forgot-password.html">회원정보수정</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">강의 관련</h6>
-                        <a class="collapse-item" href="utilities-border.html">강의 소개</a>
-                        <a class="collapse-item" href="blank.html">강의 평가</a>
-                    </div>
-                </div>
-            </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="">
-
-                <a class="btn-score btn-primary btn-sm" href="https://cyber.ewha.ac.kr/local/ubion/user/grade.php">사이버캠퍼스 성적확인</a>
-                <a class="btn-score btn-primary btn-sm" href="https://cyber.ewha.ac.kr/">   사이버캠퍼스   </a>
-                
-
-
-            </div>
 
         </ul>
         <!-- End of Sidebar -->
@@ -341,15 +251,13 @@
         const list_div = document.getElementById("list_div");
         database.collection("course").get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
-                list_div.innerHTML += "<a href='subject-description.html' onclick = \"subbb("+doc.data().name+");\" > <div class='card shadow mb-4' onclick = \"subbb("+doc.data().name+");\" id = '" + doc.data().name + "'><form id = 'acc' name = 'acc'><input type = 'hidden' id =" + doc.data().name + "name=  " + doc.data().name + " ></form><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>" + doc.data().name + " (" + doc.data().num + ")" + "</h6></div><div class='card-body'><div class ='card-2-8-2'> <b>분류</b> </div> <div class='card-2-8-8'> 컴퓨터공학과, " + doc.data().div +", "+doc.data().credit+"학점</div><br><br><div class='card-2-8-2'><b>키워드</b>  </div><div class='card-2-8-8'> "+doc.data().keyword.lang+", "+doc.data().keyword.step+", "+doc.data().keyword.step_div +"</div><br><br><div class='card-2-8-2'><b>설명</b>  </div><div class='card-2-8-8'> " + doc.data().script+ "</div></div></div></a></form>";
+                list_div.innerHTML += "<a href='prof-subject-description.html' onclick = \"subbb("+doc.data().name+");\" > <div class='card shadow mb-4' onclick = \"subbb();\" id = '" + doc.data().name + "'><form id = 'acc' name = 'acc'><input type = 'hidden' id =" + doc.data().name + "name=  " + doc.data().name + " ></form><div class='card-header py-3'> <h6 class='m-0 font-weight-bold text-primary'>" + doc.data().name + " (" + doc.data().num + ")" + "</h6></div><div class='card-body'><div class ='card-2-8-2'> <b>분류</b> </div> <div class='card-2-8-8'> 컴퓨터공학과, " + doc.data().div +", "+doc.data().credit+"학점</div><br><br><div class='card-2-8-2'><b>키워드</b>  </div><div class='card-2-8-8'> "+doc.data().keyword.lang+", "+doc.data().keyword.step+", "+doc.data().keyword.step_div +"</div><br><br><div class='card-2-8-2'><b>설명</b>  </div><div class='card-2-8-8'> " + doc.data().script+ "</div></div></div></a></form>";
         })})
-
+        
+        // CourseId 변수 전달
         function subbb(course_name) {
-            console.log("됨?");
             console.log(course_name.id);
             sessionStorage.setItem('course_name', course_name.id);
-            //document.id.action = "subject-description.html";
-            //document.acc.submit();
         }
 
         // 키워드서치 부분!!!

@@ -5,7 +5,7 @@ var user_image;
 var user_email;
 var is_ewhain;
 
-
+// 로그인
 function onSignIn(googleUser) {
     profile = googleUser.getBasicProfile();
     id_token = googleUser.getAuthResponse().id_token;
@@ -19,8 +19,6 @@ function onSignIn(googleUser) {
     var findString = "ewhain.net";
     user_email = String(user_email);
 
-
-
     if (user_email.indexOf(findString) != -1) {
         is_ewhain = "이화인 계정입니다.";
     }
@@ -30,22 +28,14 @@ function onSignIn(googleUser) {
 
     sessionStorage.setItem('user_email', user_email);
 
-
     console.log('ID: ' + user_id); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + user_name);
     console.log('Image URL: ' + user_image);
     console.log('Email: ' + user_email); // This is null if the 'email' scope is not present.
 
-    //document.getElementById("user_id").innerHTML = user_id;
     document.getElementById("user_name").innerHTML = user_name;
     document.getElementById("user_email").innerHTML = user_email;
-    //document.getElementById("user_email") = user_email;
     document.getElementById("is_ewhain").innerHTML = is_ewhain;
-    //document.getElementById("user_image").innerHTML = String(user_image);
-
-    //document.write('id:' + id + '<br>');
-
-    ///////////////////////////////
 
     $.ajax({
         type: 'POST',
@@ -69,30 +59,12 @@ function onSignIn(googleUser) {
         }
 
     })
-
-
-    ///////////////////////////////
-
 }
 
-function get_name() {
-    //onSignIn(googleUser);
-    console.log('ID: ' + user_id); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + user_name);
-    console.log('Image URL: ' + user_image);
-    console.log('Email: ' + user_email); // This is null if the 'email' scope is not present.
-
-    document.getElementById("user_name").innerHTML = user_name;
-    document.getElementById("user_email").innerHTML = user_email;
-    document.getElementById("is_ewhain").innerHTML = is_ewhain;
-}
-
+// 로그아웃
 function signOut() {
-
     var auth2 = gapi.auth2.getAuthInstance();
-
     auth2.signOut().then(function () {
-
         $.ajax({
             type: 'POST',
             url: '/googledisconnect',
@@ -114,3 +86,17 @@ function signOut() {
         })
     });
 }
+
+// + 정보 가져오기
+function get_name() {
+    //onSignIn(googleUser);
+    console.log('ID: ' + user_id); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + user_name);
+    console.log('Image URL: ' + user_image);
+    console.log('Email: ' + user_email); // This is null if the 'email' scope is not present.
+
+    document.getElementById("user_name").innerHTML = user_name;
+    document.getElementById("user_email").innerHTML = user_email;
+    document.getElementById("is_ewhain").innerHTML = is_ewhain;
+}
+
