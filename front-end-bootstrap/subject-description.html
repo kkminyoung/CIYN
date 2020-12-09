@@ -767,30 +767,29 @@
     }
 
 
-            var eval_grade = 0, eval_hard = 0, eval_talk = 0, eval_teach = 0, eval_num = 0;
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myRadarChart;
-            var all_talk = 0, all_teach = 0, all_hard = 0, all_grade = 0, all_attend = 0;
-            //오른쪽 탭 라디오 버튼 누르면에 해당하는 데이터(chartjs, 강의평, 추가버튼)
-            function profradio(thisid) {
-                eval_grade = 0, eval_hard = 0, eval_talk = 0, eval_teach = 0, eval_num = 0;
-                console.log(thisid);
-                list_div4.innerHTML = "";
-                prof_radio = "";
-
-                console.log(prof_radio); const revs = database.collection('review').where('name', '==', findCourseValue);
-                console.log(findCourseValue);
-                revs.get().then(snapshot => {
-                    snapshot.docs.forEach(docss => {
+    var eval_grade =0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0, eval_attend=0;
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myRadarChart;
+    var all_talk=0, all_teach=0, all_hard =0, all_grade = 0, all_attend=0;
+    //오른쪽 탭 라디오 버튼 누르면에 해당하는 데이터(chartjs, 강의평, 추가버튼)
+    function profradio(thisid){
+        eval_grade = 0,eval_hard = 0,eval_talk = 0,eval_teach = 0, eval_num=0, eval_attend=0;
+        console.log(thisid);
+        list_div4.innerHTML="";
+        prof_radio="";
+        
+        console.log(prof_radio);const revs = database.collection('review').where('name', '==', findCourseValue);
+        console.log(findCourseValue);
+        revs.get().then(snapshot =>{
+                    snapshot.docs.forEach(docss =>{
                         var dat = docss.data()[thisid];
                         var dat_all = docss.data()['all'];
-                        all_talk = parseFloat(dat_all['talk'] / dat_all['sum']);
-                        all_teach = parseFloat(dat_all['teach'] / dat_all['sum']);
-                        all_hard = parseFloat(dat_all['hard'] / dat_all['sum']);
-                        all_grade = parseFloat(dat_all['grade'] / dat_all['sum']);
-                        //all_attend = parseFloat(dat_all['attend']/dat_all['sum']);
-                        console.log(all_talk, all_teach, all_hard, all_grade);
-                        if (dat == []) {
+                        all_talk = parseFloat(dat_all['talk']/dat_all['sum']);
+                        all_teach = parseFloat(dat_all['teach']/dat_all['sum']);
+                        all_hard = parseFloat(dat_all['hard']/dat_all['sum']);
+                        all_grade = parseFloat(dat_all['grade']/dat_all['sum']);
+                        all_attend = parseFloat(dat_all['attend']/dat_all['sum']);
+                        if(dat==[]){
                             prof_radio += "No data <br>"
                         } else {
                             for (var x in docss.data()) {
@@ -798,28 +797,29 @@
                                 thisid = thisid.replace(/\s+/g, '');
                                 var l = (thisid.localeCompare(x));//thisid = radio button 당사자, x는 review 데이터베이스에 나오는 당사자
 
-                                if (l == 0 && x != "name") {
-                                    for (var m in docss.data()[x]) {
-
-                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>" + docss.data()[x][m]['term'] + "학기  " + docss.data()[x][m]['eg'] + " 예상 수강생</b><br> " + docss.data()[x][m]['script'] + "<br><br><a class ='btn btn-success'  onclick='recom(\"" + x + "\",\"" + m + "\"," + docss.data()[x][m]['good'] + ")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn" + m + "'><b>&nbsp추천 | </b> " + docss.data()[x][m]['good'] + "</a><br></span></a></div></div>";
-                                        eval_grade += parseInt(docss.data()[x][m]['eval_grade']);
-                                        eval_hard += parseInt(docss.data()[x][m]['eval_hard']);
-                                        eval_talk += parseInt(docss.data()[x][m]['eval_talk']);
-                                        eval_teach += parseInt(docss.data()[x][m]['eval_teach']);
-                                        //eval_attend+=parseInt(docss.data()[x][m]['eval_attend']);
+                                if(l==0&& x!="name"){
+                                    for (var m in docss.data()[x]){
+                                        
+                                        prof_radio += "<div class='card shadow mb-4'><div class='card-body'><b>"+docss.data()[x][m]['term']+"학기  "+docss.data()[x][m]['eg'] +" 예상 수강생</b><br> "+ docss.data()[x][m]['script']+"<br><br><a class ='btn btn-success'  onclick='recom(\""+x+"\",\""+m+"\","+ docss.data()[x][m]['good']+")'> <span class='icon text-white-50'> <i class='fas fa-fw fa-thumbs-up'></i></span><span class ='text' id = 'spannn"+m+"'><b>&nbsp추천 | </b> "+docss.data()[x][m]['good']+"</a><br></span></a></div></div>";  
+                                        eval_grade+=parseInt(docss.data()[x][m]['eval_grade']);
+                                        eval_hard+=parseInt(docss.data()[x][m]['eval_hard']);
+                                        eval_talk+=parseInt(docss.data()[x][m]['eval_talk']);
+                                        eval_teach+=parseInt(docss.data()[x][m]['eval_teach']);
+                                        eval_attend+=parseInt(docss.data()[x][m]['eval_attend']);
                                         eval_num++;
+                                        console.log(x, m,eval_attend);
                                     }
                                 }
                             }
                             list_div4.innerHTML += prof_radio;
-                            console.log([eval_grade / eval_num, eval_hard / eval_num, eval_talk / eval_num, eval_teach / eval_num]);
-
+                           console.log([eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num,eval_attend/eval_num]);
+                            
                             myRadarChart = new Chart(ctx, {
                                 type: 'radar',
                                 data: {
                                     labels: ['grade', 'hard', 'talk', 'teach', 'attend'],
                                     datasets: [{
-                                        data: [eval_grade / eval_num, eval_hard / eval_num, eval_talk / eval_num, eval_teach / eval_num],
+                                        data:[eval_grade/eval_num, eval_hard/eval_num, eval_talk/eval_num,eval_teach/eval_num, eval_attend/eval_num],
                                         label: thisid,
                                         lineTension: 0.1,
                                         backgroundColor: "rgba(255,0,0, 0.2)",
