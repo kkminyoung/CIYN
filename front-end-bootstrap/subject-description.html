@@ -49,6 +49,8 @@
         href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
         color="#111" />
 
+    <link href="css/notepad.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -361,7 +363,7 @@
                                         <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">현재 과목
                                         </div>
                                         <hr><br>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-pre">
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="related-courses-cur">
                                         </div>
                                         <br>
                                     </div>
@@ -656,6 +658,7 @@
             const list_div2 = document.getElementById("bb");
             const list_div2_1 = document.getElementById("description-course");
             const list_div2_2 = document.getElementById("related-courses-pre");
+            const list_div2_2_1 = document.getElementById("related-courses-cur");
             const list_div2_3 = document.getElementById("related-courses-post");
             const list_div2_4 = document.getElementById("faculty-title");
             const list_div2_5 = document.getElementById("faculty-table");
@@ -702,6 +705,9 @@
                     if (related_subject_pre == null) {
                         related_subject_pre = "없음";
                     }
+
+                    related_subject_cur = doc.data().name;
+
                     related_subject_post = doc.data().prepro.pro;
                     if (related_subject_post == null) {
                         related_subject_post = "없음";
@@ -730,8 +736,9 @@
                     list_div3.innerHTML += str;
                     llll.innerHTML += str2;
                     list_div.innerHTML = (basic);
-                    list_div2_1.innerHTML = course_desc + "<br><br><hr>" + realted;
+                    list_div2_1.innerHTML = course_desc + "<br><br><br><br><hr>" + realted;
                     list_div2_2.innerHTML = related_subject_pre;
+                    list_div2_2_1.innerHTML = related_subject_cur+"whaththth";
                     list_div2_3.innerHTML = related_subject_post;
                     list_div2_4.innerHTML = prof;
                     past_prof_rad2.innerHTML += strr_add_rev;
