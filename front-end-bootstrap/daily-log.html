@@ -414,6 +414,11 @@
                                         </table>
                                     </div>
                                 </div>
+                                <a href ='#' data-toggle="modal"
+                                    data-target="#deleteModal"><button class='btn-score btn-secondary' type='button' ><span class='text'>과목 삭제</span></button></a>
+                                <a href ='#' data-toggle="modal"
+                                    data-target="#rewriteModal"><button class='btn-score btn-secondary' type='button' ><span class='text'>학점 수정</span></button></a>
+                                
                             </div>
 
                             <!-- Project Card Example -->
@@ -507,6 +512,75 @@
         </div>
     </div>
 
+
+    <!-- Rewrite Modal-->
+    <div class="modal fade" id="rewriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">과목 수정하기</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    원하는 과목을 골라주세요
+                    <div class="modal-content">
+                        <select class="custom-select" name="reviewModal-subject" id="reviewModal-subject"></select>
+                    </div><br>
+                    학점을 골라주세요<div class="modal-content">
+              <select class="custom-select" name="reviewModal-grade" id="reviewModal-grade">
+                <option value="A+">A+</option>
+                <option value="A0">A0</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B0">B0</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C0">C0</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D0">D0</option>
+                <option value="D-">D-</option>
+                <option value="F">F</option>
+              </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" onclick = "change_grade()">수정하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Delete Modal-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">과목 삭제하기</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    삭제를 원하는 과목을 눌러주세요
+                        <div class="modal-content">
+                            <select class="custom-select" name="deleteModal-subject" id="deleteModal-subject"></select>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary"  onclick= "delete_grade()">삭제하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="text-center" style ="display: none;">
         <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
     </div>
@@ -546,11 +620,7 @@
       const database = firebase.firestore();
 
       var user_email = sessionStorage.getItem('user_email');
-      
-      // 실제 USER
-      //const usersCollection = database.collection('user').where('email', '==', user_email);
-      
-      // 데모용
+//      const usersCollection = database.collection('user').where('email', '==', user_email);
       const usersCollection = database.collection('user').where('email', '==','kmy8759@ewhain.net');
 
       const list_subject = document.getElementById("dataTable");
@@ -558,6 +628,9 @@
       const maj_up = document.getElementById("maj_grade");
       const done_up = document.getElementById("done_grade");
       const spare_up = document.getElementById("spare_grade");
+      const rev_modal_sub = document.getElementById("reviewModal-subject"); var sub = "";
+
+      const del_modal_sub = document.getElementById("deleteModal-subject"); 
       var maj=0, maj_cre = 0, sum=0, sum_cre =0;
       var distri = {'A+':0,'A0':0,'A-':0,'B+':0,'B0':0,'B-':0,'C+':0,'C0':0, 'C-':0, 'D+':0, 'D0':0, 'D-':0, 'F':0}; //distri: 학점 별 개수 담을 dictionary
       var distri_pie=[]; //pie 함수에 들어갈 data 정보 저장
@@ -567,16 +640,18 @@
       var sem_maj_distri = {'2018-2':{'sums':0, 'sum_cre':0},'2019-1':{'sums':0, 'sum_cre':0},'2019-2':{'sums':0, 'sum_cre':0},'2020-1':{'sums':0, 'sum_cre':0}};
       var sem_maj_pie = []; 
 
+    var grade_delete_data;
       //daily log 내용 세팅
       usersCollection.get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
             str = "";
             var dat = doc.data()['grade'];
+            grade_delete_data=doc.data()['grade'];
             for (var x in dat){
 
                //들어간 과목 마다
                for(var l in dat[x]){
-                    console.log(dat[x][l]);
+                    sub += "<option value = \""+x+"\">"+l+"</option>";
                     str+= "<tr><td>"+x+"</td><td>"+l+"</td><td>"+dat[x][l]['credit']+"</td><td>"+dat[x][l]['grade']+"</td><td>"+dat[x][l]['major']+"</td></tr>";
                     
                     var m = dat[x][l]['major'];
@@ -611,7 +686,8 @@
                 sum_up.innerHTML=(parseFloat(sum/sum_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(sum/sum_cre).toFixed(2)+"/4.3"+" "+(parseFloat(sum/sum_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
             }
             done_up.innerHTML = parseFloat(sum_cre/139).toFixed(2)*100+" %";    //몇 학점 들었는지 확률로 알려줌.
-
+            rev_modal_sub.innerHTML = sub;
+            del_modal_sub.innerHTML = sub;
             /*Progress bar 설정
             document.getElementById("progress-credit").setAttribute = ("aria-valuenow", parseInt(sum_cre/139*100));
             set('#progress-credit',  parseInt(sum_cre/139*100));*/
@@ -729,6 +805,48 @@
             
         })
       });
+
+      function delete_grade(){
+        console.log("real data");
+        console.log(grade_delete_data);
+        var subjj = document.getElementById('deleteModal-subject');
+        var subbb  = subjj.options[subjj.selectedIndex].text;   //subbb: 과목 이름
+        subjj = subjj.options[subjj.selectedIndex].value;       //subjj: 해당 년도
+         delete grade_delete_data[subjj][subbb];
+        var channge = {//firebase에 들어갈 데이터(삭제 과목을 제한 내용)
+            'grade': grade_delete_data
+        }
+        console.log(channge);
+           
+            database.collection('user').doc('user1').update(channge).then(function () {
+            alert('처리되었습니다!');
+          });
+       
+      }
+
+
+      function change_grade(){
+        var subjj = document.getElementById('reviewModal-subject');
+        var gradde = document.getElementById('reviewModal-grade');
+        var subbb  = subjj.options[subjj.selectedIndex].text;
+        subjj = subjj.options[subjj.selectedIndex].value;
+        gradde = gradde.options[gradde.selectedIndex].value;
+        var change = {
+            'grade':{
+                [subjj]:{
+                    [subbb]:{
+                        'grade': gradde}
+                }
+                
+            }
+        }
+        console.log(change);
+        
+        database.collection('user').doc('user1').set(change, { merge: true }).then(function () {    //userid받아와서 이름 넣기
+                    });
+                    alert('처리되었습니다!');
+                    
+      }
 
     //학점에 따라 점수 변환 함수
       function gpa_change(l){   
