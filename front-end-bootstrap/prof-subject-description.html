@@ -66,6 +66,7 @@
                 </div>
                 <div class="sidebar-brand-text mx-3">CIYN<sup></sup></div>
             </a>
+            
         </ul>
         <!-- End of Sidebar -->
 
@@ -167,7 +168,7 @@
 
                     </div>
                     <div class="row">
-                        <div class="col-lg-7">
+                        <div class="col-lg-5">
                             <div class='card shadow mb-4'>
                                 <div
                                     class='card-header py-3 d-flex flex-row align-items-center justify-content-between'>
@@ -202,7 +203,7 @@
                         </div>
 
 
-                        <div class="col-lg-5">
+                        <div class="col-lg-7">
                             <div class='card shadow mb-4'>
                                 <div
                                     class='card-header py-3 d-flex flex-row align-items-center justify-content-between'>
@@ -401,6 +402,7 @@
             // 검색창으로부터 얻어온 과목명
             // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
             findCourseValue = sessionStorage.getItem('course_name');
+            findCourseValue = 'JAVA프로그래밍및실습';
 
             console.log(findCourseValue);
 
@@ -421,16 +423,16 @@
                     past_maj = doc.data().div;
                     past_name = doc.data().name;
                     Course_id = doc.data().id;
-                    course_textprof = doc.data().textprof;
+                    course_textprof = doc.data().textprof; 
                     past_id = doc.data().id;
                     course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, " + doc.data().div + ", " + doc.data().credit + "학점</div><br><br> <div class='card-2-8-2'><b>키워드</b></div><div class='card-2-8-8'>" + doc.data().keyword.lang + "," + doc.data().keyword.step + ", " + doc.data().keyword.step_div + "</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>" + sc + "</div><br><br>";
                     prof = "<hr><b>교수진</b><br><table class='semester'>";
                     console.log(course_textprof);
 
                     for (var i in course_textprof) {
-                        text_to_prof += "<div class ='card-2-8-8'>" + course_textprof[i] + "</div><br><br>";
+                        text_to_prof += "<div class ='card-2-8-10'>" + course_textprof[i] + "</div><br><br>";
                     }
-                    list_div2_1.innerHTML = course_desc + "<br><br><hr>";
+                    list_div2_1.innerHTML = course_desc + "<br><br>";
                     llll.innerHTML += str2;
                     list_div.innerHTML = (basic);
                     list_div2_4.innerHTML = prof;
