@@ -11525,7 +11525,7 @@
 			 * * `\_PAGES\_` - Total number of pages of data in the table
 			 *
 			 *  @type string
-			 *  @default Showing _START_ to _END_ of _TOTAL_ entries
+			 *  @default  _START_ 중 _END_ 총 _TOTAL_ 
 			 *
 			 *  @dtopt Language
 			 *  @name DataTable.defaults.language.info
@@ -11539,7 +11539,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": " _START_ 번쨰 _END_ 총 _TOTAL_ ",
 	
 	
 			/**
@@ -11555,12 +11555,12 @@
 			 *    $(document).ready( function() {
 			 *      $('#example').dataTable( {
 			 *        "language": {
-			 *          "infoEmpty": "No entries to show"
+			 *          "infoEmpty": "결과없음""
 			 *        }
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "결과검색 없음 0 to 0 of 0 entries",
 	
 	
 			/**
@@ -11700,7 +11700,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "Show _MENU_ entries",
+			"sLengthMenu": "_MENU_ 개씩 보기",
 	
 	
 			/**
