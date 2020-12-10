@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/x-icon" href="img/logo-right.png" />
+    <link rel="icon" type="image/x-icon" href="img/logo-right-purple.png" />
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -544,23 +544,37 @@
       var str="";
       firebase.initializeApp(firebaseConfig);
       const database = firebase.firestore();
+
+      var user_email = sessionStorage.getItem('user_email');
+      
+      // 실제 USER
+      //const usersCollection = database.collection('user').where('email', '==', user_email);
+      
+      // 데모용
       const usersCollection = database.collection('user').where('email', '==','kmy8759@ewhain.net');
+
       const list_subject = document.getElementById("dataTable");
       const sum_up = document.getElementById("sum_grade");
       const maj_up = document.getElementById("maj_grade");
       const done_up = document.getElementById("done_grade");
       const spare_up = document.getElementById("spare_grade");
       var maj=0, maj_cre = 0, sum=0, sum_cre =0;
-      var distri = {'A+':0,'A0':0,'A-':0,'B+':0,'B0':0,'B-':0,'C+':0,'C0':0};
-      var distri_pie=[];
+      var distri = {'A+':0,'A0':0,'A-':0,'B+':0,'B0':0,'B-':0,'C+':0,'C0':0, 'C-':0, 'D+':0, 'D0':0, 'D-':0, 'F':0}; //distri: 학점 별 개수 담을 dictionary
+      var distri_pie=[]; //pie 함수에 들어갈 data 정보 저장
+      //학기마다 학점분포를 보여줄 sem_distri dictionary
       var sem_distri = {'2018-2':{'sums':0, 'sum_cre':0},'2019-1':{'sums':0, 'sum_cre':0},'2019-2':{'sums':0, 'sum_cre':0},'2020-1':{'sums':0, 'sum_cre':0}};
-      var sem_pie = [];
+      var sem_pie = []; //학기마다 최종 학점 결괏값 보여주기
+      var sem_maj_distri = {'2018-2':{'sums':0, 'sum_cre':0},'2019-1':{'sums':0, 'sum_cre':0},'2019-2':{'sums':0, 'sum_cre':0},'2020-1':{'sums':0, 'sum_cre':0}};
+      var sem_maj_pie = []; 
+
+      //daily log 내용 세팅
       usersCollection.get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
             str = "";
             var dat = doc.data()['grade'];
             for (var x in dat){
-               
+
+               //들어간 과목 마다
                for(var l in dat[x]){
                     console.log(dat[x][l]);
                     str+= "<tr><td>"+x+"</td><td>"+l+"</td><td>"+dat[x][l]['credit']+"</td><td>"+dat[x][l]['grade']+"</td><td>"+dat[x][l]['major']+"</td></tr>";
@@ -569,20 +583,22 @@
                     var k = gpa_change(dat[x][l]['grade']);
                     distri[dat[x][l]['grade']]++;
                     
-                    console.log(k);
                     var n = dat[x][l]['credit'];
-                    if(m.indexOf('전공')>=0){
+                    if(m.indexOf('전공필수')==0 || m.indexOf('전공선택')==0){   //전공과목에 해당하면,
                         maj += parseFloat(k)*parseFloat(n);
                         maj_cre += parseFloat(n);
+                        sem_maj_distri[x]['sums'] += parseFloat(k)*parseFloat(n);
+                        sem_maj_distri[x]['sum_cre'] += parseFloat(n);
                     }
-                    sum += parseFloat(k)*parseFloat(n);
-                    sum_cre += parseFloat(n);
-                    console.log(x,sem_distri[x]);
+                    sum += parseFloat(k)*parseFloat(n); //학점 계산하기 (위 분자)
+                    sum_cre += parseFloat(n);           //학점 계산하기 (아래 분모)
                     sem_distri[x]['sums'] += parseFloat(k)*parseFloat(n);
                     sem_distri[x]['sum_cre'] += parseFloat(n);
                     
                }
             }
+            
+            //학기마다 학점 나눌때 분모 0인거 주의
             if(sum_cre ==0){
                 maj_up.innerHTML="0/4.3";
                 sum_up.innerHTML = "0/4.3"
@@ -594,11 +610,13 @@
                 maj_up.innerHTML=(parseFloat(maj/maj_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(maj/maj_cre).toFixed(2)+"/4.3"+" "+(parseFloat(maj/maj_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
                 sum_up.innerHTML=(parseFloat(sum/sum_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(sum/sum_cre).toFixed(2)+"/4.3"+" "+(parseFloat(sum/sum_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
             }
-            done_up.innerHTML = parseFloat(sum_cre/139).toFixed(2)*100+" %";
-            /*
+            done_up.innerHTML = parseFloat(sum_cre/139).toFixed(2)*100+" %";    //몇 학점 들었는지 확률로 알려줌.
+
+            /*Progress bar 설정
             document.getElementById("progress-credit").setAttribute = ("aria-valuenow", parseInt(sum_cre/139*100));
             set('#progress-credit',  parseInt(sum_cre/139*100));*/
-            spare_up.innerHTML = 139-sum_cre;
+
+            spare_up.innerHTML = 139-sum_cre;   //남은 학점 계산
             list_subject.innerHTML += str;
             for(var i in distri){
                 distri_pie.push(distri[i]);
@@ -608,80 +626,112 @@
                     sem_pie.push(0);
                 }else{
                     sem_pie.push(sem_distri[ll]['sums']/sem_distri[ll]['sum_cre']);
+                }
+                if(sem_maj_distri[ll]['sum_cre']==0){
+                    sem_maj_pie.push(0);
+                }else{
+                    sem_maj_pie.push(sem_maj_distri[ll]['sums']/sem_maj_distri[ll]['sum_cre']);
+                }
             }
-            }
-            var ctx = document.getElementById("myGradeChart");
-      var ctx2 = document.getElementById("myAreaChart");
-var myGradeChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ["A+", "A0", "A-","B+", "B0", "B-", "C+"],
-    datasets: [{
-      data: distri_pie,
-      backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
-      hoverBackgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
-    },
-    legend: {
-      display: false
-    },
-    cutoutPercentage: 80,
-  },
-});
-var myAreaChart = new Chart(ctx2, {
-  type: 'line',
-  data: {
-    labels: ["2018-2","2019-1","2019-2", "2020-1"],
-    datasets: [{
-      data: sem_pie,
-      ineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
-    },
-    legend: {
-      display: false
-    },
-    cutoutPercentage: 80,
-  },
-});
+        
+        //위에서 정한 학점 정보 바탕으로 값 반영하기
+        var ctx = document.getElementById("myGradeChart");
+        var ctx2 = document.getElementById("myAreaChart");
+        var myGradeChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ["A+", "A0", "A-","B+", "B0", "B-", "C+", "C0","C-","D+","D0","D-","F"],
+            datasets: [{
+            data: distri_pie,
+            backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
+            hoverBackgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
+            hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            caretPadding: 10,
+            },
+            legend: {
+            display: false
+            },
+            cutoutPercentage: 80,
+        },
+        });
+        var myAreaChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ["2018-2","2019-1","2019-2", "2020-1"],
+            datasets: [{
+                label: '전체학점',
+                data: sem_pie,
+                ineTension: 0.3,
+                backgroundColor: "rgba(78, 115, 223, 0.05)",
+                borderColor: "rgba(78, 115, 223, 1)",
+                pointRadius: 3,
+                pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointBorderColor: "rgba(78, 115, 223, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 2
+                },
+                {
+                label: '전공학점',
+                data: sem_maj_pie,
+                ineTension: 0.3,
+                backgroundColor: "rgba(80,0,80, 0.05)",
+                borderColor: "rgba(80,0,80, 1)",
+                pointRadius: 3,
+                pointBackgroundColor: "rgba(80,0,80, 1)",
+                pointBorderColor: "rgba(80,0,80, 1)",
+                pointHoverRadius: 3,
+                pointHoverBackgroundColor: "rgba(80,0,80, 1)",
+                pointHoverBorderColor: "rgba(80,0,80, 1)",
+                pointHitRadius: 10,
+                pointBorderWidth: 2
+                }],
+        },
+        options: {
+            maintainAspectRatio: false,
+            tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            caretPadding: 10,
+            },
+            scales:{
+                                yAxes:[{
+                                    ticks:{
+                                        beginAtZero:true, min:0, max: 4.3
+                                    },
+                                    scaleLabel: {
+                                        display:true, labelString:'정규분포 값'
+                                    }
+                                }]
+                            },
+            cutoutPercentage: 80,
+        },
+        });
             
         })
       });
-      function gpa_change(l){
+
+    //학점에 따라 점수 변환 함수
+      function gpa_change(l){   
         switch(l){
             case "A+": return 4.3;
             case "A0": return 4.0;
@@ -690,77 +740,16 @@ var myAreaChart = new Chart(ctx2, {
             case "B0": return 3.0;
             case "B-": return 2.7;
             case "C+": return 2.3;
+            case "C0": return 3.0;
+            case "C-": return 2.7;
+            case "D+": return 2.3;
+            case "D0": return 2.0;
+            case "D-": return 1.7;
+            case "F": return 0;
         }
 
       }
-      var ctx = document.getElementById("myGradeChart");
-      var ctx2 = document.getElementById("myAreaChart");
-var myGradeChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ["A+", "A0", "A-","B+", "B0", "B-", "C+"],
-    datasets: [{
-      data: distri_pie,
-      backgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
-      hoverBackgroundColor: ['#6F1E51', '#833471', '#B53471', '#FFC312','#F79F1F','#FFC312','#006266','#009432','#A3CB38' ],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
-    },
-    legend: {
-      display: false
-    },
-    cutoutPercentage: 80,
-  },
-});
-var myAreaChart = new Chart(ctx2, {
-  type: 'line',
-  data: {
-    labels: ["2018-2","2019-1","2019-2", "2020-1"],
-    datasets: [{
-      data: sem_pie,
-      ineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
-      pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
-      pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-      pointHitRadius: 10,
-      pointBorderWidth: 2
-    }],
-  },
-  options: {
-    maintainAspectRatio: false,
-    tooltips: {
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
-      borderColor: '#dddfeb',
-      borderWidth: 1,
-      xPadding: 15,
-      yPadding: 15,
-      displayColors: false,
-      caretPadding: 10,
-    },
-    legend: {
-      display: false
-    },
-    cutoutPercentage: 80,
-  },
-});
+
     </script>
 </body>
 
