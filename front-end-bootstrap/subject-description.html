@@ -432,7 +432,6 @@
                     </div>
                   </div>
 
-                  <div class="card-body" id="bb"></div>
                   <div class="card-body" id="description-course"></div>
 
                   <div
@@ -574,16 +573,10 @@
                   </div>
 
                   <div class="card-body" id="faculty">
-                    <div id="faculty-title"></div>
-                    <!-- DataTales Example 테이블 형식 -->
-
-                    <h6 class="m-0 font-weight-bold text-primary">
-                      지난 교수진
-                    </h6>
+                    <div id="faculty-title"></div><label><b>지난 교수진</b></label><br>
                     <div class="table-responsive">
                       <table
                         class="table table-bordered"
-                        id="dataTable"
                         width="100%"
                         cellspacing="0"
                       >
@@ -595,32 +588,12 @@
                         </thead>
 
                         <tbody id="faculty-table">
-                          <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                          </tr>
-                          <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                          </tr>
-                          <tr>
-                            <td>Ashton Cox</td>
-                            <td>Junior Technical Author</td>
-                          </tr>
-                          <tr>
-                            <td>Cedric Kelly</td>
-                            <td>Senior Javascript Developer</td>
-                          </tr>
-                          <tr>
-                            <td>Airi Satou</td>
-                            <td>Accountant</td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
                   </div>
-                  <hr />
-                  <div id="tell-prefessor">
+                  <div class="card-body"id="tell-prefessor">
+                    <label><b>교수에게 하고 싶은 말을 적어주세요!</b></label><br>
                     <textarea
                       id="send_text"
                       class="text-area-professor"
@@ -1033,7 +1006,7 @@
       // 검색창으로부터 얻어온 과목명
       // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
       findCourseValue = sessionStorage.getItem("course_name");
-      findCourseValue = 'JAVA프로그래밍및실습';
+//      findCourseValue = 'JAVA프로그래밍및실습';
       console.log(findCourseValue);
 
       var col = database
@@ -1557,21 +1530,11 @@
           .then(function () {});
       }
     </script>
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-    
-        <!-- Page level plugins -->
-        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    
-        <!-- Page level custom scripts -->
-        <script src="js/demo/datatables-demo.js"></script>
+            <!-- Page level plugins -->
+            <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+            <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        
+            <!-- Page level custom scripts -->
+            <script src="js/demo/datatables-demo.js"></script>
   </body>
 </html>
