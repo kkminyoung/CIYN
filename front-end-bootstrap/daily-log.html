@@ -546,8 +546,12 @@
       const database = firebase.firestore();
 
       var user_email = sessionStorage.getItem('user_email');
-      const usersCollection = database.collection('user').where('email', '==', user_email);
-//      const usersCollection = database.collection('user').where('email', '==','kmy8759@ewhain.net');
+      
+      // 실제 USER
+      //const usersCollection = database.collection('user').where('email', '==', user_email);
+      
+      // 데모용
+      const usersCollection = database.collection('user').where('email', '==','kmy8759@ewhain.net');
 
       const list_subject = document.getElementById("dataTable");
       const sum_up = document.getElementById("sum_grade");
