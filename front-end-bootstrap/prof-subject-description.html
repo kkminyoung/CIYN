@@ -49,6 +49,14 @@
         href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
         color="#111" />
 
+    <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="251105086649-7dp43c1tupf0tsmqdoahj1jcbud3spmq.apps.googleusercontent.com">
+    <script type="text/javascript" src="login.js"></script>
+    <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+
 </head>
 
 <body id="page-top">
@@ -88,8 +96,8 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" id="findCourse" class="form-control bg-light border-0 small"
-                                placeholder="강의를 찾아보세요..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input onkeyup= "location.href='prof-search-result.html'" type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
+                            aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button onclick='getText()' class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -364,6 +372,10 @@
 
                 </div>
             </div>
+        </div>
+
+        <div class="text-center" style="display: none;">
+            <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
         </div>
 
 

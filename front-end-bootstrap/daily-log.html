@@ -153,7 +153,7 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
+                            <input onkeyup= "location.href='search-result.html'" type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
@@ -920,6 +920,25 @@
         }
 
       }
+
+      // 키워드서치 부분!!!
+      function filter() {
+            var value, name, item, i;
+
+            value = document.getElementById("value").value;
+            item = document.getElementsByClassName("card shadow mb-4");
+
+            for (i = 0; i < item.length; i++) {
+                name = item[i].getElementsByClassName("card-header py-3");
+                console.log(name[0].innerHTML.toUpperCase().indexOf(value));
+                if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+                    item[i].style.display = "flex";
+                } else {
+                    item[i].style.display = "none";
+                }
+            }
+
+        }
 
     </script>
 </body>
