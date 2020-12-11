@@ -401,8 +401,13 @@
 
             // 검색창으로부터 얻어온 과목명
             // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
-            findCourseValue = sessionStorage.getItem('course_name');
-            findCourseValue = 'JAVA프로그래밍및실습';
+            if(sessionStorage.getItem('course_name')){
+                findCourseValue = sessionStorage.getItem('course_name')
+            }
+            else{
+                findCourseValue = 'JAVA프로그래밍및실습';
+            }
+            
 
             console.log(findCourseValue);
 

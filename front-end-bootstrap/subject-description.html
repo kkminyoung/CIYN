@@ -1005,8 +1005,14 @@
 
       // 검색창으로부터 얻어온 과목명
       // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
-      findCourseValue = sessionStorage.getItem("course_name");
-//      findCourseValue = 'JAVA프로그래밍및실습';
+
+      if(sessionStorage.getItem("course_name")){ // 검색 기록이 있다면 해당 과목 정보 출력
+        findCourseValue = sessionStorage.getItem("course_name");
+      }
+      else{//검색기록이 없다면, 임의의 과목 출력
+        findCourseValue = 'JAVA프로그래밍및실습';
+      }
+
       console.log(findCourseValue);
 
       var col = database
@@ -1095,8 +1101,8 @@
             strr_add_rev +=
               "<option value = '" + element + "'> " + element + "</option>";
           });
-          list_div3.innerHTML += str;
-          llll.innerHTML += str2;
+          list_div3.innerHTML = str;
+          llll.innerHTML = str2;
           list_div.innerHTML = basic;
           list_div2_1.innerHTML =
             course_desc + "<br><br><br><br><hr>" + realted;
@@ -1104,7 +1110,7 @@
           list_div2_2_1.innerHTML = related_subject_cur ;
           list_div2_3.innerHTML = related_subject_post;
           list_div2_5.innerHTML = prof;
-          past_prof_rad2.innerHTML += strr_add_rev;
+          past_prof_rad2.innerHTML = strr_add_rev;
         });
       });
 
@@ -1206,14 +1212,14 @@
               strr_add_rev +=
                 "<option value = '" + element + "'> " + element + "</option>";
             });
-            list_div3.innerHTML += str;
-            llll.innerHTML += str2;
+            list_div3.innerHTML = str;
+            llll.innerHTML = str2;
             list_div.innerHTML = basic;
             list_div2_1.innerHTML = course_desc + "<br><br><hr>" + realted;
             list_div2_2.innerHTML = related_subject_pre;
             list_div2_3.innerHTML = related_subject_post;
             list_div2_5.innerHTML = prof;
-            past_prof_rad2.innerHTML += strr_add_rev;
+            past_prof_rad2.innerHTML = strr_add_rev;
           });
         });
       }
