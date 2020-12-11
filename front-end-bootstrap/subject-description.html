@@ -14,101 +14,81 @@
     <link rel="icon" type="image/x-icon" href="img/logo-right-purple.png" />
 
     <!-- Custom fonts for this template-->
-    <link
-      href="vendor/fontawesome-free/css/all.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet" />
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <title>강의 평가</title>
-  <link rel="icon" type="image/x-icon" href="img/logo-right-purple.png" />
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
-    rel="stylesheet" />
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 
-  <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Custom styles for this page -->
+    <link
+      href="vendor/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta
+      name="google-signin-client_id"
+      content="251105086649-7dp43c1tupf0tsmqdoahj1jcbud3spmq.apps.googleusercontent.com"
+    />
+    <script type="text/javascript" src="login.js"></script>
+    <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+  </head>
 
-  <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <ul
+        class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="daily-log.html"
+        >
+          <div class="sidebar-brand-icon">
+            <img
+              class="fas"
+              src="img/logo-right.png"
+              width="50px"
+              height="50px"
+            />
+          </div>
+          <div class="sidebar-brand-text mx-3">CIYN<sup></sup></div>
+        </a>
 
-  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
 
-  <link rel="apple-touch-icon" type="image/png"
-    href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
-  <meta name="apple-mobile-web-app-title" content="CodePen" />
-
-  <link rel="mask-icon" type=""
-    href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg"
-    color="#111" />
-
-  <link href="css/notepad.css" rel="stylesheet" />
-  <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
-
-  <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id"
-      content="251105086649-7dp43c1tupf0tsmqdoahj1jcbud3spmq.apps.googleusercontent.com">
-  <script type="text/javascript" src="login.js"></script>
-  <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
-
-</head>
-
-<body id="page-top">
-  <!-- Page Wrapper -->
-  <div id="wrapper">
-    <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-      <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="daily-log.html">
-        <div class="sidebar-brand-icon">
-          <img class="fas" src="img/logo-right.png" width="50px" height="50px" />
-        </div>
-        <div class="sidebar-brand-text mx-3">CIYN<sup></sup></div>
-      </a>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider my-0" />
-
-      <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
-        <a class="nav-link" href="daily-log.html">
-          <i class="fas fa-fw fa-paperclip"></i>
-          <span>전체 보고서</span></a>
-      </li>
-
-      
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+          <a class="nav-link" href="daily-log.html">
+            <i class="fas fa-fw fa-paperclip"></i>
+            <span>전체 보고서</span></a
+          >
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider" />
@@ -201,6 +181,7 @@
             src="img/undraw_rocket.svg"
             alt=""
           />
+
           <a
             class="btn-score btn-primary btn-sm"
             href="https://cyber.ewha.ac.kr/local/ubion/user/grade.php"
@@ -214,7 +195,6 @@
           </a>
         </div>
       </ul>
-      <!-- End of Sidebar -->
 
       <!-- Content Wrapper -->
       <div id="content-wrapper" class="d-flex flex-column">
@@ -237,8 +217,14 @@
               class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
             >
               <div class="input-group">
-                <input onkeyup= "location.href='search-result.html'" type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                <input
+                  onkeyup="location.href='search-result.html'"
+                  type="text"
+                  class="form-control bg-light border-0 small"
+                  placeholder="강의를 찾아보세요..."
+                  aria-label="Search"
+                  aria-describedby="basic-addon2"
+                />
                 <div class="input-group-append">
                   <button
                     onclick="getText()"
@@ -307,7 +293,8 @@
                   ></span>
                   <img
                     class="img-profile rounded-circle"
-                    src="img/profile.jpg"/>
+                    src="img/profile.jpg"
+                  />
                 </a>
                 <!-- Dropdown - User Information -->
                 <div
@@ -481,12 +468,11 @@
                       </div>
                     </div>
                   </div>
-                  <hr>
+                  <hr />
 
-                  <label style="margin-left: 2%;"><b>연관과목</b></label>
-                  
+                  <label style="margin-left: 2%"><b>연관과목</b></label>
+
                   <div class="row card-body">
-                    
                     <div class="card-3-3-3 col-md-6 mb-4">
                       <div
                         class="text-xs font-weight-bold text-secondary text-uppercase mb-1"
@@ -530,9 +516,11 @@
                       <br />
                     </div>
                   </div>
-                  <hr>
+                  <hr />
                   <div class="card-body" id="faculty">
-                    <div id="faculty-title"></div><label><b>지난 교수진</b></label><br>
+                    <div id="faculty-title"></div>
+                    <label><b>지난 교수진</b></label
+                    ><br />
                     <div class="table-responsive">
                       <table
                         class="table table-bordered"
@@ -546,14 +534,14 @@
                           </tr>
                         </thead>
 
-                        <tbody id="faculty-table">
-                        </tbody>
+                        <tbody id="faculty-table"></tbody>
                       </table>
                     </div>
                   </div>
-                  <hr>
-                  <div class="card-body"id="tell-prefessor">
-                    <label><b>교수님에게 하고 싶은 말을 적어주세요!</b></label><br><br>
+                  <hr />
+                  <div class="card-body" id="tell-prefessor">
+                    <label><b>교수님에게 하고 싶은 말을 적어주세요!</b></label
+                    ><br /><br />
                     <textarea
                       id="send_text"
                       class="text-area-professor"
@@ -570,87 +558,87 @@
                   </div>
                 </div>
               </div>
-            
 
-            <div class="col-lg-5">
-              <div class="card shadow mb-4">
-                <div
-                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
-                >
-                  <h6 class="m-0 font-weight-bold text-primary" id="cc"></h6>
-                  <div class="dropdown no-arrow">
-                    <a
-                      class="dropdown-toggle"
-                      href="#"
-                      role="button"
-                      id="dropdownMenuLink"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <i
-                        class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
-                      ></i>
-                    </a>
-                    <div
-                      class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink"
-                    >
-                      <div class="dropdown-header">강의평 확인</div>
+              <div class="col-lg-5">
+                <div class="card shadow mb-4">
+                  <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+                  >
+                    <h6 class="m-0 font-weight-bold text-primary" id="cc"></h6>
+                    <div class="dropdown no-arrow">
+                      <a
+                        class="dropdown-toggle"
+                        href="#"
+                        role="button"
+                        id="dropdownMenuLink"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                        <i
+                          class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"
+                        ></i>
+                      </a>
+                      <div
+                        class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                        aria-labelledby="dropdownMenuLink"
+                      >
+                        <div class="dropdown-header">강의평 확인</div>
 
-                      <div class="dropdown-divider"></div>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-toggle="modal"
-                        data-target="#reviewModal"
-                        >강의평 추가하기</a
-                      >
-                      <div class="dropdown-divider"></div>
-                      <a
-                        class="dropdown-item"
-                        href="#"
-                        data-toggle="modal"
-                        data-target="#mediumModal"
-                        >강의평 기준</a
-                      >
+                        <div class="dropdown-divider"></div>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#reviewModal"
+                          >강의평 추가하기</a
+                        >
+                        <div class="dropdown-divider"></div>
+                        <a
+                          class="dropdown-item"
+                          href="#"
+                          data-toggle="modal"
+                          data-target="#mediumModal"
+                          >강의평 기준</a
+                        >
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div style="height: 100%; position: relative">
-                  <div id="canvasContainer">
-                    <canvas
-                      id="myChart"
-                      width="100"
-                      height="100"
-                      style="padding: 20px"
-                    ></canvas>
+                  <div style="height: 100%; position: relative">
+                    <div id="canvasContainer">
+                      <canvas
+                        id="myChart"
+                        width="100"
+                        height="100"
+                        style="padding: 20px"
+                      ></canvas>
+                    </div>
                   </div>
+                  <div class="card-body" id="dd"></div>
+                  <!-- input 값 받을 때
+                                    <input type="hidden" id ="hiddenfieldid" >
+                                    <input type="hidden" id ="hiddenfieldid" >
+                                    -->
                 </div>
-                <div class="card-body" id="dd"></div>
-                <!-- input 값 받을 때
-                            <input type="hidden" id ="hiddenfieldid" >
-                            <input type="hidden" id ="hiddenfieldid" >
-                            -->
               </div>
             </div>
           </div>
-        </div>
-        <!-- End of Main Content -->
+          <!-- End of Main Content -->
 
-        <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-          <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-              <span>Copyright &copy; CIYN 2020</span>
+          <!-- Footer -->
+          <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                <span>Copyright &copy; CIYN 2020</span>
+              </div>
             </div>
-          </div>
-        </footer>
-        <!-- End of Footer -->
+          </footer>
+          <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
       </div>
-      <!-- End of Content Wrapper -->
+      <!-- End of Page Wrapper -->
     </div>
-    <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -731,25 +719,42 @@
       </div>
     </div>
 
-     <!-- Logout Modal-->
-     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-     <div class="modal-dialog" role="document">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="exampleModalLabel">로그아웃창</h5>
-                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                     <span aria-hidden="true">×</span>
-                 </button>
-             </div>
-             <div class="modal-body">로그아웃을 하시겠습니까?</div>
-             <div class="modal-footer">
-                 <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
-                 <a class="btn btn-primary" href="login.html">로그아웃하기</a>
-             </div>
-         </div>
-     </div>
- </div>
+    <!-- Logout Modal-->
+    <div
+      class="modal fade"
+      id="logoutModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">로그아웃창</h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">로그아웃을 하시겠습니까?</div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              취소
+            </button>
+            <a class="btn btn-primary" href="login.html">로그아웃하기</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Done Modal-->
     <div
@@ -947,11 +952,12 @@
       // 검색창으로부터 얻어온 과목명
       // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
 
-      if(sessionStorage.getItem("course_name")){ // 검색 기록이 있다면 해당 과목 정보 출력
+      if (sessionStorage.getItem("course_name")) {
+        // 검색 기록이 있다면 해당 과목 정보 출력
         findCourseValue = sessionStorage.getItem("course_name");
-      }
-      else{//검색기록이 없다면, 임의의 과목 출력
-        findCourseValue = 'JAVA프로그래밍및실습';
+      } else {
+        //검색기록이 없다면, 임의의 과목 출력
+        findCourseValue = "JAVA프로그래밍및실습";
       }
 
       console.log(findCourseValue);
@@ -1005,24 +1011,19 @@
           if (related_subject_post == null) {
             related_subject_post = "없음";
           }
-          prof =
-              "";
+          prof = "";
           // 해당과목 연도-학기별 교수 찾기위한 부분
           year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
-            var k = 0; //count용
-            var a = new Array(); // 연도별 prof 담을 array]
-            for (var i in year_prof_array) {
-              prof +=
-                "<tr><td>" +
-                i +
-                "</td><td>" +
-                doc.data().prof[i] +
-                "</td></tr>";
-              a[k] = doc.data().prof[i];
-              k++;
-            }
-            prof += "</table></div>";
-            // 해당과목 연도별 교수를 담은 리스트
+          var k = 0; //count용
+          var a = new Array(); // 연도별 prof 담을 array]
+          for (var i in year_prof_array) {
+            prof +=
+              "<tr><td>" + i + "</td><td>" + doc.data().prof[i] + "</td></tr>";
+            a[k] = doc.data().prof[i];
+            k++;
+          }
+          prof += "</table></div>";
+          // 해당과목 연도별 교수를 담은 리스트
           lists = a[0].concat(a[1]);
           var strr_add_rev = "";
           lists = lists.filter((item, index) => lists.indexOf(item) === index);
@@ -1045,10 +1046,9 @@
           list_div3.innerHTML = str;
           llll.innerHTML = str2;
           list_div.innerHTML = basic;
-          list_div2_1.innerHTML =
-            course_desc;
+          list_div2_1.innerHTML = course_desc;
           list_div2_2.innerHTML = related_subject_pre;
-          list_div2_2_1.innerHTML = related_subject_cur ;
+          list_div2_2_1.innerHTML = related_subject_cur;
           list_div2_3.innerHTML = related_subject_post;
           list_div2_5.innerHTML = prof;
           past_prof_rad2.innerHTML = strr_add_rev;
@@ -1056,7 +1056,6 @@
       });
 
       function getText() {
-
         // 검색창으로부터 얻어온 과목명
         // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
         findCourseValue = document.getElementById("findCourse").value;
@@ -1109,8 +1108,7 @@
             if (related_subject_post == null) {
               related_subject_post = "없음";
             }
-            prof =
-              "";
+            prof = "";
             // 해당과목 연도-학기별 교수 찾기위한 부분
             year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
             var k = 0; //count용
@@ -1373,7 +1371,7 @@
                     
                 database.collection('review').doc(Course_id).set(hi,{merge:true}).then(function(){
                     console.log("okay");
-                   alert("success!!")
+                    alert("success!!")
                 })*/
       }
 
@@ -1472,11 +1470,11 @@
           .then(function () {});
       }
     </script>
-            <!-- Page level plugins -->
-            <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-            <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-        
-            <!-- Page level custom scripts -->
-            <script src="js/demo/datatables-demo.js"></script>
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/datatables-demo.js"></script>
   </body>
 </html>
