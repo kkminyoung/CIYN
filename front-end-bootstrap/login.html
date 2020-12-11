@@ -16,6 +16,7 @@
     <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
 
     <title>CIYN 로그인 페이지</title>
+    <link rel="icon" type="image/x-icon" href="img/logo-right-purple.png" />
 
     <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
@@ -53,22 +54,23 @@
                                         <h1 class="h4 text-gray-900 mb-4">이화인 계정으로 로그인하세요</h1>
                                     </div>
                                     <form class="user">
-                                        <div class="text-center">
-                                            <div class="g-signin2 btn btn-primary btn-user btn-block"
+                                        <div style="width:100px; margin:0 auto"  class="text-center">
+                                            <div style = "margin:0 auto" class="g-signin2 text-center"
                                                 data-onsuccess="onSignIn"></div>
                                         </div>
-
+                                        <p></p>
 
                                         <div class="text-center" id="user_name"></div>
                                         <div class="text-center" id="user_email"></div>
                                         <div class="text-center" id="is_ewhain"></div>
                                         <div class="text-center" id="result"></div>
                                         <div class="text-center" id="resultout"></div>
+                                        <p></p>
 
-                                        <a href="daily-log.html" class="btn btn-google btn-user btn-block">
+                                        <a href="daily-log.html" class="btn btn-primary btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> 학생 버전 시작하기
                                         </a>
-                                        <a href="prof-search-result.html" class="btn btn-google btn-user btn-block">
+                                        <a href="prof-search-result.html" class="btn btn-primary btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> 교수 버전 시작하기
                                         </a>
 
