@@ -519,7 +519,12 @@
                       </div>
                     </div>
                   </div>
+                  <hr>
+
+                  <label style="margin-left: 2%;"><b>연관과목</b></label>
+                  
                   <div class="row card-body">
+                    
                     <div class="card-3-3-3 col-md-6 mb-4">
                       <div
                         class="text-xs font-weight-bold text-secondary text-uppercase mb-1"
@@ -528,6 +533,7 @@
                       </div>
                       <hr />
                       <br />
+
                       <div
                         class="h5 mb-0 font-weight-bold text-gray-800"
                         id="related-courses-pre"
@@ -562,7 +568,7 @@
                       <br />
                     </div>
                   </div>
-
+                  <hr>
                   <div class="card-body" id="faculty">
                     <div id="faculty-title"></div><label><b>지난 교수진</b></label><br>
                     <div class="table-responsive">
@@ -583,8 +589,9 @@
                       </table>
                     </div>
                   </div>
+                  <hr>
                   <div class="card-body"id="tell-prefessor">
-                    <label><b>교수에게 하고 싶은 말을 적어주세요!</b></label><br>
+                    <label><b>교수님에게 하고 싶은 말을 적어주세요!</b></label><br><br>
                     <textarea
                       id="send_text"
                       class="text-area-professor"
@@ -596,7 +603,7 @@
                       href="#"
                       onclick="set_text()"
                       class="fas fa-paper-plane fa-2x text-gray-600"
-                      style="padding: 20px"
+                      style="padding: 1%"
                     ></a>
                   </div>
                 </div>
@@ -1024,7 +1031,7 @@
             sc +
             "</div><br><br>";
 
-          realted = "<b>연관과목</b>";
+          realted = "";
           related_subject_pre = doc.data().prepro.pre;
           if (related_subject_pre == null) {
             related_subject_pre = "없음";
@@ -1077,7 +1084,7 @@
           llll.innerHTML = str2;
           list_div.innerHTML = basic;
           list_div2_1.innerHTML =
-            course_desc + "<br><br><br><br><hr>" + realted;
+            course_desc;
           list_div2_2.innerHTML = related_subject_pre;
           list_div2_2_1.innerHTML = related_subject_cur ;
           list_div2_3.innerHTML = related_subject_post;
@@ -1182,7 +1189,7 @@
             list_div3.innerHTML = str;
             llll.innerHTML = str2;
             list_div.innerHTML = basic;
-            list_div2_1.innerHTML = course_desc + "<br><br><hr>" + realted;
+            list_div2_1.innerHTML = course_desc;
             list_div2_2.innerHTML = related_subject_pre;
             list_div2_3.innerHTML = related_subject_post;
             list_div2_5.innerHTML = prof;
