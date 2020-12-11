@@ -110,7 +110,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">회원정보관리</h6>
                         <a class="collapse-item" href="login.html">로그인</a>
-                        <a class="collapse-item" href="register.html">회원가입</a>
                     </div>
                 </div>
             </li>
@@ -198,7 +197,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span id ="user_name" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="img/profile.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -206,14 +205,6 @@
                                 <a class="dropdown-item" href="profile.html">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     프로필보기
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    회원정보
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -247,11 +238,37 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-purple text-uppercase mb-1">
-                                                총학점</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"id = "sum_grade"></div>
+                                                총학점
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"id = "sum_grade">
+
+                                            </div>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="#" class="fas fa-info fa-1x text-gray-300" title="On 4.0, 4.5 Grade.." data-toggle="popover" data-trigger="focus" id = "popover_all" data-content="Click anywhere in the document to close this popover"></a>
+                                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-info fa-1x text-gray-300"></i>
+                                            </a>
+                                            <!-- Dropdown - Alerts -->
+                                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                                aria-labelledby="alertsDropdown">
+                                                <h6 class="dropdown-header">
+                                                    학점 변환
+                                                </h6>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    
+                                                    <div>
+                                                        <div class="small text-gray-500">4.0 변환</div>
+                                                        <span class="font-weight-bold" id = "sum_grade_fpz">0.0/4.0</span>
+                                                    </div>
+                                                </a>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    
+                                                    <div>
+                                                        <div class="small text-gray-500">4.5 변환</div>
+                                                        <span class="font-weight-bold" id = "sum_grade_fpf">0.0/4.5</span>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -260,16 +277,42 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info-1  shadow h-100 py-2">
+                            <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-green text-uppercase mb-1">
-                                                전공학점</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id = "maj_grade"></div>
+                                            <div class="text-xs font-weight-bold text-purple text-uppercase mb-1">
+                                                전공학점
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"id = "maj_grade">
+
+                                            </div>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="#" class="fas fa-info fa-1x text-gray-300" title="On 4.0, 4.5 Grade.." data-toggle="popover" data-trigger="focus" id = "popover_maj" data-content="Click anywhere in the document to close this popover"></a>
+                                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-info fa-1x text-gray-300"></i>
+                                            </a>
+                                            <!-- Dropdown - Alerts -->
+                                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                                aria-labelledby="alertsDropdown">
+                                                <h6 class="dropdown-header">
+                                                    학점 변환
+                                                </h6>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    
+                                                    <div>
+                                                        <div class="small text-gray-500">4.0 변환</div>
+                                                        <span class="font-weight-bold" id = "maj_grade_fpz">0.0/4.0</span>
+                                                    </div>
+                                                </a>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    
+                                                    <div>
+                                                        <div class="small text-gray-500">4.5 변환</div>
+                                                        <span class="font-weight-bold" id = "maj_grade_fpf">0.0/4.5</span>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -498,15 +541,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">로그아웃창</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">로그아웃을 하시겠습니까?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary" href="login.html">로그아웃하기</a>
                 </div>
             </div>
         </div>
@@ -625,7 +668,11 @@
 
       const list_subject = document.getElementById("dataTable");
       const sum_up = document.getElementById("sum_grade");
+      const sum_up_fpz = document.getElementById("sum_grade_fpz");
+      const sum_up_fpf = document.getElementById("sum_grade_fpf");
       const maj_up = document.getElementById("maj_grade");
+      const maj_up_fpz = document.getElementById("maj_grade_fpz");
+      const maj_up_fpf = document.getElementById("maj_grade_fpf");
       const done_up = document.getElementById("done_grade");
       const spare_up = document.getElementById("spare_grade");
       const rev_modal_sub = document.getElementById("reviewModal-subject"); var sub = "";
@@ -682,8 +729,14 @@
                 maj_up.innerHTML="0/4.3";
                 sum_up.innerHTML=sum/sum_cre+"/4.3";
             }else{
-                maj_up.innerHTML=(parseFloat(maj/maj_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(maj/maj_cre).toFixed(2)+"/4.3"+" "+(parseFloat(maj/maj_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
-                sum_up.innerHTML=(parseFloat(sum/sum_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(sum/sum_cre).toFixed(2)+"/4.3"+" "+(parseFloat(sum/sum_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+                maj_up_fpz.innerHTML = (parseFloat(maj/maj_cre)*(4.0/4.3)).toFixed(2)+"/4.0";
+                maj_up_fpf.innerHTML = (parseFloat(maj/maj_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+
+                maj_up.innerHTML=parseFloat(maj/maj_cre).toFixed(2)+"/4.3";
+
+                sum_up_fpz.innerHTML = (parseFloat(sum/sum_cre)*(4.0/4.3)).toFixed(2)+"/4.0";
+                sum_up_fpf.innerHTML = (parseFloat(sum/sum_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+                sum_up.innerHTML=parseFloat(sum/sum_cre).toFixed(2)+"/4.3";
             }
             done_up.innerHTML = parseFloat(sum_cre/139).toFixed(2)*100+" %";    //몇 학점 들었는지 확률로 알려줌.
             rev_modal_sub.innerHTML = sub;
