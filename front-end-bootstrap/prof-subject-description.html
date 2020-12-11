@@ -450,12 +450,6 @@
 
             // 검색창에 새로운 과목 검색시
             function getText() {
-                // 버튼을 두번이상 눌렀을 경우에 대한 예외처리
-                if (flag != 0) {
-                    return;
-                }
-                flag = 1;
-
                 // 검색창으로부터 얻어온 과목명
                 // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
                 findCourseValue = document.getElementById("findCourse").value;
