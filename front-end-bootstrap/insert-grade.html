@@ -561,6 +561,7 @@
         var score_low="", score_mean = "", score_high="";
         //성적 입력 필요없을 때: 밑 표준분포 그래프(chartjs 그래프 아래에 꺼)
         function profradio2(subject, prof) { //정규분포그래프
+            score_low="", score_mean="", score_high="";
             document.getElementById("canvasContainer2").innerHTML = '&nbsp;';
             document.getElementById("canvasContainer2").innerHTML = '<canvas height="400" id="GradeChart2"></canvas>';
             var ctx = document.getElementById("GradeChart2").getContext("2d");
