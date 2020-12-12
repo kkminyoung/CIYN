@@ -96,7 +96,7 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input onmouseup = "location.href='prof-search-result.html'" type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
+                            <input onkeyup= "location.href='prof-search-result.html'" type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
                             aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button onclick='getText()' class="btn btn-primary" type="button">
@@ -190,21 +190,28 @@
                                     </div>
                                 </div>
 
-                                <div class='card-body' id="bb">
-
-                                </div>
                                 <div class='card-body' id="description-course">
                                 </div>
-                                <div class='card-body' id="faculty">
-                                    <div id="faculty-title">
-
+                                <div class="card-body" id="faculty">
+                                    <div id="faculty-title"></div>
+                                    
+                                    <div class="table-responsive">
+                                      <table
+                                        class="table table-bordered"
+                                        width="100%"
+                                        cellspacing="0"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>학기</th>
+                                            <th>교수명</th>
+                                          </tr>
+                                        </thead>
+                
+                                        <tbody id="faculty-table"></tbody>
+                                      </table>
                                     </div>
-                                    <div id="faculty-table">
-                                    </div>
-                                    <hr>
-
-
-                                </div>
+                                  </div>
                             </div>
 
 
@@ -417,7 +424,7 @@
                 findCourseValue = sessionStorage.getItem('course_name')
             }
             else{
-                findCourseValue = 'JAVA프로그래밍및실습';
+                findCourseValue = '캡스톤디자인프로젝트A';
             }
             
 
@@ -443,16 +450,28 @@
                     course_textprof = doc.data().textprof; 
                     past_id = doc.data().id;
                     course_desc = "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, " + doc.data().div + ", " + doc.data().credit + "학점</div><br><br> <div class='card-2-8-2'><b>키워드</b></div><div class='card-2-8-8'>" + doc.data().keyword.lang + "," + doc.data().keyword.step + ", " + doc.data().keyword.step_div + "</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>" + sc + "</div><br><br>";
-                    prof = "<hr><b>교수진</b><br><table class='semester'>";
+                    prof = "";
                     console.log(course_textprof);
 
+
+                    var year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
+                    var k = 0; //count용
+                    var a = new Array(); // 연도별 prof 담을 array]
+                    for (var i in year_prof_array) {
+                        prof +=
+                        "<tr><td>" + i + "</td><td>" + doc.data().prof[i] + "</td></tr>";
+                        a[k] = doc.data().prof[i];
+                        k++;
+                    }
+                    
                     for (var i in course_textprof) {
                         text_to_prof += "<div class ='card-2-8-10'>" + course_textprof[i] + "</div><br><br>";
                     }
                     list_div2_1.innerHTML = course_desc + "<br><br>";
                     llll.innerHTML += str2;
                     list_div.innerHTML = (basic);
-                    list_div2_4.innerHTML = prof;
+                    list_div2_4.innerHTML = "<b>지난 교수진</b>";
+                    list_div2_5.innerHTML += prof;
                     list_div4.innerHTML += text_to_prof;
 
                 });
@@ -497,7 +516,7 @@
                         list_div2_1.innerHTML = course_desc + "<br><br><hr>";
                         llll.innerHTML += str2;
                         list_div.innerHTML = (basic);
-                        list_div2_4.innerHTML = prof;
+                        list_div2_4.innerHTML = "<b>지난 교수진</b>";
                         list_div4.innerHTML += text_to_prof;
 
                     });
@@ -527,7 +546,7 @@
                     all_hard = parseFloat(dat_all['hard'] / dat_all['sum']);
                     all_grade = parseFloat(dat_all['grade'] / dat_all['sum']);
                     all_attend = parseFloat(dat_all['attend'] / dat_all['sum']);
-
+                    console.log(all_grade, all_hard, all_talk, all_teach, all_attend);
                     list_div4.innerHTML += prof_radio;
                     myRadarChart = new Chart(ctx, {
                         type: 'radar',
