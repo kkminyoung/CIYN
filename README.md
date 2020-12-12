@@ -1,10 +1,10 @@
 # CIYN | Course Information You Need
-### Page Configuration
+## Page Configuration
 ![](https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK)
-- front-end-bootstrap file has every element of our site.
+- front-end-bootstrap file has all elements of our site.
 - front-end-prototype file has the prototype images of our site.  
 
-### Implementation Tools
+## Implementation Tools
 ![](https://drive.google.com/uc?export=view&id=1hIUcZWD0lViir_TZTywSVuJ8zrEYPPzd)
 We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end and visualization.  
 
