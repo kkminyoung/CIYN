@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CIYN</title>
+    <title>CIYN 학점예측기</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200;300;400;500;600;700;900&display=swap"
         rel="stylesheet">
 
-    <link rel="icon" type="image/x-icon" href="img/logo-right.png" />
+        <link rel="icon" type="image/x-icon" href="img/logo-right-purple.png" />
 
     <!-- Chart js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -113,12 +113,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">회원정보관리</h6>
                         <a class="collapse-item" href="login.html">로그인</a>
-                        <a class="collapse-item" href="register.html">회원가입</a>
-                        <a class="collapse-item" href="forgot-password.html">회원정보수정</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">강의 관련</h6>
-                        <a class="collapse-item" href="utilities-border.html">강의 소개</a>
-                        <a class="collapse-item" href="blank.html">강의 평가</a>
+
                     </div>
                 </div>
             </li>
@@ -163,7 +158,7 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
+                            <input onmouseup = "location.href='search-result.html'" type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
@@ -206,7 +201,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span id="user_name" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/profile.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -214,14 +209,6 @@
                                 <a class="dropdown-item" href="profile.html">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     프로필보기
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    회원정보
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -305,25 +292,25 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+ <!-- Logout Modal-->
+ <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">로그아웃창</h5>
+             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">×</span>
+             </button>
+         </div>
+         <div class="modal-body">로그아웃을 하시겠습니까?</div>
+         <div class="modal-footer">
+             <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+             <a class="btn btn-primary" href="login.html">로그아웃하기</a>
+         </div>
+     </div>
+ </div>
+</div>
 
     <div class="text-center" style="display: none;">
         <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
@@ -363,10 +350,11 @@
         // 데모용
         const usersCollection = database.collection('user').where('email', '==', 'kmy8759@ewhain.net');
         
-        // 실제 값 : const usersCollection = database.collection('user').where('email', '==', user_email);
+        //실제 값 : const usersCollection = database.collection('user').where('email', '==', user_email);
         
         var mid_put = false; var fin_put = true;
         const list_subject = document.getElementById("ll");
+        list_subject.innerHTML = "";
         usersCollection.get().then(function (querySnapshot) {
             querySnapshot.forEach(function (doc) {
                 str = "";
@@ -570,9 +558,10 @@
             document.cookie = ""; profradio2(subject, prof);
         }
 
-
+        var score_low="", score_mean = "", score_high="";
         //성적 입력 필요없을 때: 밑 표준분포 그래프(chartjs 그래프 아래에 꺼)
         function profradio2(subject, prof) { //정규분포그래프
+            score_low="", score_mean="", score_high="";
             document.getElementById("canvasContainer2").innerHTML = '&nbsp;';
             document.getElementById("canvasContainer2").innerHTML = '<canvas height="400" id="GradeChart2"></canvas>';
             var ctx = document.getElementById("GradeChart2").getContext("2d");
@@ -603,6 +592,9 @@
                         } catch (e) { }
                         if (dat_fin1 != undefined) {
                             var result = make_sum_chart(dat_fin1); possible['2018-1'] = result;
+                            score_low += getBoxValues(dat_fin1).low +"/";
+                            score_high += getBoxValues(dat_fin1).high +"/";
+                            score_mean += getBoxValues(dat_fin1).mean +"/";
                         }
                     } catch (e) { }
 
@@ -623,6 +615,9 @@
                         } catch (e) { }
                         if (dat_fin2 != undefined) {
                             var result = make_sum_chart(dat_fin2); possible['2018-2'] = result;
+                            score_low += getBoxValues(dat_fin2).low +"/";
+                            score_high += getBoxValues(dat_fin2).high +"/";
+                            score_mean += getBoxValues(dat_fin2).mean +"/";
                         }
                     } catch (e) { }
 
@@ -637,12 +632,16 @@
                             } else {
                                 for (var i in dat_fin3_mid) {
                                     dat_fin3[i] = dat_fin3_mid[i] + dat_fin3_fin[i];
+
                                 }
                             }
                         } catch (e) { }
                         if (dat_fin3 != undefined) {
                             var result = make_sum_chart(dat_fin3);
                             possible['2019-1'] = result;
+                            score_low += getBoxValues(dat_fin3).low +"/";
+                            score_high += getBoxValues(dat_fin3).high +"/";
+                            score_mean += getBoxValues(dat_fin3).mean +"/";
                         }
                     } catch (e) { }
 
@@ -659,6 +658,7 @@
                             } else {
                                 for (var i in dat_fin4_mid) {
                                     dat_fin4[i] = dat_fin4_fin[i] + dat_fin4_mid[i];
+
                                 }
                             }
                             console.log(dat_fin4);
@@ -666,6 +666,9 @@
                         if (dat_fin4 != undefined) {
                             var result = make_sum_chart(dat_fin4);
                             possible['2019-2'] = result;
+                            score_low += getBoxValues(dat_fin4).low +"/";
+                            score_high += getBoxValues(dat_fin4).high +"/";
+                            score_mean += getBoxValues(dat_fin4).mean +"/";
                         }
                     } catch (e) { }
 
@@ -686,6 +689,10 @@
                         if (dat_fin5 != undefined) {
                             var result = make_sum_chart(dat_fin5);
                             possible['2020-1'] = result;
+
+                            score_low += getBoxValues(dat_fin5).low +"/";
+                            score_high += getBoxValues(dat_fin5).high +"/";
+                            score_mean += getBoxValues(dat_fin5).mean +"/";
                         }
                     } catch (e) { }
 
@@ -740,13 +747,14 @@
 
                     for (i = 0; i < 31; i++) {
                         if (i == 0) {
-                            labels.push("최저점");
+                            labels.push("최저점\n"+score_low);
                         }
-                        else if (i == 15) {
-                            labels.push("중간점");
+                        else if (i == 16) {
+                            labels.push("중간점\n"+score_mean);
+                            console.log(labels);
                         }
                         else if (i == 30) {
-                            labels.push("최고점");
+                            labels.push("최고점\n"+score_high);
                         }
                         else {
                             labels.push("");
@@ -960,6 +968,24 @@
             },
 
         };
+    // 키워드서치 부분!!!
+    function filter() {
+            var value, name, item, i;
+
+            value = document.getElementById("value").value;
+            item = document.getElementsByClassName("card shadow mb-4");
+
+            for (i = 0; i < item.length; i++) {
+                name = item[i].getElementsByClassName("card-header py-3");
+                console.log(name[0].innerHTML.toUpperCase().indexOf(value));
+                if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+                    item[i].style.display = "flex";
+                } else {
+                    item[i].style.display = "none";
+                }
+            }
+
+        }
     </script>
 </body>
 

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CIYN</title>
+    <title>CIYN 홈</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -110,7 +110,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">회원정보관리</h6>
                         <a class="collapse-item" href="login.html">로그인</a>
-                        <a class="collapse-item" href="register.html">회원가입</a>
                     </div>
                 </div>
             </li>
@@ -154,7 +153,7 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
+                            <input onmouseup = "location.href='search-result.html'" type="text" class="form-control bg-light border-0 small" placeholder="강의를 찾아보세요..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
@@ -198,7 +197,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span id ="user_name" class="mr-2 d-none d-lg-inline text-gray-600 small"></span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="img/profile.jpg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -206,14 +205,6 @@
                                 <a class="dropdown-item" href="profile.html">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     프로필보기
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    회원정보
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -247,11 +238,37 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-purple text-uppercase mb-1">
-                                                총학점</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"id = "sum_grade"></div>
+                                                총학점
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"id = "sum_grade">
+
+                                            </div>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="#" class="fas fa-info fa-1x text-gray-300" title="On 4.0, 4.5 Grade.." data-toggle="popover" data-trigger="focus" id = "popover_all" data-content="Click anywhere in the document to close this popover"></a>
+                                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-info fa-1x text-gray-300"></i>
+                                            </a>
+                                            <!-- Dropdown - Alerts -->
+                                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                                aria-labelledby="alertsDropdown">
+                                                <h6 class="dropdown-header">
+                                                    학점 변환
+                                                </h6>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    
+                                                    <div>
+                                                        <div class="small text-gray-500">4.0 변환</div>
+                                                        <span class="font-weight-bold" id = "sum_grade_fpz">0.0/4.0</span>
+                                                    </div>
+                                                </a>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    
+                                                    <div>
+                                                        <div class="small text-gray-500">4.5 변환</div>
+                                                        <span class="font-weight-bold" id = "sum_grade_fpf">0.0/4.5</span>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -260,16 +277,42 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info-1  shadow h-100 py-2">
+                            <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-green text-uppercase mb-1">
-                                                전공학점</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id = "maj_grade"></div>
+                                            <div class="text-xs font-weight-bold text-purple text-uppercase mb-1">
+                                                전공학점
+                                            </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"id = "maj_grade">
+
+                                            </div>
                                         </div>
                                         <div class="col-auto">
-                                            <a href="#" class="fas fa-info fa-1x text-gray-300" title="On 4.0, 4.5 Grade.." data-toggle="popover" data-trigger="focus" id = "popover_maj" data-content="Click anywhere in the document to close this popover"></a>
+                                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-info fa-1x text-gray-300"></i>
+                                            </a>
+                                            <!-- Dropdown - Alerts -->
+                                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                                aria-labelledby="alertsDropdown">
+                                                <h6 class="dropdown-header">
+                                                    학점 변환
+                                                </h6>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    
+                                                    <div>
+                                                        <div class="small text-gray-500">4.0 변환</div>
+                                                        <span class="font-weight-bold" id = "maj_grade_fpz">0.0/4.0</span>
+                                                    </div>
+                                                </a>
+                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                    
+                                                    <div>
+                                                        <div class="small text-gray-500">4.5 변환</div>
+                                                        <span class="font-weight-bold" id = "maj_grade_fpf">0.0/4.5</span>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -286,12 +329,12 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="done_grade">60%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="done_grade">15%</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
                                                         <div class="progress-bar bg-info"  id = "progress-credit" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                                            style="width: 15%" aria-valuenow="50" aria-valuemin="0"
                                                             aria-valuemax="100"></div>
                                                     </div>
                                                     
@@ -414,6 +457,11 @@
                                         </table>
                                     </div>
                                 </div>
+                                <a href ='#' data-toggle="modal"
+                                    data-target="#deleteModal"><button class='btn-score btn-secondary' type='button' ><span class='text'>과목 삭제</span></button></a>
+                                <a href ='#' data-toggle="modal"
+                                    data-target="#rewriteModal"><button class='btn-score btn-secondary' type='button' ><span class='text'>학점 수정</span></button></a>
+                                
                             </div>
 
                             <!-- Project Card Example -->
@@ -493,15 +541,84 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">로그아웃창</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">로그아웃을 하시겠습니까?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">취소</button>
+                    <a class="btn btn-primary" href="login.html">로그아웃하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Rewrite Modal-->
+    <div class="modal fade" id="rewriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">과목 수정하기</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    원하는 과목을 골라주세요
+                    <div class="modal-content">
+                        <select class="custom-select" name="reviewModal-subject" id="reviewModal-subject"></select>
+                    </div><br>
+                    학점을 골라주세요<div class="modal-content">
+              <select class="custom-select" name="reviewModal-grade" id="reviewModal-grade">
+                <option value="A+">A+</option>
+                <option value="A0">A0</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B0">B0</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C0">C0</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D0">D0</option>
+                <option value="D-">D-</option>
+                <option value="F">F</option>
+              </select>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" onclick = "change_grade()">수정하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Delete Modal-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">과목 삭제하기</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    삭제를 원하는 과목을 눌러주세요
+                        <div class="modal-content">
+                            <select class="custom-select" name="deleteModal-subject" id="deleteModal-subject"></select>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary"  onclick= "delete_grade()">삭제하기</a>
                 </div>
             </div>
         </div>
@@ -546,18 +663,21 @@
       const database = firebase.firestore();
 
       var user_email = sessionStorage.getItem('user_email');
-      
-      // 실제 USER
-      //const usersCollection = database.collection('user').where('email', '==', user_email);
-      
-      // 데모용
+//      const usersCollection = database.collection('user').where('email', '==', user_email);
       const usersCollection = database.collection('user').where('email', '==','kmy8759@ewhain.net');
 
       const list_subject = document.getElementById("dataTable");
       const sum_up = document.getElementById("sum_grade");
+      const sum_up_fpz = document.getElementById("sum_grade_fpz");
+      const sum_up_fpf = document.getElementById("sum_grade_fpf");
       const maj_up = document.getElementById("maj_grade");
+      const maj_up_fpz = document.getElementById("maj_grade_fpz");
+      const maj_up_fpf = document.getElementById("maj_grade_fpf");
       const done_up = document.getElementById("done_grade");
       const spare_up = document.getElementById("spare_grade");
+      const rev_modal_sub = document.getElementById("reviewModal-subject"); var sub = "";
+
+      const del_modal_sub = document.getElementById("deleteModal-subject"); 
       var maj=0, maj_cre = 0, sum=0, sum_cre =0;
       var distri = {'A+':0,'A0':0,'A-':0,'B+':0,'B0':0,'B-':0,'C+':0,'C0':0, 'C-':0, 'D+':0, 'D0':0, 'D-':0, 'F':0}; //distri: 학점 별 개수 담을 dictionary
       var distri_pie=[]; //pie 함수에 들어갈 data 정보 저장
@@ -567,16 +687,18 @@
       var sem_maj_distri = {'2018-2':{'sums':0, 'sum_cre':0},'2019-1':{'sums':0, 'sum_cre':0},'2019-2':{'sums':0, 'sum_cre':0},'2020-1':{'sums':0, 'sum_cre':0}};
       var sem_maj_pie = []; 
 
+    var grade_delete_data;
       //daily log 내용 세팅
       usersCollection.get().then(function(querySnapshot){
         querySnapshot.forEach(function(doc){
             str = "";
             var dat = doc.data()['grade'];
+            grade_delete_data=doc.data()['grade'];
             for (var x in dat){
 
                //들어간 과목 마다
                for(var l in dat[x]){
-                    console.log(dat[x][l]);
+                    sub += "<option value = \""+x+"\">"+l+"</option>";
                     str+= "<tr><td>"+x+"</td><td>"+l+"</td><td>"+dat[x][l]['credit']+"</td><td>"+dat[x][l]['grade']+"</td><td>"+dat[x][l]['major']+"</td></tr>";
                     
                     var m = dat[x][l]['major'];
@@ -607,11 +729,18 @@
                 maj_up.innerHTML="0/4.3";
                 sum_up.innerHTML=sum/sum_cre+"/4.3";
             }else{
-                maj_up.innerHTML=(parseFloat(maj/maj_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(maj/maj_cre).toFixed(2)+"/4.3"+" "+(parseFloat(maj/maj_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
-                sum_up.innerHTML=(parseFloat(sum/sum_cre)*(4.0/4.3)).toFixed(2)+"/4.0"+" "+parseFloat(sum/sum_cre).toFixed(2)+"/4.3"+" "+(parseFloat(sum/sum_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+                maj_up_fpz.innerHTML = (parseFloat(maj/maj_cre)*(4.0/4.3)).toFixed(2)+"/4.0";
+                maj_up_fpf.innerHTML = (parseFloat(maj/maj_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+
+                maj_up.innerHTML=parseFloat(maj/maj_cre).toFixed(2)+"/4.3";
+
+                sum_up_fpz.innerHTML = (parseFloat(sum/sum_cre)*(4.0/4.3)).toFixed(2)+"/4.0";
+                sum_up_fpf.innerHTML = (parseFloat(sum/sum_cre)*(4.5/4.3)).toFixed(2)+"/4.5";
+                sum_up.innerHTML=parseFloat(sum/sum_cre).toFixed(2)+"/4.3";
             }
             done_up.innerHTML = parseFloat(sum_cre/139).toFixed(2)*100+" %";    //몇 학점 들었는지 확률로 알려줌.
-
+            rev_modal_sub.innerHTML = sub;
+            del_modal_sub.innerHTML = sub;
             /*Progress bar 설정
             document.getElementById("progress-credit").setAttribute = ("aria-valuenow", parseInt(sum_cre/139*100));
             set('#progress-credit',  parseInt(sum_cre/139*100));*/
@@ -730,6 +859,48 @@
         })
       });
 
+      function delete_grade(){
+        console.log("real data");
+        console.log(grade_delete_data);
+        var subjj = document.getElementById('deleteModal-subject');
+        var subbb  = subjj.options[subjj.selectedIndex].text;   //subbb: 과목 이름
+        subjj = subjj.options[subjj.selectedIndex].value;       //subjj: 해당 년도
+         delete grade_delete_data[subjj][subbb];
+        var channge = {//firebase에 들어갈 데이터(삭제 과목을 제한 내용)
+            'grade': grade_delete_data
+        }
+        console.log(channge);
+           
+            database.collection('user').doc('user1').update(channge).then(function () {
+            alert('처리되었습니다!');
+          });
+       
+      }
+
+
+      function change_grade(){
+        var subjj = document.getElementById('reviewModal-subject');
+        var gradde = document.getElementById('reviewModal-grade');
+        var subbb  = subjj.options[subjj.selectedIndex].text;
+        subjj = subjj.options[subjj.selectedIndex].value;
+        gradde = gradde.options[gradde.selectedIndex].value;
+        var change = {
+            'grade':{
+                [subjj]:{
+                    [subbb]:{
+                        'grade': gradde}
+                }
+                
+            }
+        }
+        console.log(change);
+        
+        database.collection('user').doc('user1').set(change, { merge: true }).then(function () {    //userid받아와서 이름 넣기
+                    });
+                    alert('처리되었습니다!');
+                    
+      }
+
     //학점에 따라 점수 변환 함수
       function gpa_change(l){   
         switch(l){
@@ -749,6 +920,25 @@
         }
 
       }
+
+      // 키워드서치 부분!!!
+      function filter() {
+            var value, name, item, i;
+
+            value = document.getElementById("value").value;
+            item = document.getElementsByClassName("card shadow mb-4");
+
+            for (i = 0; i < item.length; i++) {
+                name = item[i].getElementsByClassName("card-header py-3");
+                console.log(name[0].innerHTML.toUpperCase().indexOf(value));
+                if (name[0].innerHTML.toUpperCase().indexOf(value) > -1) {
+                    item[i].style.display = "flex";
+                } else {
+                    item[i].style.display = "none";
+                }
+            }
+
+        }
 
     </script>
 </body>

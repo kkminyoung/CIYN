@@ -1,8 +1,14 @@
 ## Page Description
+![](https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK)
 
+- index.html
 
-- insert-grade.html | 성적 입력  
+- login.html
 
-- subject-description.html | 과목 상세 정보  
+- search-result.html
+  * prof-search-result.html  
+  
+- subject-description.html |  Once you clicked the subject from the search-result.html, see descriptions and reviews of the clicked subject and register your own last semester grades and review!
+  * prof-subject-description.html | Page for professor version! Professors can see the subject evaluation results that held by students
 
-- search-result.html | 강의 검색창
+- insert-grade.html | You can insert your score and estimate your grades!  
