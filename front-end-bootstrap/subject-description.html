@@ -125,7 +125,7 @@
             aria-labelledby="headingTwo"
             data-parent="#accordionSidebar"
           >
-            <div class="bg-white py-2 collapse-inner rounded">
+            <div class="bg-green py-2 collapse-inner rounded">
               <h6 class="collapse-header"></h6>
               <a class="collapse-item" href="search-result.html"
                 >강의 소개만 보기</a
@@ -169,7 +169,7 @@
             aria-labelledby="headingPages"
             data-parent="#accordionSidebar"
           >
-            <div class="bg-white py-2 collapse-inner rounded">
+            <div class="bg-green py-2 collapse-inner rounded">
               <h6 class="collapse-header">회원정보관리</h6>
               <a class="collapse-item" href="login.html">로그인</a>
             </div>
@@ -179,10 +179,6 @@
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block" />
 
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-          <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
 
         <!-- Sidebar Message -->
         <div class="sidebar-card">
@@ -831,7 +827,7 @@
           <form id="add_review">
             <div class="modal-body" id="llll"></div>
             <div class="modal-body" id="llll2">
-              <label>Expected Grade:</label>
+              <label>예상학점:</label>
 
               <select class="custom-select" name="eg" id="eg">
                 <option value="A+">A+</option>
@@ -842,7 +838,7 @@
                 <option value="B-">B-</option>
               </select>
               <br />
-              <label>Term</label>
+              <label>시기</label>
               <select class="custom-select" name="term" id="term">
                 <option value="2018-1">2018-1</option>
                 <option value="2018-2">2018-2</option>
@@ -851,7 +847,7 @@
                 <option value="2020-1">2020-1</option>
               </select>
               <br />
-              <label>Check Grade</label>
+              <label>학점 비율</label>
               <select class="custom-select" name="g" id="g">
                 <option value="5">5</option>
                 <option value="4">4</option>
@@ -860,7 +856,7 @@
                 <option value="1">1</option>
               </select>
 
-              <label>Hard</label>
+              <label>난이도</label>
               <select class="custom-select" name="h" id="h">
                 <option value="5">5</option>
                 <option value="4">4</option>
@@ -868,7 +864,7 @@
                 <option value="2">2</option>
                 <option value="1">1</option>
               </select>
-              <label>Talk</label>
+              <label>소통</label>
               <select class="custom-select" name="ta" id="ta">
                 <option value="5">5</option>
                 <option value="4">4</option>
@@ -876,7 +872,7 @@
                 <option value="2">2</option>
                 <option value="1">1</option>
               </select>
-              <label>Teach</label>
+              <label>강의력</label>
               <select class="custom-select" name="te" id="te">
                 <option value="5">5</option>
                 <option value="4">4</option>
@@ -884,7 +880,7 @@
                 <option value="2">2</option>
                 <option value="1">1</option>
               </select>
-              <label>Attend</label>
+              <label>출결</label>
               <select class="custom-select" name="at" id="at">
                 <option value="5">5</option>
                 <option value="4">4</option>
@@ -893,10 +889,10 @@
                 <option value="1">1</option>
               </select>
               <br />
-              <label>Script</label><br />
+              <label></label><br />
               <textarea
                 rows="10"
-                cols="40"
+                cols="60"
                 id="scr"
                 id="scr"
                 name="scr"
@@ -924,7 +920,7 @@
         </div>
       </div>
       <div class="text-center">
-        <div class="g-signin2 btn" data-onsuccess="onSignIn"></div>
+        <div class="g-signin2 btn" data-onsuccess="onSignIn" style="display: none;"></div>
       </div>
     </div>
 
