@@ -951,7 +951,7 @@
       const list_div4 = document.getElementById("dd");
       var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
       var flag = 0; // 동일한 버튼 두번 눌렀을 경우, 창이 여러개 생기지 않게 하기위해 사용할 flag
-      var Course_id; // 텍스트로 입력받은 과목의 id를 DB에서 찾아와 담을 변수
+      var Course_id=""; // 텍스트로 입력받은 과목의 id를 DB에서 찾아와 담을 변수
       var course_textprof = [];
       // getText();
       //초기 설정: 데이터 로딩
@@ -1003,7 +1003,7 @@
           past_credit = doc.data().credit;
           past_maj = doc.data().div;
           past_name = doc.data().name;
-          Course_id = doc.data().id;
+          Course_id = doc.data().id; console.log(doc.data().id); console.log(Course_id);
           course_textprof = doc.data().textprof;
           past_id = doc.data().id;
 
@@ -1428,18 +1428,21 @@
         console.log(course_textprof);
         course_textprof.push(script);
         console.log(course_textprof);
-
+        console.log(Course_id);
         //firebase에 전달할 변수 설정
         var insert_dat = {
           textprof: course_textprof,
         };
 
         //firebase에 적용하기
+        
         database
           .collection("course")
           .doc(Course_id)
           .set(insert_dat, { merge: true })
-          .then(function () {});
+          .then(function () {
+            alert("교수님에게 전달되었습니다 감사합니다!")
+          });
       }
     </script>
     <!-- Page level plugins -->
