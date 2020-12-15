@@ -766,7 +766,7 @@
       </div>
     </div>
 
-    <!-- Done Modal-->
+    <!-- Done Modal: 완료되었음을 알리는 modal-->
     <div
       class="modal fade"
       id="DoneModal"
@@ -806,7 +806,7 @@
       </div>
     </div>
 
-    <!-- add review Modal-->
+    <!-- add review Modal: 강의평 추가 modal-->
     <div
       class="modal fade"
       id="reviewModal"
@@ -884,6 +884,14 @@
                 <option value="2">2</option>
                 <option value="1">1</option>
               </select>
+              <label>Attend</label>
+              <select class="custom-select" name="at" id="at">
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
               <br />
               <label>Script</label><br />
               <textarea
@@ -921,7 +929,7 @@
     </div>
 
     <script>
-      // Your web app's Firebase configuration
+      // CIYN Firebase configuration
       var firebaseConfig = {
         apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
         authDomain: "ciyn-7bfbc.firebaseapp.com",
@@ -961,7 +969,6 @@
 
       // 검색창으로부터 얻어온 과목명
       // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
-
       if (sessionStorage.getItem("course_name")) {
         // 검색 기록이 있다면 해당 과목 정보 출력
         findCourseValue = sessionStorage.getItem("course_name");
@@ -970,14 +977,23 @@
         findCourseValue = "JAVA프로그래밍및실습";
       }
 
-      console.log(findCourseValue);
-
-      var col = database
-        .collection("course")
-        .where("name", "==", findCourseValue);
+      /*
+      입력받은 코드에 대한 정보를 입력하는 코드
+        step 1. 왼쪽 단의 기본 subject 정보 입력하기
+      */
+      var col = database.collection("course").where("name", "==", findCourseValue);
       const rev = database.collection("review");
       const lll = document.getElementById("llll");
 
+      /*
+      **왼쪽/오른쪽 단의 기본 subject 정보 입력하기**
+      다음과 같은 내용을 입력한다.
+        1) 왼쪽 단의 course description (var course_desc에 저장): 분류, 키워드, 설명
+        2) 왼쪽 단의 연관과목: var realted, related_subject_pre(선수과목), related_subject_cur(현재과목), related_subject_post(선후과목)
+        3) 왼쪽 단의 해당과목 연도-학기별 교수: var year_prof_array
+        4) 오른쪽 단의 해당과목 연도별 교수 (radio button에 적용):var str
+        해당 변수에 모두 저장하고 마지막에 innerHTML에 적용하는 방식으로 이루어진다.
+      */
       var str = "<form id = 'prof_radio'>";
       var str2 = "";
       var prof_radio = "";
@@ -994,6 +1010,8 @@
           Course_id = doc.data().id;
           course_textprof = doc.data().textprof;
           past_id = doc.data().id;
+
+          //1) course description(분류, 키워드, 설명)을 위해 course_desc 값을 저장한다.
           course_desc =
             "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, " +
             doc.data().div +
@@ -1008,21 +1026,21 @@
             "</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>" +
             sc +
             "</div><br><br>";
-
+          
+          //2) 연관과목
           realted = "";
           related_subject_pre = doc.data().prepro.pre;
           if (related_subject_pre == null) {
             related_subject_pre = "없음";
           }
-
           related_subject_cur = doc.data().name;
-
           related_subject_post = doc.data().prepro.pro;
           if (related_subject_post == null) {
             related_subject_post = "없음";
           }
           prof = "";
-          // 해당과목 연도-학기별 교수 찾기위한 부분
+
+          //3) 해당과목 연도-학기별 교수 찾기위한 부분
           year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
           var k = 0; //count용
           var a = new Array(); // 연도별 prof 담을 array]
@@ -1033,7 +1051,8 @@
             k++;
           }
           prof += "</table></div>";
-          // 해당과목 연도별 교수를 담은 리스트
+
+          // 4) 해당과목 연도별 교수를 담은 리스트
           lists = a[0].concat(a[1]);
           var strr_add_rev = "";
           lists = lists.filter((item, index) => lists.indexOf(item) === index);
@@ -1065,109 +1084,6 @@
         });
       });
 
-      function getText() {
-        // 검색창으로부터 얻어온 과목명
-        // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
-        findCourseValue = document.getElementById("findCourse").value;
-        //        findCourseValue = 'JAVA프로그래밍및실습';
-        console.log(findCourseValue);
-
-        var col = database
-          .collection("course")
-          .where("name", "==", findCourseValue);
-        const rev = database.collection("review");
-        const lll = document.getElementById("llll");
-
-        var str = "<form id = 'prof_radio'>";
-        var str2 = "";
-        var prof_radio = "";
-        col.get().then(function (querySnapshot) {
-          querySnapshot.forEach(function (doc) {
-            var sc = doc.data().script;
-            if (sc == "") {
-              sc = "등록되지 않았습니다.";
-            }
-            basic = doc.data().name + " (" + doc.data().num + ")";
-            past_credit = doc.data().credit;
-            past_maj = doc.data().div;
-            past_name = doc.data().name;
-            Course_id = doc.data().id;
-            course_textprof = doc.data().textprof;
-            past_id = doc.data().id;
-            course_desc =
-              "<div class ='card-2-8-2'><b>분류</b></div><div class='card-2-8-8'>  컴퓨터공학과, " +
-              doc.data().div +
-              ", " +
-              doc.data().credit +
-              "학점</div><br><br> <div class='card-2-8-2'><b>키워드</b></div><div class='card-2-8-8'>" +
-              doc.data().keyword.lang +
-              "," +
-              doc.data().keyword.step +
-              ", " +
-              doc.data().keyword.step_div +
-              "</div><br><br><div class ='card-2-8-2'><b>설명</b>  </div> <div class='card-2-8-8'>" +
-              sc +
-              "</div><br><br>";
-
-            realted = "<b>연관과목</b>";
-            related_subject_pre = doc.data().prepro.pre;
-            if (related_subject_pre == null) {
-              related_subject_pre = "없음";
-            }
-            related_subject_post = doc.data().prepro.pro;
-            if (related_subject_post == null) {
-              related_subject_post = "없음";
-            }
-            prof = "";
-            // 해당과목 연도-학기별 교수 찾기위한 부분
-            year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
-            var k = 0; //count용
-            var a = new Array(); // 연도별 prof 담을 array]
-            for (var i in year_prof_array) {
-              prof +=
-                "<tr><td>" +
-                i +
-                "</td><td>" +
-                doc.data().prof[i] +
-                "</td></tr>";
-              a[k] = doc.data().prof[i];
-              k++;
-            }
-            prof += "</table></div>";
-            // 해당과목 연도별 교수를 담은 리스트
-            lists = a[0].concat(a[1]);
-            var strr_add_rev = "";
-            lists = lists.filter(
-              (item, index) => lists.indexOf(item) === index
-            );
-            lists.forEach((element) => {
-              str +=
-                "<input type = 'radio' id = ' " +
-                element +
-                " ' name = 'prof' onclick = \"profradio(this.id)\"><label> &nbsp" +
-                element +
-                " </label>&nbsp&nbsp";
-              str2 +=
-                "<input type = 'radio' id = ' " +
-                element +
-                " ' name = 'rev'><label> &nbsp" +
-                element +
-                " </label>&nbsp&nbsp";
-              strr_add_rev +=
-                "<option value = '" + element + "'> " + element + "</option>";
-            });
-            list_div3.innerHTML = str;
-            llll.innerHTML = str2;
-            list_div.innerHTML = basic;
-            list_div2_1.innerHTML = course_desc;
-            list_div2_2.innerHTML = related_subject_pre;
-            list_div2_3.innerHTML = related_subject_post;
-            list_div2_5.innerHTML = prof;
-            past_prof_rad2.innerHTML = strr_add_rev;
-          });
-        });
-      }
-
       var eval_grade = 0,
         eval_hard = 0,
         eval_talk = 0,
@@ -1181,7 +1097,17 @@
         all_hard = 0,
         all_grade = 0,
         all_attend = 0;
-      //오른쪽 탭 라디오 버튼 누르면에 해당하는 데이터(chartjs, 강의평, 추가버튼)
+
+      /*
+      **오른쪽 탭 라디오 버튼에서 작동: 해당하는 교수에 해당하는 데이터(chartjs, 강의평, 추가버튼) 나타나게**
+      다음과 같은 내용을 입력한다.
+        1) -1 chartjs의 학과 평균 데이터 저장
+        1) -2 chartjs의 해당 교수 평균 데이터 저장
+        2) 해당 교수의 강의평 나타내기: term(몇 학기 수강생), eg(학점), script(강의평), good(추천 개수)
+        해당 변수에 모두 저장하고 마지막에 innerHTML에 적용하는 방식으로 이루어진다.
+
+        위에서 저장된 1) chartjs 정보를 바탕으로 chart에 적용한다.
+      */
       function profradio(thisid) {
         (eval_grade = 0),
           (eval_hard = 0),
@@ -1201,6 +1127,8 @@
         revs.get().then((snapshot) => {
           snapshot.docs.forEach((docss) => {
             var dat = docss.data()[thisid];
+
+            //1) -1 chartjs의 학과 평균 데이터 저장
             var dat_all = docss.data()["all"];
             all_talk = parseFloat(dat_all["talk"] / dat_all["sum"]);
             all_teach = parseFloat(dat_all["teach"] / dat_all["sum"]);
@@ -1216,6 +1144,7 @@
 
                 if (l == 0 && x != "name") {
                   for (var m in docss.data()[x]) {
+                    //2) 해당 교수의 강의평 나타내기: term(몇 학기 수강생), eg(학점), script(강의평), good(추천 개수)
                     prof_radio +=
                       "<div class='card shadow mb-4'><div class='card-body'><b>" +
                       docss.data()[x][m]["term"] +
@@ -1234,6 +1163,8 @@
                       "'><b>&nbsp추천 | </b> " +
                       docss.data()[x][m]["good"] +
                       "</a><br></span></a></div></div>";
+
+                    //1) -2 chartjs의 해당 교수 평균 데이터 저장
                     eval_grade += parseInt(docss.data()[x][m]["eval_grade"]);
                     eval_hard += parseInt(docss.data()[x][m]["eval_hard"]);
                     eval_talk += parseInt(docss.data()[x][m]["eval_talk"]);
@@ -1244,6 +1175,7 @@
                   }
                 }
               }
+              //해당 데이터 모두 innerHTML로 업데이트하기
               list_div4.innerHTML += prof_radio;
               console.log([
                 eval_grade / eval_num,
@@ -1253,6 +1185,7 @@
                 eval_attend / eval_num,
               ]);
 
+              //chart에 적용하기
               myRadarChart = new Chart(ctx, {
                 type: "radar",
                 data: {
@@ -1323,7 +1256,7 @@
         document.cookie = "";
       }
 
-      //chartjs부분 크기 계산
+      //추가 함수: chartjs부분 크기 계산
       function calcHeight(numOfBars) {
         var maxHeightOfChart = 100;
         var minHeight = 40; //setting the min height of the bar + margin between
@@ -1343,22 +1276,29 @@
       var h = document.getElementById("h");
       var ta = document.getElementById("ta");
       var te = document.getElementById("te");
+      var at = document.getElementById("at");
       var scr = document.getElementById("scr");
       var llld = ""; //체크한 라디오 버튼 확인
 
+      //강의평 추가하기 버튼을 누르면 작동되는 onclick함수: 강의평이 비어있는지 확인하고 추가된다.
       function check_rev() {
         if (scr.value == "") {
           alert("강의평을 입력해주셔야 올라갑니다. 강의평도 작성해주세요!");
         } else {
-          check_rev();
           add_rev();
         }
       }
 
-      //강의평 추가 modal 처리
+      /*강의평 추가 Modal 에 추가하기 누르면 작동되는 onclick 함수: 위의 check_rev() 함수 완료시 firebase에 review 추가하는 함수
+        다음과 같은 방식으로 작성된다.
+          STEP1: modal에 작성된 데이터 가져오기
+          STEP2; modal 내용 바탕으로 firebase에 넣을 데이터로 변형하기 (var hi)
+          STEP3: firebase에 적용하기
+      */
       function add_rev() {
-        /*
                 var rev = document.getElementsByName('rev'); 
+
+                //STEP1: modal에 작성된 데이터 가져오기
                 for(i = 0; i < rev.length; i++) { 
                         if(rev[i].checked){
                             llld= rev[i].id;
@@ -1366,26 +1306,30 @@
                         
                 } 
                 llld = llld.replace(/\s+/g, '');
+
+                //STEP2; modal 내용 바탕으로 firebase에 넣을 데이터로 변형하기 (var hi)
                 var hi = {[llld] :{
-                    'user-session-change-pillyou': {
+                    'user1': {
                         'eg': eg.value, 
                         'eval_grade': g.value, 
                         'eval_hard': h.value, 
                         'eval_talk': ta.value, 
                         'eval_teach': te.value, 
+                        'eval_attend':at.value,
                         'good':0, 
                         'script':scr.value,
                         'term':term.value
                     }}};
                     console.log(hi);
-                    
+                     
+                //STEP3: firebase에 적용하기
                 database.collection('review').doc(Course_id).set(hi,{merge:true}).then(function(){
                     console.log("okay");
                     alert("success!!")
-                })*/
+                })
       }
 
-      //추천버튼 누르면 정보 올라가게
+      //추천 버튼 누르면 작동되는 onclick 함수: 추천수가 올라가고, firebase에도 적용된다.
       function recom(prof, id, good) {
         var rev = document.getElementsByName("rev");
         id = id.replace(/\s+/g, "");
@@ -1395,7 +1339,7 @@
         var dataaa = {
           [prof]: {
             [id]: {
-              good: good + 1,
+              good: good + 1, //추천을 누르는 동시에, 추천수가 올라간 채로 적용된다.
             },
           },
         };
@@ -1405,13 +1349,20 @@
           .doc(Course_id)
           .set(dataaa, { merge: true })
           .then(function () {
-            spann.innerHTML = "<b>&nbsp추천 | </b> " + (good + 1) + "<br>";
+            spann.innerHTML = "<b>&nbsp추천 | </b> " + (good + 1) + "<br>"; //적용 완료 후 page에도 적용해준다.
             console.log("done");
           });
       }
 
-      //지난학기 과목 추가
+      /*
+        지난학기 과목 추가 Modal 에 추가하기 누르면 작동되는 onclick 함수:  firebase에 해당 과목 정보 추가하는 함수
+        다음과 같은 방식으로 작성된다.
+          STEP1: modal에 작성된 데이터 가져오기
+          STEP2; modal 내용 바탕으로 firebase에 넣을 데이터로 변형하기 (var insert_dat)
+          STEP3: firebase에 적용하기
+      */
       function add_grade() {
+        //STEP1: modal에 작성된 데이터 가져오기
         var past_term_rad = document.getElementById("past_term_rad2").value;
         var past_prof_rad = document.getElementById("past_prof_rad2").value;
         var past_grade_rad = document.getElementById("past_grade_rad2").value;
@@ -1420,6 +1371,8 @@
         past_grade_rad = past_grade_rad.replace(/\s+/g, "");
         past_maj = past_maj.replace(/\s+/g, "");
         past_id = past_id.replace(/\s+/g, "");
+
+        //STEP2; modal 내용 바탕으로 firebase에 넣을 데이터로 변형하기 (var insert_dat)
         if (past_term_rad != "2020-2") {
           var insert_dat = {
             grade: {
@@ -1447,14 +1400,21 @@
             },
           };
         }
+        // STEP3: firebase에 적용하기
         database
           .collection("user")
-          .doc("user2")
+          .doc("user1")
           .set(insert_dat, { merge: true })
           .then(function () {
             alert("done");
           });
       }
+      
+      /*
+        교수에게 하교 싶은 말의 버튼 누르면 작동되는 onclick 함수: 
+        - 하고 싶은 말 부분이 비었다면, alert 메시지 제시
+        - 하고 싶은 말 부분이 채워졌다면, 값을 받아오고, send_msg 함수로 전달
+      */
       function set_text() {
         if (document.getElementById("send_text").value == "") {
           alert("하고 싶은 말을 적어주세요!");
@@ -1465,14 +1425,20 @@
         }
       }
 
+      /*
+        교수에게 하교 싶은 말의 버튼 누르면 작동되는 set_text() 함수 완료시 나타나는 함수: firebase에 데이터 추가하기
+      */
       function send_msg(script) {
         console.log(course_textprof);
         course_textprof.push(script);
         console.log(course_textprof);
 
+        //firebase에 전달할 변수 설정
         var insert_dat = {
           textprof: course_textprof,
         };
+
+        //firebase에 적용하기
         database
           .collection("course")
           .doc(Course_id)
