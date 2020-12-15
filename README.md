@@ -4,9 +4,16 @@
 - front-end-bootstrap folder has all elements of our site.
 - front-end-prototype folder has the prototype images of our site.  
 
-## Implementation Tools
+## Implementation Tools & Prerequisites
 ![](https://drive.google.com/uc?export=view&id=1hIUcZWD0lViir_TZTywSVuJ8zrEYPPzd)
-We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end and visualization.  
+We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end and visualization. 
+- Back-end
+  * Nodejs | Server side, get SESSION information
+  * jQuery | to deal with Additional Javascript Functions
+  * Firebase | use Database easily
+- Front-end
+  * Bootstrap | For page layout
+  * Chartjs | to visualize several results
 
 #### Collaborators
 한지수 Jisu Han([@JisuHann](https://github.com/JisuHann)) - 1871056
