@@ -413,8 +413,10 @@
             } else if (l > 1000 || l < 0) {
                 alert("유효한 숫자만을 입력해주세요");
             } else if (sem == 'mid' && mid_put == true) {
+                insert_grade(sem, subject, prof, id);
                 this_sem_profradio(sem, subject, prof);
             } else if (sem == 'fin' && fin_put == true) {
+                insert_grade(sem, subject, prof, id);
                 this_sem_profradio(sem, subject, prof);
             }
             else {
