@@ -17,7 +17,7 @@ We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end 
   * Chartjs | to visualize several results
   
 ## DataBase Schema  
-<a href="https://drive.google.com/uc?export=view&id=1btLWjf3fJ3fg2Y-mG93lNzxlrAk2EYK0"><img src="https://drive.google.com/uc?export=view&id=1btLWjf3fJ3fg2Y-mG93lNzxlrAk2EYK0" width="500"/></a>  
+<a href="https://drive.google.com/uc?export=view&id=1btLWjf3fJ3fg2Y-mG93lNzxlrAk2EYK0"><img src="https://drive.google.com/uc?export=view&id=1btLWjf3fJ3fg2Y-mG93lNzxlrAk2EYK0" width="700"/></a>  
 <br>
 Our Database has this Schema.
 ## Demo
