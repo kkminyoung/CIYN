@@ -1,12 +1,12 @@
 # CIYN | Course Information You Need
 ## Page Configuration
 
-<a href="https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK"><img src="https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK" width="600"/></a>
+<a href="https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK"><img src="https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK" width="800"/></a>
 - front-end-bootstrap folder has all elements of our site.
 - front-end-prototype folder has the prototype images of our site.  
 
 ## Implementation Tools & Prerequisites
-<a href="https://drive.google.com/uc?export=view&id=1hIUcZWD0lViir_TZTywSVuJ8zrEYPPzd"><img src="https://drive.google.com/uc?export=view&id=1hIUcZWD0lViir_TZTywSVuJ8zrEYPPzd" width="600"/></a>
+<a href="https://drive.google.com/uc?export=view&id=1hIUcZWD0lViir_TZTywSVuJ8zrEYPPzd"><img src="https://drive.google.com/uc?export=view&id=1hIUcZWD0lViir_TZTywSVuJ8zrEYPPzd" width="800"/></a><br>
 We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end and visualization. 
 - Back-end
   * Nodejs | Server side, get SESSION information
@@ -17,7 +17,8 @@ We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end 
   * Chartjs | to visualize several results
   
 ## DataBase Schema  
-<a href="https://drive.google.com/uc?export=view&id=1btLWjf3fJ3fg2Y-mG93lNzxlrAk2EYK0"><img src="https://drive.google.com/uc?export=view&id=1btLWjf3fJ3fg2Y-mG93lNzxlrAk2EYK0" width="600"/></a>
+<a href="https://drive.google.com/uc?export=view&id=1btLWjf3fJ3fg2Y-mG93lNzxlrAk2EYK0"><img src="https://drive.google.com/uc?export=view&id=1btLWjf3fJ3fg2Y-mG93lNzxlrAk2EYK0" width="500"/></a>  
+<br>
 Our Database has this Schema.
 ## Demo
 [![CIYN 시연영상](https://img.youtube.com/vi/RARHjUjrx1U/0.jpg)](https://youtu.be/RARHjUjrx1U){: width="300" height="300"){: .center}
