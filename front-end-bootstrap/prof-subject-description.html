@@ -385,7 +385,7 @@
 
 
         <script>
-            // Your web app's Firebase configuration
+            // CIYN Firebase configuration
             var firebaseConfig = {
                 apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
                 authDomain: "ciyn-7bfbc.firebaseapp.com",
@@ -407,11 +407,11 @@
             const list_div2_4 = document.getElementById("faculty-title");
             const list_div2_5 = document.getElementById("faculty-table");
             const list_div4 = document.getElementById("dd");
+
             var findCourseValue; // 검색창으로부터 얻어온 과목이름 텍스트값
             var flag = 0; // 동일한 버튼 두번 눌렀을 경우, 창이 여러개 생기지 않게 하기위해 사용할 flag
             var Course_id; // 텍스트로 입력받은 과목의 id를 DB에서 찾아와 담을 변수
             var course_textprof = [];
-
 
             //초기 설정: 데이터 로딩
             var past_term = "", past_prof = "", past_grade = "", past_credit = "", past_maj = "", past_name = "", past_id = "";
@@ -424,13 +424,25 @@
             else{
                 findCourseValue = '캡스톤디자인프로젝트A';
             }
-            
 
-            console.log(findCourseValue);
-
+            /*
+            입력받은 코드에 대한 정보를 입력하는 코드
+            왼쪽 단의 기본 subject 정보 입력하기
+            */
             var col = database.collection('course').where('name', '==', findCourseValue);
             const rev = database.collection('review');
             const lll = document.getElementById('llll');
+
+            /*
+            **왼쪽/오른쪽 단의 기본 subject 정보 입력하기**
+            다음과 같은 내용을 입력한다.
+                1) 강의평가 결과, 기본정보 제공
+                2) 학생들이 보내준 말
+                해당 변수에 모두 저장하고 마지막에 innerHTML에 적용하는 방식으로 이루어진다.
+            */
+
+
+            // 1) 강의평가 결과, 기본정보 제공
             var text_to_prof = "";
             var str2 = "";
             var prof_radio = "";
@@ -451,7 +463,7 @@
                     prof = "";
                     console.log(course_textprof);
 
-
+                    // 해당과목 연도-학기별 교수 찾기위한 부분
                     var year_prof_array = doc.data().prof; // 해당과목 연도별 교수 Array
                     var k = 0; //count용
                     var a = new Array(); // 연도별 prof 담을 array]
@@ -482,9 +494,7 @@
                 // 검색창으로부터 얻어온 과목명
                 // Database의 Course에서 입력받은 과목명에 해당하는 collection을 얻어온다.
                 findCourseValue = document.getElementById("findCourse").value;
-
                 console.log(findCourseValue);
-
                 var col = database.collection('course').where('name', '==', findCourseValue);
                 const rev = database.collection('review');
                 const lll = document.getElementById('llll');
@@ -521,19 +531,16 @@
                 });
             }
  
-
-
-
             var eval_grade = 0, eval_hard = 0, eval_talk = 0, eval_teach = 0, eval_num = 0, eval_attend = 0;
             var ctx = document.getElementById('myChart').getContext('2d');
             var myRadarChart;
             var all_talk = 0, all_teach = 0, all_hard = 0, all_grade = 0, all_attend = 0;
             
-            //오른쪽 탭 라디오 버튼 누르면에 해당하는 데이터(chartjs, 강의평, 추가버튼)
+            
+            //2) 오른쪽 탭 라디오 버튼 누르면에 해당하는 데이터(chartjs, 강의평, 추가버튼)
             eval_grade = 0, eval_hard = 0, eval_talk = 0, eval_teach = 0, eval_num = 0, eval_attend = 0;
             list_div4.innerHTML = "";
             prof_radio = "";
-
             console.log(prof_radio); const revs = database.collection('review').where('name', '==', findCourseValue);
             console.log(findCourseValue);
             revs.get().then(snapshot => {
@@ -598,7 +605,6 @@
                 var maxHeightOfChart = 100;
                 var minHeight = 40; //setting the min height of the bar + margin between
                 var chartHeight = minHeight * numOfBars > maxHeightOfChart ? minHeight * numOfBars : maxHeightOfChart;
-
                 document.getElementById("canvasContainer").style.height = chartHeight.toString() + "px";
             }
 
