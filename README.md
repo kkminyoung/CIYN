@@ -14,6 +14,9 @@ We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end 
 - Front-end
   * Bootstrap | For page layout
   * Chartjs | to visualize several results
+  
+## Demo
+[![CIYN 시연영상](https://img.youtube.com/vi/RARHjUjrx1U/0.jpg)](https://www.youtube.com/watch?v=RARHjUjrx1U&t=1s)
 
 ### Collaborators
 한지수 Jisu Han([@JisuHann](https://github.com/JisuHann)) - 1871056
