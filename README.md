@@ -1,6 +1,7 @@
 # CIYN | Course Information You Need
 ## Page Configuration
-<img src="https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK" align="center"width="300" height="300">
+
+<a href="https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK"><img src="https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK" style="width: 300px; max-width: 100%; height: auto"/>
 - front-end-bootstrap folder has all elements of our site.
 - front-end-prototype folder has the prototype images of our site.  
 
