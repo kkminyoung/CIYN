@@ -98,7 +98,7 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <script>
-        // web app's Firebase configuration
+        // CIYN Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
             authDomain: "ciyn-7bfbc.firebaseapp.com",
@@ -155,7 +155,6 @@
         function onSignIn(googleUser) {
             profile = googleUser.getBasicProfile();
             id_token = googleUser.getAuthResponse().id_token;
-
             user_id = profile.getId();
             user_name = profile.getName();
             user_image = profile.getImageUrl();
@@ -165,7 +164,6 @@
             // 이화인 메일인지 확인
             var findString = "ewhain.net";
             user_email = String(user_email);
-
             if (user_email.indexOf(findString) != -1) {
                 is_ewhain = "이화인 계정입니다.";
             }
@@ -175,16 +173,10 @@
 
             sessionStorage.setItem('user_email', user_email);
 
-            console.log('ID: ' + user_id); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + user_name);
-            console.log('Image URL: ' + user_image);
-            console.log('Email: ' + user_email); // This is null if the 'email' scope is not present.
-
             document.getElementById("user_name").innerHTML = user_name;
             document.getElementById("user_email").innerHTML = user_email;
             document.getElementById("is_ewhain").innerHTML = is_ewhain;
-            ///////////////////////////////
-
+            
             $.ajax({
                 type: 'POST',
                 url: 'http://example.com/storeauthcode',
@@ -209,49 +201,26 @@
             })
 
             var check = check_user();
-
-            console.log(check);
             var size;
 
             // Database에 User가 없는경우, email을 Database에 추가
             if (check === 0) {
-                console.log("디비에없는경우");
                 var docData = {
                     'email': user_email,
                     'name': user_name
                 };
-
-
+                // DataBase에 자동추가
                 usersCollection.get().then(snap => {
                     size = snap.size + 1;
-                    console.log(size);
-                    console.log(snap.size);
                 });
-
-                console.log(size);
-
                 var user_number = "user" + String(8);
-                console.log(user_number);
-
                 database.collection("user").doc(user_number).set(docData).then(function () {
                     console.log("Document successfully written!");
                 });
             }
         }
 
-        function get_name() {
-            //onSignIn(googleUser);
-            console.log('ID: ' + user_id); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + user_name);
-            console.log('Image URL: ' + user_image);
-            console.log('Email: ' + user_email); // This is null if the 'email' scope is not present.
-
-            document.getElementById("user_name").innerHTML = user_name;
-            document.getElementById("user_email").innerHTML = user_email;
-            document.getElementById("is_ewhain").innerHTML = is_ewhain;
-        }
-
-        // 로그아웃
+        // 로그아웃 함수
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
@@ -274,6 +243,17 @@
                     }
                 })
             });
+        }
+
+        // 필요시 로딩
+        function get_name() {
+            console.log('ID: ' + user_id); 
+            console.log('Name: ' + user_name);
+            console.log('Image URL: ' + user_image);
+            console.log('Email: ' + user_email); 
+            document.getElementById("user_name").innerHTML = user_name;
+            document.getElementById("user_email").innerHTML = user_email;
+            document.getElementById("is_ewhain").innerHTML = is_ewhain;
         }
     </script>
 
