@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="251105086649-7dp43c1tupf0tsmqdoahj1jcbud3spmq.apps.googleusercontent.com">
+    <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+
+    <title>CIYN 로그인 페이지</title>
+    <link rel="icon" type="image/x-icon" href="img/logo-right-purple.png" />
+
+    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-firestore.js"></script>
+
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">이화인 계정으로 로그인하세요</h1>
+                                    </div>
+                                    <form class="user">
+                                        <div style="width:100px; margin:0 auto"  class="text-center">
+                                            <div style = "margin:0 auto" class="g-signin2 text-center"
+                                                data-onsuccess="onSignIn"></div>
+                                        </div>
+                                        <p></p>
+
+                                        <div class="text-center" id="user_name"></div>
+                                        <div class="text-center" id="user_email"></div>
+                                        <div class="text-center" id="is_ewhain"></div>
+                                        <div class="text-center" id="result"></div>
+                                        <div class="text-center" id="resultout"></div>
+                                        <p></p>
+
+                                        <a href="daily-log.html" class="btn btn-primary btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> 학생 버전 시작하기
+                                        </a>
+                                        <a href="prof-search-result.html" class="btn btn-primary btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> 교수 버전 시작하기
+                                        </a>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+        // CIYN Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCJ63RHBc0LMxSKn3mCubjeGpAqXtcdG_Q",
+            authDomain: "ciyn-7bfbc.firebaseapp.com",
+            databaseURL: "https://ciyn-7bfbc.firebaseio.com",
+            projectId: "ciyn-7bfbc",
+            storageBucket: "ciyn-7bfbc.appspot.com",
+            messagingSenderId: "251105086649",
+            appId: "1:251105086649:web:ada3d55a17def3c0b7df68",
+            measurementId: "G-4N9321T8ST"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.firestore();
+        const usersCollection = database.collection('user');
+        console.log(usersCollection);
+
+        var profile;
+        var user_id;
+        var user_name;
+        var user_image;
+        var user_email;
+        var is_ewhain;
+        var size;
+        var check_flag;
+
+        // 데이터베이스에 사용자가 있는지 확인
+        function check_user() {
+            console.log("check user 실행중");
+            console.log(usersCollection.where('email', '==', user_email));
+            var user_where = usersCollection.where('email', '==', user_email);
+            console.log(user_where);
+
+            user_where.get().then(function (querySnapshot) {
+                console.log(querySnapshot);
+                if (querySnapshot.empty) {
+                    console.log("비었다");
+                    check_flag = 0;
+                    console.log(check_flag);
+                }
+                else {
+                    console.log("안비었다.");
+                    check_flag = 1;
+                    console.log(check_flag);
+                }
+            })
+
+            console.log(check_flag);
+            return check_flag;
+
+        }
+
+        // 로그인 함수
+        function onSignIn(googleUser) {
+            profile = googleUser.getBasicProfile();
+            id_token = googleUser.getAuthResponse().id_token;
+            user_id = profile.getId();
+            user_name = profile.getName();
+            user_image = profile.getImageUrl();
+            user_email = profile.getEmail();
+            user_email.href = user_email;
+
+            // 이화인 메일인지 확인
+            var findString = "ewhain.net";
+            user_email = String(user_email);
+            if (user_email.indexOf(findString) != -1) {
+                is_ewhain = "이화인 계정입니다.";
+            }
+            else {
+                is_ewhain = "이화인 계정이 아닙니다. 이화인 계정으로 로그인하세요.";
+            }
+
+            sessionStorage.setItem('user_email', user_email);
+
+            document.getElementById("user_name").innerHTML = user_name;
+            document.getElementById("user_email").innerHTML = user_email;
+            document.getElementById("is_ewhain").innerHTML = is_ewhain;
+            
+            $.ajax({
+                type: 'POST',
+                url: 'http://example.com/storeauthcode',
+                processData: false,
+                data: id_token,
+                contentType: 'application/octet-stream; charset=utf-8',
+                success: function (result) {
+                    // Handle or verify the server response if necessary.
+                    if (result) {
+                        $('#result').html('Login Successful!</br>' + result + '</br>Redirecting...')
+                        setTimeout(function () {
+                            window.location.href = "/";
+                        }, 3000);
+
+                    } else if (authResult['error']) {
+                        console.log('There was an error: ' + authResult['error']);
+                    } else {
+                        $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+                    }
+                }
+
+            })
+
+            var check = check_user();
+            var size;
+
+            // Database에 User가 없는경우, email을 Database에 추가
+            if (check === 0) {
+                var docData = {
+                    'email': user_email,
+                    'name': user_name
+                };
+                // DataBase에 자동추가
+                usersCollection.get().then(snap => {
+                    size = snap.size + 1;
+                });
+                var user_number = "user" + String(8);
+                database.collection("user").doc(user_number).set(docData).then(function () {
+                    console.log("Document successfully written!");
+                });
+            }
+        }
+
+        // 로그아웃 함수
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '/googledisconnect',
+                    processData: false,
+                    contentType: 'application/octet-stream; charset=utf-8',
+                    success: function (result) {
+                        // Handle or verify the server response if necessary.
+                        if (result) {
+                            $('#resultout').html('Logout Successful!</br>' + result + '</br>Redirecting...')
+                            setTimeout(function () {
+                                window.location.href = "/";
+                            }, 3000);
+
+                        } else {
+                            $('#resultout').html('Failed to make a server-side call. Check your configuration and console.');
+                        }
+                    }
+                })
+            });
+        }
+
+        // 필요시 로딩
+        function get_name() {
+            console.log('ID: ' + user_id); 
+            console.log('Name: ' + user_name);
+            console.log('Image URL: ' + user_image);
+            console.log('Email: ' + user_email); 
+            document.getElementById("user_name").innerHTML = user_name;
+            document.getElementById("user_email").innerHTML = user_email;
+            document.getElementById("is_ewhain").innerHTML = is_ewhain;
+        }
+    </script>
+
+
+</html>
