@@ -1,11 +1,12 @@
 # CIYN | Course Information You Need
 ## Page Configuration
 ![](https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK)
+
 - front-end-bootstrap folder has all elements of our site.
 - front-end-prototype folder has the prototype images of our site.  
 
 ## Implementation Tools & Prerequisites
-![](https://drive.google.com/uc?export=view&id=1hIUcZWD0lViir_TZTywSVuJ8zrEYPPzd)
+![](https://drive.google.com/uc?export=view&id=1hIUcZWD0lViir_TZTywSVuJ8zrEYPPzd)<br>
 We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end and visualization. 
 - Back-end
   * Nodejs | Server side, get SESSION information
@@ -16,7 +17,7 @@ We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end 
   * Chartjs | to visualize several results
   
 ## Demo
-[![CIYN 시연영상](https://img.youtube.com/vi/RARHjUjrx1U/0.jpg)](https://youtu.be/RARHjUjrx1U)
+[![CIYN 시연영상](https://img.youtube.com/vi/bDnmZaZexwY/0.jpg)](https://youtu.be/bDnmZaZexwY)
 
 ### Collaborators
 한지수 Jisu Han([@JisuHann](https://github.com/JisuHann)) - 1871056
