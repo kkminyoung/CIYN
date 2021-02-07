@@ -1,6 +1,9 @@
 # CIYN | Course Information You Need
-## Page Configuration
-![](https://drive.google.com/uc?export=view&id=1kVPJrYW6LlHsm5mZAZaKN8ZxjPM1wEzK)
+
+## Demo Videos
+[![CIYN 시연영상](https://img.youtube.com/vi/bDnmZaZexwY/0.jpg)](https://youtu.be/bDnmZaZexwY)
+
+link : https://youtu.be/bDnmZaZexwY
 
 ## Implementation Tools & Prerequisites
 ![](https://drive.google.com/uc?export=view&id=1hIUcZWD0lViir_TZTywSVuJ8zrEYPPzd)<br>
@@ -13,11 +16,6 @@ We used Firebase, Nodejs, jQuery for back-end, Bootstrap, Chartjs for front-end 
   * Bootstrap | For page layout
   * Chartjs | to visualize several results
   
-## Demo Videos
-[![CIYN 시연영상](https://img.youtube.com/vi/bDnmZaZexwY/0.jpg)](https://youtu.be/bDnmZaZexwY)
-
-link : https://youtu.be/bDnmZaZexwY
-
 
 ### Collaborators
 한지수 Jisu Han([@JisuHann](https://github.com/JisuHann)) - 1871056
